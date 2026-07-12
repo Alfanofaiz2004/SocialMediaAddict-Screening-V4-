@@ -37,7 +37,7 @@ export default function ArtikelPage() {
           </header>
 
           {/* ─── ISI ARTIKEL ─── */}
-          <div className="prose md:prose-2xl max-w-none text-on-surface-variant leading-relaxed space-y-6 text-justify [&_h2]:text-left [&_h3]:text-left">
+          <div className="prose md:prose-xl max-w-none text-on-surface-variant leading-relaxed space-y-6 text-justify [&_h2]:text-left [&_h3]:text-left">
             <p>
               Pernah nggak sih, kamu niatnya cuma mau ngecek TikTok, Instagram Reels, atau YouTube Shorts selama 5 menit aja... eh pas lihat jam, tahu-tahu udah subuh? Tenang, kamu nggak sendirian. Di era digital sekarang, algoritma super canggih bekerja siang-malam buat bikin kamu nggak bisa berhenti nge-<em>scroll</em>.
             </p>
@@ -69,10 +69,10 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">psychology</span>
               1. Fokus Utama (Salience)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Salience adalah kondisi ketika aktivitas menonton video pendek menjadi bagian yang paling dominan dalam kehidupan sehari-hari. Seseorang mulai memikirkan media sosial bahkan ketika sedang tidak menggunakannya. Keinginan untuk membuka aplikasi muncul secara terus-menerus sehingga perhatian terhadap aktivitas lain menjadi berkurang.
             </p>
-            <p className="mt-2 text-on-surface-variant/80 italic md:text-2xl">
+            <p className="mt-2 text-on-surface-variant/80 italic md:text-xl">
               Misalnya, ketika sedang belajar, bekerja, makan bersama keluarga, atau berkumpul dengan teman, pikiran tetap tertuju pada video-video terbaru yang ingin ditonton.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
@@ -108,7 +108,7 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">mood</span>
               2. Pengubah Suasana Hati (Mood Modification)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Mood Modification adalah kondisi ketika seseorang menggunakan media sosial sebagai cara utama untuk mengurangi stres, menghilangkan rasa bosan, mengatasi kesepian, atau memperbaiki suasana hati. Video pendek memberikan hiburan secara instan sehingga otak mulai menganggap aktivitas tersebut sebagai "pelarian" dari masalah.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
@@ -144,7 +144,7 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">update</span>
               3. Toleransi Waktu (Tolerance)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Tolerance adalah kondisi ketika seseorang membutuhkan waktu penggunaan media sosial yang semakin lama untuk memperoleh kepuasan yang sama. Jika sebelumnya merasa puas setelah menonton selama 15 menit, lama-kelamaan durasi tersebut meningkat menjadi satu jam, dua jam, bahkan lebih.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
@@ -178,7 +178,7 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">sick</span>
               4. Gelisah saat Berhenti (Withdrawal)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Withdrawal adalah munculnya perasaan tidak nyaman ketika tidak dapat mengakses media sosial. Perasaan tersebut dapat berupa gelisah, bosan, mudah marah, atau cemas ketika akses terhadap aplikasi dibatasi. Perlu dipahami bahwa pada kecanduan perilaku, withdrawal lebih banyak berupa gejala psikologis, bukan gejala fisik seperti pada ketergantungan zat.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
@@ -213,7 +213,7 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">gavel</span>
               5. Konflik & Gangguan Hidup (Conflict)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Conflict terjadi ketika penggunaan media sosial mulai mengganggu tanggung jawab, hubungan sosial, maupun aktivitas sehari-hari. Konflik dapat terjadi dengan diri sendiri karena merasa bersalah telah menghabiskan banyak waktu, maupun dengan orang lain akibat penggunaan media sosial yang berlebihan.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
@@ -247,7 +247,7 @@ export default function ArtikelPage() {
               <span className="material-symbols-outlined text-primary text-[32px]">sync_problem</span>
               6. Kambuh Kembali (Relapse)
             </h3>
-            <p className="text-lg md:text-3xl leading-relaxed">
+            <p className="text-lg md:text-2xl leading-relaxed">
               Relapse adalah kondisi ketika seseorang kembali menggunakan media sosial secara berlebihan setelah sebelumnya berhasil mengurangi atau menghentikan penggunaannya. Kondisi ini umum terjadi dalam proses perubahan perilaku dan bukan berarti seluruh usaha sebelumnya gagal.
             </p>
             <div className="mt-4 bg-surface-variant/30 rounded-xl p-5 space-y-4 text-sm border border-outline-variant">
