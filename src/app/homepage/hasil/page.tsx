@@ -560,7 +560,7 @@ export default function HasilPage() {
               <div className="w-full">
                 <CriteriaBarChart criteria={result.svasCriteria.map(c => ({ label: c.label, score: c.score, weight: 1 }))} />
               </div>
-              <div className="mt-6 grid grid-rows-2 grid-flow-col gap-2 md:flex md:flex-wrap md:items-center md:gap-4 text-xs text-on-surface-variant">
+              <div className="mt-6 grid grid-rows-2 grid-flow-col gap-2 md:flex md:flex-wrap md:items-center md:justify-center md:gap-4 text-xs text-on-surface-variant">
                 <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#10B981]" /> 1-2 Normal</span>
                 <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#F59E0B]" /> 3 Waspada</span>
                 <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#F97316]" /> 4 Tinggi</span>

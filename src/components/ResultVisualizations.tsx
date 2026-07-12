@@ -93,21 +93,18 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
   const tickCount = 5;
   const yTicks = Array.from({ length: tickCount + 1 }, (_, i) => (roundedMax / tickCount) * i);
 
-  const chartHeight = 240;
-  const getYPosition = (hours: number) => chartHeight - (hours / roundedMax) * chartHeight;
-
   return (
     <div className="w-full flex flex-col pt-2 select-none">
-      <div className="flex min-h-[260px]">
+      <div className="flex h-[240px] md:h-[360px]">
         {/* Y-axis labels */}
-        <div className="flex flex-col justify-between text-xs text-on-surface-variant pr-3 select-none pb-1" style={{ height: chartHeight }}>
+        <div className="flex flex-col justify-between text-xs text-on-surface-variant pr-3 select-none pb-1 h-full">
           {yTicks.slice().reverse().map((tick, i) => (
             <span key={i} className="leading-none text-right w-8">{tick.toFixed(1)}h</span>
           ))}
         </div>
 
         {/* Chart area */}
-        <div className="flex-grow relative border-b border-l border-outline-variant" style={{ height: chartHeight }}>
+        <div className="flex-grow relative border-b border-l border-outline-variant h-full">
           {/* Grid lines */}
           <div className="absolute inset-0 flex flex-col justify-between pointer-events-none pb-0">
             {yTicks.slice().reverse().map((_, i) => (
@@ -118,7 +115,7 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
           {/* Healthy limit line (2 jam) */}
           <div
             className="absolute w-full z-10 pointer-events-none"
-            style={{ top: `${getYPosition(HEALTHY_LIMIT)}px` }}
+            style={{ bottom: `${(HEALTHY_LIMIT / roundedMax) * 100}%` }}
           >
             <div className="w-full border-t-2 border-dashed border-red-400" />
             <span className="absolute right-0 -top-5 text-[11px] font-semibold text-red-500 bg-surface/80 px-1.5 py-0.5 rounded whitespace-nowrap">
@@ -130,7 +127,7 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
           {totalHours > 0 && (
             <div
               className="absolute w-full z-10 pointer-events-none"
-              style={{ top: `${getYPosition(totalHours)}px` }}
+              style={{ bottom: `${(totalHours / roundedMax) * 100}%` }}
             >
               <div className="w-full border-t-2 border-dashed border-blue-400" />
               <span className="absolute left-0 -top-5 text-[11px] font-semibold text-blue-500 bg-surface/80 px-1.5 py-0.5 rounded whitespace-nowrap">
@@ -147,9 +144,9 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
               const heightPct = (item.hours / roundedMax) * 100;
               const barColor = platformColors[item.name] || '#00685f';
               return (
-                <div key={item.name} className="flex-grow max-w-[36px] md:max-w-[48px] flex flex-col items-center group relative h-full justify-end gap-1">
+                <div key={item.name} className="flex-grow max-w-[36px] md:max-w-[72px] flex flex-col items-center group relative h-full justify-end gap-1">
                   {/* Value label on top of bar */}
-                  <span className="text-[10px] md:text-xs font-bold text-on-surface whitespace-nowrap">
+                  <span className="text-[10px] md:text-sm font-bold text-on-surface whitespace-nowrap">
                     {item.hours.toFixed(1)}h
                   </span>
                   <div
@@ -191,9 +188,9 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
 
 // ─── Radar Chart (S-VAS) ───────────────────────────────────────────────
 export function SVASRadarChart({ criteria }: { criteria: { label: string; score: number }[] }) {
-  const size = 280;
+  const size = 360;
   const center = size / 2;
-  const maxRadius = 85;
+  const maxRadius = 120;
   const n = criteria.length;
 
   const getCoordinates = (val: number, i: number) => {
@@ -216,8 +213,8 @@ export function SVASRadarChart({ criteria }: { criteria: { label: string; score:
   }).join(' ');
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full h-full select-none py-2">
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
+    <div className="relative flex flex-col items-center justify-center w-full max-w-[280px] md:max-w-[440px] h-full select-none py-2 mx-auto">
+      <svg width="100%" height="auto" viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
         {gridPaths.map((path, idx) => (
           <polygon
             key={idx}
