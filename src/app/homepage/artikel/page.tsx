@@ -12,7 +12,7 @@ export default function ArtikelPage() {
 
       <main className="flex-grow w-full flex flex-col items-center pb-24">
         {/* Article Container - Diperlebar menjadi max-w-5xl */}
-        <article className="w-full max-w-5xl px-6 md:px-12 mt-12 md:mt-16">
+        <article className="w-full max-w-6xl px-6 md:px-12 mt-12 md:mt-16">
           
           {/* ─── HEADER ARTIKEL ─── */}
           <header className="mb-12 border-b border-outline-variant pb-8">
@@ -37,7 +37,7 @@ export default function ArtikelPage() {
           </header>
 
           {/* ─── ISI ARTIKEL ─── */}
-          <div className="prose md:prose-lg text-on-surface-variant leading-relaxed space-y-6 text-justify [&_h2]:text-left [&_h3]:text-left">
+          <div className="prose md:prose-lg max-w-none text-on-surface-variant leading-relaxed space-y-6 text-justify [&_h2]:text-left [&_h3]:text-left">
             <p>
               Pernah nggak sih, kamu niatnya cuma mau ngecek TikTok, Instagram Reels, atau YouTube Shorts selama 5 menit aja... eh pas lihat jam, tahu-tahu udah subuh? Tenang, kamu nggak sendirian. Di era digital sekarang, algoritma super canggih bekerja siang-malam buat bikin kamu nggak bisa berhenti nge-<em>scroll</em>.
             </p>
