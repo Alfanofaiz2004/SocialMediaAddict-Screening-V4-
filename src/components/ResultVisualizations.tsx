@@ -339,19 +339,19 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
             >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
-                className="w-full flex items-center justify-between p-3 md:p-4 hover:bg-surface-variant/30 text-left transition-colors print:hidden"
+                className="w-full flex items-center justify-between p-2 md:p-3 hover:bg-surface-variant/30 text-left transition-colors print:hidden"
               >
-                <div className="flex items-center gap-3 md:gap-4">
+                <div className="flex items-center gap-2 md:gap-3">
                   <div
-                    className="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-bold text-white text-xs md:text-sm flex-shrink-0"
+                    className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center font-bold text-white text-[10px] md:text-xs flex-shrink-0"
                     style={{ backgroundColor: colorCode }}
                   >
                     {c.score}/5
                   </div>
-                  <span className="text-base md:text-lg font-bold text-on-surface">{c.label}</span>
+                  <span className="text-sm md:text-base font-bold text-on-surface">{c.label}</span>
                 </div>
                 <span
-                  className="material-symbols-outlined text-[24px] md:text-[28px] text-on-surface-variant transition-transform duration-300"
+                  className="material-symbols-outlined text-[20px] md:text-[24px] text-on-surface-variant transition-transform duration-300"
                   style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 >
                   expand_more

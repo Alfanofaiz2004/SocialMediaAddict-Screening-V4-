@@ -649,30 +649,30 @@ export default function HasilPage() {
         ══════════════════════════════════════════════════════════════════ */}
         <div className="w-full px-6 md:px-12 pb-8 md:pb-12 print:hidden">
           <AnimatedSection delay={0.1} className="w-full max-w-5xl mx-auto">
-            <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-4 md:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
                 <Link
                   href="/homepage/kuesioner"
-                  className="w-full sm:w-auto bg-surface border-2 border-primary text-primary hover:bg-primary/10 font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm no-underline text-base hover:shadow-md"
+                  className="w-full sm:w-auto bg-surface border-2 border-primary text-primary hover:bg-primary/10 font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm no-underline text-sm hover:shadow-md"
                 >
-                  <span className="material-symbols-outlined">refresh</span>
+                  <span className="material-symbols-outlined text-[18px]">refresh</span>
                   Ulangi Tes
                 </Link>
 
                 <button
                   onClick={handleExportPDF}
                   disabled={isPrinting}
-                  className="w-full sm:w-auto bg-primary text-on-primary font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm disabled:opacity-50 text-base hover:shadow-md hover:brightness-110"
+                  className="w-full sm:w-auto bg-primary text-on-primary font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm disabled:opacity-50 text-sm hover:shadow-md hover:brightness-110"
                 >
-                  <span className={`material-symbols-outlined ${isPrinting ? 'animate-spin' : ''}`}>{isPrinting ? 'progress_activity' : 'download'}</span>
+                  <span className={`material-symbols-outlined text-[18px] ${isPrinting ? 'animate-spin' : ''}`}>{isPrinting ? 'progress_activity' : 'download'}</span>
                   {isPrinting ? 'Mengunduh PDF...' : 'Download PDF'}
                 </button>
 
                 <button
                   onClick={handleSelesai}
-                  className="w-full sm:w-auto bg-surface border-2 border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-medium px-6 py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm no-underline text-base hover:shadow-md"
+                  className="w-full sm:w-auto bg-surface border-2 border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm no-underline text-sm hover:shadow-md"
                 >
-                  <span className="material-symbols-outlined">home</span>
+                  <span className="material-symbols-outlined text-[18px]">home</span>
                   Selesai
                 </button>
               </div>
