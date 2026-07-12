@@ -142,14 +142,14 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
 
 
           {/* Bars */}
-          <div className="absolute inset-0 flex justify-around items-end px-4 md:px-6">
+          <div className="absolute inset-0 flex justify-around items-end px-2 md:px-6 gap-2">
             {data.map((item) => {
               const heightPct = (item.hours / roundedMax) * 100;
               const barColor = platformColors[item.name] || '#00685f';
               return (
-                <div key={item.name} className="flex-grow max-w-[64px] flex flex-col items-center group relative h-full justify-end gap-1">
+                <div key={item.name} className="flex-grow max-w-[36px] md:max-w-[48px] flex flex-col items-center group relative h-full justify-end gap-1">
                   {/* Value label on top of bar */}
-                  <span className="text-xs font-bold text-on-surface whitespace-nowrap">
+                  <span className="text-[10px] md:text-xs font-bold text-on-surface whitespace-nowrap">
                     {item.hours.toFixed(1)}h
                   </span>
                   <div
@@ -164,12 +164,16 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
       </div>
 
       {/* X-axis labels */}
-      <div className="flex pl-[44px] pt-3 justify-around">
-        {data.map((item) => (
-          <div key={item.name} className="flex-grow max-w-[64px] text-center text-sm font-medium text-on-surface-variant truncate">
-            {item.name}
-          </div>
-        ))}
+      <div className="flex flex-row">
+        {/* Spacer for Y-axis (w-8=32px + pr-3=12px = 44px) */}
+        <div className="w-[44px] flex-shrink-0" />
+        <div className="flex-grow flex justify-around px-2 md:px-6 gap-2 pt-2">
+          {data.map((item) => (
+            <div key={item.name} className="flex-grow max-w-[36px] md:max-w-[48px] text-center text-[9px] md:text-xs font-medium text-on-surface-variant truncate">
+              {item.name}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Legend */}
