@@ -376,7 +376,16 @@ export default function HasilPage() {
     const targetOffset = circumference - (percentage / 100) * circumference;
 
     return (
-      <div className="relative flex flex-col items-center justify-center w-full max-w-[140px] md:max-w-[340px] mx-auto mt-2 md:mt-6 mb-1 md:mb-2">
+      <div className="relative flex flex-col items-center justify-center w-full max-w-[170px] md:max-w-[340px] mx-auto mt-2 md:mt-6 mb-1 md:mb-2">
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="font-label-md text-[9px] md:text-xs text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.15em] mb-1 md:mb-4 font-semibold text-center leading-tight whitespace-nowrap"
+        >
+          Skor Ketergantungan
+        </motion.span>
+        
         <svg width="100%" height="100%" viewBox="0 0 320 170" className="overflow-visible">
           {/* Background Arc */}
           <path
@@ -422,14 +431,6 @@ export default function HasilPage() {
             style={{ color: animatedColor }}
           >
             {rounded}
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="font-label-md text-[8px] md:text-xs text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.15em] mt-0 md:mt-2 font-semibold text-center leading-tight"
-          >
-            Skor<br className="md:hidden" /> Ketergantungan
           </motion.span>
         </div>
       </div>

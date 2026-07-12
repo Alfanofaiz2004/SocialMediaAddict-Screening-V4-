@@ -10,7 +10,7 @@ import { ZoneInfo, ZoneType, Recommendation } from './screening-types';
 // ============================================================
 export const ZONES: Record<ZoneType, ZoneInfo> = {
   NORMAL: {
-    label: 'Healthy User (Normal)',
+    label: 'Normal',
     color: '#10B981', // Green
     bgColor: 'rgba(16, 185, 129, 0.08)',
     borderColor: 'rgba(16, 185, 129, 0.25)',
