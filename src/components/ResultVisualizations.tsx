@@ -2,11 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { DIMENSION_DETAILS } from '@/lib/screening-constants';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 
 function AnimatedBar({ score, index }: { score: number, index: number }) {
   const maxScore = 5;
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
   const width = useTransform(count, (latest) => `${(latest / maxScore) * 100}%`);
   const color = useTransform(
     count,
@@ -15,18 +19,30 @@ function AnimatedBar({ score, index }: { score: number, index: number }) {
   );
 
   useEffect(() => {
-    // Start animation slightly after the fade-in, staggered by index
-    const timeout = setTimeout(() => {
-      animate(count, score, { duration: 1.5, ease: [0.175, 0.885, 0.32, 1.1] });
-    }, 100 + index * 150);
-    return () => clearTimeout(timeout);
-  }, [score, index, count]);
+    if (isInView) {
+      // Start animation slightly after the fade-in, staggered by index
+      const timeout = setTimeout(() => {
+        animate(count, score, { duration: 1.5, ease: [0.175, 0.885, 0.32, 1.1] });
+      }, 100 + index * 150);
+      return () => clearTimeout(timeout);
+    }
+  }, [isInView, score, index, count]);
 
   return (
-    <motion.div
-      className="h-full rounded-full"
-      style={{ width, backgroundColor: color }}
-    />
+    <>
+      <div ref={ref} className="flex-grow h-8 bg-surface-variant/40 rounded-full overflow-hidden relative">
+        <motion.div
+          className="h-full rounded-full"
+          style={{ width, backgroundColor: color }}
+        />
+      </div>
+      <motion.span 
+        className="text-base font-bold w-6 text-center flex-shrink-0"
+        style={{ color: color }}
+      >
+        {rounded}
+      </motion.span>
+    </>
   );
 }
 
@@ -47,10 +63,7 @@ export function CriteriaBarChart({ criteria }: { criteria: { label: string; scor
             <span className="w-[130px] md:w-[180px] text-sm md:text-base text-on-surface-variant font-medium text-right flex-shrink-0 truncate">
               {c.label}
             </span>
-            <div className="flex-grow h-8 bg-surface-variant/40 rounded-full overflow-hidden relative">
-              <AnimatedBar score={c.score} index={i} />
-            </div>
-            <span className="text-base font-bold text-on-surface w-6 text-center flex-shrink-0">{c.score}</span>
+            <AnimatedBar score={c.score} index={i} />
           </motion.div>
         );
       })}
