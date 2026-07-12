@@ -7,7 +7,7 @@ import ScreeningHeader from '@/components/ScreeningHeader';
 import { ScreeningResult, UserInput, ZoneType } from '@/lib/screening-types';
 import { ZONES, DIMENSION_DETAILS } from '@/lib/screening-constants';
 import { CriteriaBarChart, PlatformBarChart, SVASRadarChart, DimensionAccordion } from '@/components/ResultVisualizations';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 
 // ─── Scroll-triggered animation wrapper ──────────────────────────────────────
 const fadeInUp = {
@@ -40,6 +40,14 @@ export default function HasilPage() {
   const [input, setInput] = useState<UserInput | null>(null);
   const [animated, setAnimated] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  const animatedColor = useTransform(
+    count,
+    [0, 50, 100],
+    ['#10B981', '#F59E0B', '#EF4444'] // Green -> Yellow -> Red
+  );
 
   const saveToServer = async (userName: string, inputData: UserInput, resultData: ScreeningResult) => {
     try {
@@ -351,6 +359,15 @@ export default function HasilPage() {
     }
   }, [router]);
 
+  useEffect(() => {
+    if (result && animated) {
+      animate(count, result.detoxPercentage, {
+        duration: 2,
+        ease: [0.175, 0.885, 0.32, 1.1],
+      });
+    }
+  }, [result, animated, count]);
+
   if (!isMounted || !result || !input) {
     return (
       <div className="bg-surface text-on-surface font-body-md min-h-screen flex items-center justify-center">
@@ -403,8 +420,9 @@ export default function HasilPage() {
         <svg width="320" height="170" viewBox="0 0 320 170" className="overflow-visible">
           <defs>
             <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor={zoneInfo.color} stopOpacity="0.5" />
-              <stop offset="100%" stopColor={zoneInfo.color} />
+              <stop offset="0%" stopColor="#10B981" />
+              <stop offset="50%" stopColor="#F59E0B" />
+              <stop offset="100%" stopColor="#EF4444" />
             </linearGradient>
           </defs>
 
@@ -445,11 +463,11 @@ export default function HasilPage() {
           <motion.span
             initial={{ opacity: 0, y: 15, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' }}
+            transition={{ duration: 0.5 }}
             className="font-display-lg text-[64px] font-extrabold leading-none tracking-tight"
-            style={{ color: zoneInfo.color }}
+            style={{ color: animatedColor }}
           >
-            {percentage}
+            {rounded}
           </motion.span>
           <motion.span
             initial={{ opacity: 0 }}
