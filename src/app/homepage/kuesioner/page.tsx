@@ -344,20 +344,19 @@ export default function KuesionerPage() {
                     >
                       {/* Question header */}
                       <div className="p-4 pb-2 md:p-5 md:pb-4">
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 ${svasScores[idx] !== -1 ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface-variant'
-                            }`}>
+                        <div className="flex items-start gap-3 md:gap-4 mb-3">
+                          <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center text-sm md:text-base font-bold flex-shrink-0 bg-primary text-on-primary shadow-sm">
                             {svasScores[idx] !== -1 ? (
-                              <span className="material-symbols-outlined text-[16px]">check</span>
+                              <span className="material-symbols-outlined text-[20px]">check</span>
                             ) : (
                               idx + 1
                             )}
                           </div>
                           <div className="flex-1">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-container rounded-md text-[10px] md:text-[11px] font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
+                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-on-primary rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
                               {q.dimension}
                             </span>
-                            <h3 className="text-base md:text-xl font-medium text-on-surface leading-relaxed">{q.text}</h3>
+                            <h3 className="text-base md:text-xl font-bold text-on-surface leading-relaxed">{q.text}</h3>
                           </div>
                         </div>
                       </div>
@@ -398,8 +397,9 @@ export default function KuesionerPage() {
                           })}
                         </div>
                         {q.contoh && (
-                          <div className="mt-3 md:mt-4 p-2.5 md:p-3 bg-surface-container rounded-lg border-l-4 border-primary/40 text-xs md:text-sm text-on-surface-variant leading-relaxed">
-                            <i>{q.contoh}</i>
+                          <div className="mt-4 md:mt-5 p-3.5 md:p-4 bg-primary text-on-primary rounded-xl shadow-md text-xs md:text-sm font-medium leading-relaxed flex items-start gap-3">
+                            <span className="material-symbols-outlined text-[20px] md:text-[24px] mt-0.5 opacity-90">lightbulb</span>
+                            <i className="not-italic">{q.contoh}</i>
                           </div>
                         )}
                       </div>
