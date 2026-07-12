@@ -1,35 +1,57 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DIMENSION_DETAILS } from '@/lib/screening-constants';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
+
+function AnimatedBar({ score, index }: { score: number, index: number }) {
+  const maxScore = 5;
+  const count = useMotionValue(0);
+  const width = useTransform(count, (latest) => `${(latest / maxScore) * 100}%`);
+  const color = useTransform(
+    count,
+    [0, 2, 3, 4, 5],
+    ['#10B981', '#10B981', '#F59E0B', '#F97316', '#EF4444']
+  );
+
+  useEffect(() => {
+    // Start animation slightly after the fade-in, staggered by index
+    const timeout = setTimeout(() => {
+      animate(count, score, { duration: 1.5, ease: [0.175, 0.885, 0.32, 1.1] });
+    }, 100 + index * 150);
+    return () => clearTimeout(timeout);
+  }, [score, index, count]);
+
+  return (
+    <motion.div
+      className="h-full rounded-full"
+      style={{ width, backgroundColor: color }}
+    />
+  );
+}
+
 // ─── Custom Horizontal Bar Chart: S-VAS Dimension Breakdown ────────────────────
 export function CriteriaBarChart({ criteria }: { criteria: { label: string; score: number; weight: number }[] }) {
-  const maxScore = 5;
-  const getBarColor = (score: number) => {
-    if (score <= 2) return '#10B981';
-    if (score <= 3) return '#F59E0B';
-    if (score <= 4) return '#F97316';
-    return '#EF4444';
-  };
-
   return (
     <div className="w-full flex flex-col gap-3 select-none">
       {criteria.map((c, i) => {
-        const widthPct = (c.score / maxScore) * 100;
         return (
-          <div key={i} className="flex items-center gap-3">
+          <motion.div
+            key={i}
+            className="flex items-center gap-3"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ delay: i * 0.15, duration: 0.5 }}
+          >
             <span className="w-[130px] md:w-[180px] text-sm md:text-base text-on-surface-variant font-medium text-right flex-shrink-0 truncate">
               {c.label}
             </span>
             <div className="flex-grow h-8 bg-surface-variant/40 rounded-full overflow-hidden relative">
-              <div
-                className="h-full rounded-full transition-all duration-700 ease-out"
-                style={{ width: `${widthPct}%`, backgroundColor: getBarColor(c.score) }}
-              />
+              <AnimatedBar score={c.score} index={i} />
             </div>
             <span className="text-base font-bold text-on-surface w-6 text-center flex-shrink-0">{c.score}</span>
-          </div>
+          </motion.div>
         );
       })}
     </div>
@@ -281,7 +303,14 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
           const colorCode = c.score <= 2 ? '#10B981' : c.score === 3 ? '#F59E0B' : '#EF4444';
 
           return (
-            <div key={i} className="border border-outline-variant rounded-lg bg-surface overflow-hidden print:border-b print:break-inside-avoid pdf-avoid-break shadow-sm hover:shadow-md transition-shadow">
+            <motion.div 
+              key={i} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              className="border border-outline-variant rounded-lg bg-surface overflow-hidden print:border-b print:break-inside-avoid pdf-avoid-break shadow-sm hover:shadow-md transition-shadow"
+            >
               <button
                 onClick={() => setOpenIndex(isOpen ? null : i)}
                 className="w-full flex items-center justify-between p-4 hover:bg-surface-variant/30 text-left transition-colors print:hidden"
@@ -358,7 +387,7 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
                     </div>
                   </motion.div>
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>
