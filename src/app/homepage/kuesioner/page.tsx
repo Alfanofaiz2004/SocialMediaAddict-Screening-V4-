@@ -30,13 +30,13 @@ const STEP_INFO: Record<Step, { num: number; title: string; subtitle: string; ic
     num: 2, title: 'Kuesioner S-VAS', subtitle: 'Jawab 6 pertanyaan berikut', icon: 'psychology',
   },
   platform: {
-    num: 3, title: 'Estimasi Waktu Penggunaan Video Pendek', subtitle: 'Rata-rata penggunaan harian', icon: 'devices',
+    num: 3, title: 'Estimasi Penggunaan Media Sosial (Opsional)', subtitle: 'Rata-rata penggunaan harian', icon: 'devices',
   },
   sleep: {
     num: 4, title: 'Kualitas Tidur', subtitle: 'Jam tidur per malam', icon: 'bedtime',
   },
   productivity: {
-    num: 5, title: 'Produktivitas', subtitle: 'Dampak Video Pendek terhadap aktivitas', icon: 'work',
+    num: 5, title: 'Produktivitas', subtitle: 'Dampak menonton video pendek terhadap aktivitas', icon: 'work',
   },
 };
 
@@ -254,7 +254,6 @@ export default function KuesionerPage() {
                   <p className="text-xs md:text-lg text-on-surface-variant">{info.subtitle}</p>
                   {step === 'platform' && (
                     <span className="text-[10px] md:text-xs font-bold text-primary underline decoration-2 underline-offset-2">
-                      (Opsional)
                     </span>
                   )}
                 </div>
@@ -422,7 +421,7 @@ export default function KuesionerPage() {
                     <span className="material-symbols-outlined text-tertiary text-[20px] md:text-[22px] mt-0.5 flex-shrink-0">info</span>
                     <p className="text-[11px] md:text-sm text-on-surface-variant leading-relaxed">
                       Data penggunaan platform hanya sebagai <strong>Informasi Pendukung</strong>.
-                      Gunakan estimasi saja, tidak perlu mengecek.
+                      Boleh Berupa estimasi saja. 
                     </p>
                   </div>
 
@@ -556,7 +555,7 @@ export default function KuesionerPage() {
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
                         <label className="text-base md:text-xl font-medium text-on-surface" htmlFor="productivity-scale">
-                          Tingkat gangguan pada produktivitas
+                          Tingkat gangguan: 
                         </label>
                         <span className="inline-flex items-center justify-center px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold w-fit" style={{ backgroundColor: `${prodInfo.color}15`, color: prodInfo.color }}>
                           Status: {prodInfo.text}
