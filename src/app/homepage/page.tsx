@@ -373,26 +373,22 @@ export default function ScreeningLandingPage() {
             {[
               { value: 6, suffix: '', label: 'Item Kuesioner', icon: 'quiz' },
               { value: 3, suffix: ' mnt', label: 'Waktu Pengerjaan', icon: 'timer' },
-              { textValue: 'Beserta Visualisasi', label: '', icon: 'hub' },
+              { value: 6, suffix: '', label: 'Dimensi Adiksi', icon: 'hub' },
               { value: 100, suffix: '%', label: 'Gratis & Anonim', icon: 'lock' },
-            ].map((stat: any, i) => (
+            ].map((stat, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
                 whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center justify-center gap-1"
+                className="flex flex-col items-center gap-1"
               >
                 <span className="material-symbols-outlined text-[28px] opacity-80 mb-1">{stat.icon}</span>
-                <span className="text-3xl md:text-4xl font-bold flex items-center justify-center text-center">
-                  {stat.value !== undefined ? (
-                    <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                  ) : (
-                    <span className="text-lg md:text-xl leading-tight mt-1">{stat.textValue}</span>
-                  )}
+                <span className="text-3xl md:text-4xl font-bold">
+                  <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </span>
-                {stat.label && <span className="text-sm opacity-80">{stat.label}</span>}
+                <span className="text-sm opacity-80">{stat.label}</span>
               </motion.div>
             ))}
           </div>
