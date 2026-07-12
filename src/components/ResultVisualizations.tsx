@@ -292,7 +292,7 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
     <div className="flex flex-col gap-4 w-full mt-2">
       <div className="bg-[#00685f]/10 p-3 md:p-4 rounded-lg border border-[#00685f]/20 text-[#00685f] mb-2 text-sm md:text-base flex gap-2 md:gap-3 items-start">
         <span className="material-symbols-outlined text-[20px] md:text-[24px] mt-0.5 flex-shrink-0">info</span>
-        <p className="leading-relaxed">
+        <p className="leading-relaxed text-justify">
           <strong>Catatan Penting:</strong> Hasil penjabaran tiap dimensi ini merupakan indikasi awal kecenderungan perilaku kamu, dan <strong>bukanlah sebuah diagnosis klinis</strong>. Jika kamu merasa kondisi ini sangat mengganggu, sangat disarankan untuk berkonsultasi dengan profesional atau psikolog.
         </p>
       </div>
@@ -368,27 +368,27 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
                     className="overflow-hidden print:!h-auto print:!opacity-100 print:!visible print:block"
                   >
                     <div className="p-5 pt-0 print:pt-5 border-t border-outline-variant/30 text-base text-on-surface-variant flex flex-col gap-4 bg-surface-container-lowest leading-relaxed">
-                      <div className="mt-4 print:mt-0">
-                        <span className="font-bold text-on-surface block mb-2 text-lg">Pengertian:</span>
+                      <div className="mt-4 print:mt-0 text-justify">
+                        <span className="font-bold text-on-surface block mb-2 text-lg text-left">Pengertian:</span>
                         {detail.basic}
                       </div>
 
                       <div
-                        className="p-4 bg-surface-variant/20 rounded-lg border-l-[6px]"
+                        className="p-4 bg-surface-variant/20 rounded-lg border-l-[6px] text-justify"
                         style={{ borderColor: colorCode }}
                       >
-                        <span className="font-bold text-on-surface block mb-2 text-lg">
+                        <span className="font-bold text-on-surface block mb-2 text-lg text-left">
                           Analisis Skor Kamu ({c.score}/5):
                         </span>
                         {specificDesc}
 
                         {solusiDesc && (
                           <div className="mt-4 pt-4 border-t border-outline-variant/30">
-                            <span className="font-bold text-on-surface mb-2 text-lg flex items-center gap-2">
+                            <span className="font-bold text-on-surface mb-2 text-lg flex items-center gap-2 text-left">
                               <span className="material-symbols-outlined text-[20px]" style={{ color: colorCode }}>lightbulb</span>
                               Solusi & Rekomendasi
                             </span>
-                            <ul className="list-disc pl-5 mt-2 space-y-1 text-base text-on-surface-variant leading-relaxed">
+                            <ul className="list-disc pl-5 mt-2 space-y-1 text-base text-on-surface-variant leading-relaxed text-justify">
                               {Array.isArray(solusiDesc) 
                                 ? solusiDesc.map((item: string, idx: number) => <li key={idx}>{item}</li>)
                                 : <li>{solusiDesc}</li>
