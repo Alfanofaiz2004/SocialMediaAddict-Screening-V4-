@@ -430,7 +430,7 @@ export default function KuesionerPage() {
                     <span className="material-symbols-outlined text-tertiary text-[20px] md:text-[22px] mt-0.5 flex-shrink-0">info</span>
                     <p className="text-[11px] md:text-sm text-on-surface-variant leading-relaxed">
                       Data penggunaan platform hanya sebagai <strong>Informasi Pendukung</strong> saja.
-                      S-VAS tetap menjadi faktor utama.
+                      Gunakan estimasi saja, tidak perlu mengecek.
                     </p>
                   </div>
 
