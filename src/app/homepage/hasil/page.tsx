@@ -437,7 +437,7 @@ export default function HasilPage() {
   };
 
   return (
-    <div className="bg-background print:bg-white text-on-background print:text-black min-h-screen flex flex-col font-body-md antialiased">
+    <div className="bg-background print:bg-white text-on-background print:text-black min-h-screen flex flex-col font-body-md antialiased overflow-x-hidden">
       <div className="print:hidden">
         <ScreeningHeader />
       </div>

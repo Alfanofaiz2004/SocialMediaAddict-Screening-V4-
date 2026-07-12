@@ -2,14 +2,22 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function ScreeningHeader() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-surface/80 backdrop-blur-md border-b border-outline-variant w-full z-50 sticky top-0">
       <div className="flex justify-between items-center w-full px-4 md:px-6 max-w-[1200px] mx-auto h-16 md:h-20">
-        <div className="w-1/3 md:hidden"></div>
+        <div className="w-1/3 md:hidden flex justify-start">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-on-surface-variant focus:outline-none">
+            <span className="material-symbols-outlined text-[28px]">
+              {isMobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
+        </div>
         <nav className="hidden md:flex gap-6 h-full items-center w-1/3">
           <Link
             href="/homepage"
@@ -51,6 +59,39 @@ export default function ScreeningHeader() {
         <div className="w-1/3 flex justify-end items-center gap-4 relative">
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-surface border-b border-outline-variant shadow-lg py-4 px-6 flex flex-col gap-4 z-40">
+          <Link
+            href="/homepage"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`font-semibold text-base transition-colors ${
+              pathname === '/homepage' ? 'text-primary' : 'text-on-surface-variant'
+            }`}
+          >
+            Beranda
+          </Link>
+          <Link
+            href="/homepage/kuesioner"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`font-semibold text-base transition-colors ${
+              pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant'
+            }`}
+          >
+            Screening
+          </Link>
+          <Link
+            href="/homepage/artikel"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className={`font-semibold text-base transition-colors ${
+              pathname?.startsWith('/homepage/artikel') ? 'text-primary' : 'text-on-surface-variant'
+            }`}
+          >
+            Tentang Tes
+          </Link>
+        </div>
+      )}
     </header>
   );
 }
