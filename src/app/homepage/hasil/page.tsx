@@ -377,61 +377,67 @@ export default function HasilPage() {
 
     return (
       <div className="relative flex flex-col items-center justify-center w-full max-w-[200px] md:max-w-[340px] mx-auto mt-2 md:mt-6 mb-1 md:mb-2">
-        <svg width="100%" height="100%" viewBox="0 0 320 170" className="overflow-visible">
-          {/* Background Arc */}
-          <path
-            d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`}
-            fill="none"
-            stroke="rgba(188, 201, 198, 0.3)" // subtle outline variant
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-          />
+        
+        <div className="relative w-full flex flex-col items-center">
+          <svg width="100%" height="100%" viewBox="0 0 320 170" className="overflow-visible">
+            {/* Background Arc */}
+            <path
+              d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`}
+              fill="none"
+              stroke="rgba(188, 201, 198, 0.3)" // subtle outline variant
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+            />
 
-          {/* Animated Foreground Arc */}
-          <motion.path
-            d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`}
-            fill="none"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={animated ? targetOffset : circumference}
-            style={{ 
-              stroke: animatedColor, 
-              transition: 'stroke-dashoffset 2s cubic-bezier(0.175, 0.885, 0.32, 1.1)' 
-            }}
-          />
+            {/* Animated Foreground Arc */}
+            <motion.path
+              d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`}
+              fill="none"
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={animated ? targetOffset : circumference}
+              style={{ 
+                stroke: animatedColor, 
+                transition: 'stroke-dashoffset 2s cubic-bezier(0.175, 0.885, 0.32, 1.1)' 
+              }}
+            />
 
-          {/* Tick Markers */}
-          {[0, 25, 50, 75, 100].map((tick) => {
-            const angle = Math.PI - (tick / 100) * Math.PI;
-            // Draw small dots instead of lines for a cleaner look
-            const x = cx + (radius - strokeWidth / 2 - 12) * Math.cos(angle);
-            const y = cy - (radius - strokeWidth / 2 - 12) * Math.sin(angle);
-            return (
-              <circle key={tick} cx={x} cy={y} r="2" fill="currentColor" className="text-on-surface-variant opacity-40" />
-            )
-          })}
-        </svg>
+            {/* Tick Markers */}
+            {[0, 25, 50, 75, 100].map((tick) => {
+              const angle = Math.PI - (tick / 100) * Math.PI;
+              // Draw small dots instead of lines for a cleaner look
+              const x = cx + (radius - strokeWidth / 2 - 12) * Math.cos(angle);
+              const y = cy - (radius - strokeWidth / 2 - 12) * Math.sin(angle);
+              return (
+                <circle key={tick} cx={x} cy={y} r="2" fill="currentColor" className="text-on-surface-variant opacity-40" />
+              )
+            })}
+          </svg>
 
-        <div className="absolute bottom-0 md:bottom-2 flex flex-col items-center">
-          <motion.span
-            initial={{ opacity: 0, y: 15, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="font-display-lg text-[32px] md:text-[64px] font-extrabold leading-none tracking-tight mb-1 md:mb-2"
-            style={{ color: animatedColor }}
-          >
-            {rounded}
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="font-label-md text-[9px] md:text-xs text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.15em] font-semibold text-center leading-tight whitespace-nowrap"
-          >
-            Skor Ketergantungan
-          </motion.span>
+          {/* Number Score inside the SVG arc */}
+          <div className="absolute bottom-2 md:bottom-4 flex flex-col items-center">
+            <motion.span
+              initial={{ opacity: 0, y: 15, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="font-display-lg text-[32px] md:text-[64px] font-extrabold leading-none tracking-tight"
+              style={{ color: animatedColor }}
+            >
+              {rounded}
+            </motion.span>
+          </div>
         </div>
+
+        {/* Skor Ketergantungan text completely below the chart */}
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+          className="font-label-md text-[10px] md:text-sm text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.1em] font-extrabold text-center leading-tight whitespace-nowrap mt-4 md:mt-6"
+        >
+          Skor Ketergantungan
+        </motion.span>
       </div>
     );
   };
