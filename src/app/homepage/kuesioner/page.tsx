@@ -250,7 +250,14 @@ export default function KuesionerPage() {
                     <h1 className="text-xl md:text-3xl font-bold text-on-surface leading-tight">{info.title}</h1>
                   </div>
                 </div>
-                <p className="text-xs md:text-lg text-on-surface-variant ml-[46px] md:ml-[60px]">{info.subtitle}</p>
+                <div className="ml-[46px] md:ml-[60px] flex items-center flex-wrap gap-2">
+                  <p className="text-xs md:text-lg text-on-surface-variant">{info.subtitle}</p>
+                  {step === 'platform' && (
+                    <span className="text-[10px] md:text-xs font-bold text-primary underline decoration-2 underline-offset-2">
+                      (Opsional)
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* ══════════════════════════════════════════════════
@@ -307,18 +314,6 @@ export default function KuesionerPage() {
                         indeks keparahan kecanduan video pendek berdasarkan 6 kriteria inti yang divalidasi secara ilmiah.
                       </p>
                     </div>
-                  </div>
-
-                  {/* Time estimate */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-xs md:text-sm text-on-surface-variant">
-                    <span className="flex items-center gap-1 md:gap-1.5">
-                      <span className="material-symbols-outlined text-[16px] md:text-[18px]">timer</span>
-                      Estimasi: ~3 menit
-                    </span>
-                    <span className="flex items-center gap-1 md:gap-1.5">
-                      <span className="material-symbols-outlined text-[16px] md:text-[18px]">quiz</span>
-                      6 pertanyaan + 3 data pendukung
-                    </span>
                   </div>
                 </div>
               )}
