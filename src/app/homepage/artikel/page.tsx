@@ -16,14 +16,14 @@ export default function ArtikelPage() {
           
           {/* ─── HEADER ARTIKEL ─── */}
           <header className="mb-12 border-b border-outline-variant pb-8">
-            <div className="flex items-center gap-3 text-primary text-sm font-bold uppercase tracking-wider mb-4">
+            <div className="flex items-center gap-3 text-primary text-sm md:text-base font-bold uppercase tracking-wider mb-4">
               <span className="material-symbols-outlined text-[18px]">menu_book</span>
               Deep Dive & Edukasi
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold text-on-surface leading-tight mb-6 text-left">
               Membedah SVAS-6: Landasan Ilmiah di Balik Kecanduan Video Pendek
             </h1>
-            <div className="flex flex-wrap items-center gap-4 text-on-surface-variant text-sm">
+            <div className="flex flex-wrap items-center gap-4 text-on-surface-variant text-sm md:text-base">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">edit</span>
                 <span>Ditulis oleh Tim MindScroll</span>
@@ -305,13 +305,19 @@ export default function ArtikelPage() {
               Mungkin kamu bingung, "Tes kecanduan kok nanyain jam tidur sama gangguan produktivitas?" <em>Well</em>, kecanduan medsos itu nggak pernah menyerang sendirian. Dia bakal ngerusak pilar utama kesehatanmu melalui dua jalur ini:
             </p>
             
-            <h3 className="text-2xl font-bold text-on-surface mt-8 mb-3">1. Manipulasi Sirkadian (Efek Blue Light)</h3>
-            <p>
+            <h3 className="text-xl md:text-3xl font-bold text-on-surface mt-12 mb-4 flex items-center gap-3">
+              <span className="material-symbols-outlined text-primary text-[32px]">brightness_4</span>
+              1. Manipulasi Sirkadian (Efek Blue Light)
+            </h3>
+            <p className="text-lg md:text-xl leading-relaxed text-on-surface font-medium">
               Layar HP memancarkan cahaya biru (<em>blue light</em>) yang menipu kelenjar di otakmu buat mikir "Oh, masih siang nih." Akibatnya, produksi melatonin (hormon tidur) mandek. Efeknya? Kamu jadi susah tidur, kualitas tidur memburuk, dan siklus sirkadianmu berantakan.
             </p>
 
-            <h3 className="text-2xl font-bold text-on-surface mt-8 mb-3">2. Attention Span yang Ciut (Context-Switching Fatigue)</h3>
-            <p>
+            <h3 className="text-xl md:text-3xl font-bold text-on-surface mt-12 mb-4 flex items-center gap-3">
+              <span className="material-symbols-outlined text-primary text-[32px]">battery_alert</span>
+              2. Attention Span yang Ciut (Context-Switching Fatigue)
+            </h3>
+            <p className="text-lg md:text-xl leading-relaxed text-on-surface font-medium">
               Otak yang telanjur kebiasaan ngeproses informasi baru setiap 15 detik bakal kelabakan kalau disuruh fokus ngerjain satu tugas berat berjam-jam (kayak nulis laporan atau belajar). Otakmu bakal ngerasa bosan luar biasa dan produktivitas kerjamu pun hancur lebur.
             </p>
 
