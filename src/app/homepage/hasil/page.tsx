@@ -376,8 +376,8 @@ export default function HasilPage() {
     const targetOffset = circumference - (percentage / 100) * circumference;
 
     return (
-      <div className="relative flex flex-col items-center justify-center w-full max-w-[340px] mx-auto mt-6 mb-2">
-        <svg width="320" height="170" viewBox="0 0 320 170" className="overflow-visible">
+      <div className="relative flex flex-col items-center justify-center w-full max-w-[140px] md:max-w-[340px] mx-auto mt-2 md:mt-6 mb-1 md:mb-2">
+        <svg width="100%" height="100%" viewBox="0 0 320 170" className="overflow-visible">
           {/* Background Arc */}
           <path
             d={`M ${cx - radius} ${cy} A ${radius} ${radius} 0 0 1 ${cx + radius} ${cy}`}
@@ -413,12 +413,12 @@ export default function HasilPage() {
           })}
         </svg>
 
-        <div className="absolute bottom-2 flex flex-col items-center">
+        <div className="absolute bottom-0 md:bottom-2 flex flex-col items-center">
           <motion.span
             initial={{ opacity: 0, y: 15, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="font-display-lg text-[64px] font-extrabold leading-none tracking-tight"
+            className="font-display-lg text-[32px] md:text-[64px] font-extrabold leading-none tracking-tight"
             style={{ color: animatedColor }}
           >
             {rounded}
@@ -427,9 +427,9 @@ export default function HasilPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.5 }}
-            className="font-label-md text-xs text-on-surface-variant uppercase tracking-[0.15em] mt-2 font-semibold"
+            className="font-label-md text-[8px] md:text-xs text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.15em] mt-0 md:mt-2 font-semibold text-center leading-tight"
           >
-            Skor Ketergantungan
+            Skor<br className="md:hidden" /> Ketergantungan
           </motion.span>
         </div>
       </div>
@@ -484,50 +484,50 @@ export default function HasilPage() {
 
         <div className="w-full px-6 md:px-12 py-8 md:py-12">
           <AnimatedSection className="w-full max-w-5xl mx-auto">
-            <div className="bg-surface-container-lowest border border-outline-variant rounded-3xl p-6 md:p-10 shadow-sm flex flex-col lg:flex-row items-center gap-8 lg:gap-12 pdf-avoid-break">
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl md:rounded-3xl p-4 md:p-10 shadow-sm flex flex-row items-center gap-4 md:gap-12 pdf-avoid-break">
 
               {/* Left Side: Gauge Visualization */}
-              <div className="w-full lg:w-[45%] flex justify-center flex-shrink-0">
+              <div className="w-[45%] lg:w-[45%] flex justify-center flex-shrink-0">
                 {renderGaugeScore()}
               </div>
 
               {/* Right Side: Status Banner Card */}
-              <div className="w-full lg:w-[55%]">
+              <div className="w-[55%] lg:w-[55%]">
                 <div
-                  className="rounded-2xl p-5 md:p-8 flex flex-col gap-4 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded-xl md:rounded-2xl p-3 md:p-8 flex flex-col justify-center gap-2 md:gap-4 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full"
                   style={{ backgroundColor: colorScheme.bg, border: `1px solid ${zoneInfo.color}40` }}
                 >
                   {/* Decorative faint background icon */}
                   <span
-                    className="material-symbols-outlined absolute -right-6 -bottom-6 md:-right-8 md:-bottom-8 text-[90px] md:text-[140px] opacity-[0.07] pointer-events-none select-none"
+                    className="material-symbols-outlined absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 text-[60px] md:text-[140px] opacity-[0.07] pointer-events-none select-none"
                     style={{ color: zoneInfo.color }}
                   >
                     {result.zone === 'NORMAL' ? 'verified' : result.zone === 'BERISIKO' ? 'warning' : 'dangerous'}
                   </span>
 
-                  <div className="flex items-center gap-3 md:gap-4 relative z-10">
+                  <div className="flex items-center gap-2 md:gap-4 relative z-10">
                     <div
-                      className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
+                      className="w-8 h-8 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
                       style={{ backgroundColor: zoneInfo.color, color: '#fff' }}
                     >
-                      <span className="material-symbols-outlined text-[20px] md:text-[32px]">
+                      <span className="material-symbols-outlined text-[16px] md:text-[32px]">
                         {result.zone === 'NORMAL' ? 'health_and_safety' : result.zone === 'BERISIKO' ? 'error' : 'warning'}
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0.5 md:mb-1 opacity-80" style={{ color: colorScheme.text }}>
+                      <span className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-0 md:mb-1 opacity-80" style={{ color: colorScheme.text }}>
                         Status
                       </span>
-                      <h3 className="text-lg md:text-3xl font-extrabold leading-tight" style={{ color: colorScheme.text }}>
+                      <h3 className="text-sm md:text-3xl font-extrabold leading-tight" style={{ color: colorScheme.text }}>
                         {zoneInfo.label}
                       </h3>
                     </div>
                   </div>
 
-                  <div className="h-px w-full my-2 opacity-20" style={{ backgroundColor: colorScheme.text }} />
+                  <div className="h-px w-full my-1 md:my-2 opacity-20" style={{ backgroundColor: colorScheme.text }} />
 
                   <p
-                    className="text-sm md:text-lg font-medium leading-relaxed relative z-10"
+                    className="text-[9px] md:text-lg font-medium leading-relaxed relative z-10"
                     style={{ color: colorScheme.text }}
                   >
                     {zoneInfo.description}
