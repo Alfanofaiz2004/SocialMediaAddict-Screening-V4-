@@ -182,6 +182,15 @@ export default function HasilPage() {
       // ══════════════════════════════════════════════════════════════════
       // STEP 4: Capture screenshot dengan html2canvas
       // ══════════════════════════════════════════════════════════════════
+      // Simpan ukuran asli dan paksa ke ukuran desktop agar rapi walau di HP
+      const origWidth = element.style.width;
+      const origMaxWidth = element.style.maxWidth;
+      element.style.width = '1024px';
+      element.style.maxWidth = '1024px';
+      
+      // Tunggu reflow sekali lagi untuk ukuran baru
+      await new Promise(r => setTimeout(r, 150));
+
       const captureHeight = element.scrollHeight;
       const canvas = await html2canvas(element, {
         scale: 2,
@@ -191,7 +200,7 @@ export default function HasilPage() {
         backgroundColor: '#ffffff',
         height: captureHeight,
         windowHeight: captureHeight,
-        windowWidth: element.scrollWidth,
+        windowWidth: 1024,
         scrollY: -window.scrollY,
         scrollX: 0,
         onclone: (clonedDoc: Document) => {
@@ -213,6 +222,9 @@ export default function HasilPage() {
       // ══════════════════════════════════════════════════════════════════
       // STEP 5: Restore semua perubahan DOM
       // ══════════════════════════════════════════════════════════════════
+      element.style.width = origWidth;
+      element.style.maxWidth = origMaxWidth;
+      
       savedAccordions.forEach(({ el, origStyle }) => {
         el.setAttribute('style', origStyle);
       });
