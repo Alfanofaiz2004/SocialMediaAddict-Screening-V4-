@@ -527,7 +527,7 @@ export default function HasilPage() {
                   <div className="h-px w-full my-2 opacity-20" style={{ backgroundColor: colorScheme.text }} />
 
                   <p
-                    className="text-sm md:text-lg font-medium leading-relaxed relative z-10 text-justify"
+                    className="text-sm md:text-lg font-medium leading-relaxed relative z-10"
                     style={{ color: colorScheme.text }}
                   >
                     {zoneInfo.description}
