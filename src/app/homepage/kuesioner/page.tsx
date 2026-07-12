@@ -352,11 +352,7 @@ export default function KuesionerPage() {
                             {idx + 1}
                           </div>
                           <div className="flex-1">
-                            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2 shadow-sm transition-colors ${
-                              svasScores[idx] !== -1 
-                                ? 'bg-primary text-on-primary'
-                                : 'bg-surface-container-lowest text-primary border border-primary/30'
-                            }`}>
+                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-primary text-on-primary rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">
                               {q.dimension}
                             </span>
                             <h3 className="text-base md:text-xl font-bold text-on-surface leading-relaxed">{q.text}</h3>
