@@ -434,7 +434,7 @@ export default function HasilPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-          className="font-label-md text-[10px] md:text-sm text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.1em] font-extrabold text-center leading-tight whitespace-nowrap mt-4 md:mt-6"
+          className="font-label-md text-xs md:text-base text-on-surface-variant uppercase tracking-[0.05em] md:tracking-[0.1em] font-extrabold text-center leading-tight whitespace-nowrap mt-0 md:mt-2"
         >
           Skor Ketergantungan
         </motion.span>
