@@ -412,15 +412,6 @@ export default function KuesionerPage() {
                   ══════════════════════════════════════════════════ */}
               {step === 'platform' && (
                 <div className="flex flex-col gap-6">
-                  {/* Info banner */}
-                  <div className="bg-surface-container border border-outline-variant rounded-xl p-3 md:p-4 flex items-start gap-2.5 md:gap-3">
-                    <span className="material-symbols-outlined text-tertiary text-[20px] md:text-[22px] mt-0.5 flex-shrink-0">info</span>
-                    <p className="text-[11px] md:text-sm text-on-surface-variant leading-relaxed">
-                      Data penggunaan platform hanya sebagai <strong>Informasi Pendukung</strong>.
-                      Boleh Berupa estimasi saja. 
-                    </p>
-                  </div>
-
                   {/* Platform cards */}
                   <div className="grid grid-cols-2 gap-3 md:gap-4">
                     {PLATFORM_CONFIG.map((config, i) => {
@@ -475,6 +466,15 @@ export default function KuesionerPage() {
                         </motion.div>
                       );
                     })}
+                  </div>
+
+                  {/* Info banner */}
+                  <div className="bg-surface-container border border-outline-variant rounded-xl p-3 md:p-4 flex items-start gap-2.5 md:gap-3">
+                    <span className="material-symbols-outlined text-tertiary text-[20px] md:text-[22px] mt-0.5 flex-shrink-0">info</span>
+                    <p className="text-[11px] md:text-sm text-on-surface-variant leading-relaxed">
+                      Data penggunaan platform hanya sebagai <strong>Informasi Pendukung</strong>.
+                      Boleh Berupa estimasi saja. 
+                    </p>
                   </div>
 
                   {/* Total summary */}
