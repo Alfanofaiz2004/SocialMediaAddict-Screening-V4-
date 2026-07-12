@@ -208,7 +208,7 @@ export default function ScreeningLandingPage() {
                 className="inline-flex items-center gap-2 bg-primary/10 text-primary font-label-md text-sm px-4 py-1.5 rounded-full mb-6"
               >
                 <span className="material-symbols-outlined text-[18px]">science</span>
-                Berbasis Skala SVAS-6 (Griffiths, 2005)
+                Berbasis Skala SVAS-6 (Short Video Addiction Scale)
               </motion.div>
 
               <motion.h1
