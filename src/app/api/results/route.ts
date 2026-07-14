@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       data: {
         username: userName,
         userId: null,
-        overallScore: result.detoxPercentage,
+        overallScore: `(${result.svasTotal}/30)`,
         zone: result.zone,
         svasTotal: result.svasTotal,
         rawInput: input,

@@ -79,7 +79,7 @@ export interface AssessmentResult {
   username: string;
   userId?: number;
   date: string | Date;
-  overallScore: number;
+  overallScore: string;
   zone: ZoneType;
   svasTotal: number;
   rawInput: any;
