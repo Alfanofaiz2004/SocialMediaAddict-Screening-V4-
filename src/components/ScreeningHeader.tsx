@@ -21,7 +21,7 @@ export default function ScreeningHeader() {
           <img src="/logo.png" alt="MindScroll Logo" className="h-[28px] md:h-[40px] w-auto object-contain" />
         </Link>
 
-        <nav className="hidden md:flex justify-center gap-8 h-full items-center flex-1">
+        <nav className="hidden md:flex justify-center gap-6 h-full items-center flex-1">
           <Link
             href="/homepage"
             className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
@@ -31,6 +31,16 @@ export default function ScreeningHeader() {
             }`}
           >
             Beranda
+          </Link>
+          <Link
+            href="/homepage/kuesioner"
+            className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
+              pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+            } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
+              pathname?.startsWith('/homepage/kuesioner') ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+            }`}
+          >
+            Screening
           </Link>
           <Link
             href="/homepage#dimensi-ukur"
@@ -92,6 +102,15 @@ export default function ScreeningHeader() {
               }`}
             >
               Beranda
+            </Link>
+            <Link
+              href="/homepage/kuesioner"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`font-semibold text-base transition-colors ${
+                pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant'
+              }`}
+            >
+              Screening
             </Link>
             <Link
               href="/homepage#dimensi-ukur"
