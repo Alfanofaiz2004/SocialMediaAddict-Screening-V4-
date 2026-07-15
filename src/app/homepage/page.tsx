@@ -589,7 +589,6 @@ export default function ScreeningLandingPage() {
                     onChange={(e) => setName(e.target.value)}
                     className="w-full bg-surface border border-outline-variant rounded-xl px-4 py-3.5 text-on-surface text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
                     required
-                    autoFocus
                   />
                 </div>
                 <button

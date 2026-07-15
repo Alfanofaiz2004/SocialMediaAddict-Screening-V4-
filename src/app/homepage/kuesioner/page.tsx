@@ -61,6 +61,8 @@ export default function KuesionerPage() {
   const [productivityImpact, setProductivityImpact] = useState(5);
   const [isCalculating, setIsCalculating] = useState(false);
   const [userName, setUserName] = useState('');
+  const [showNameModal, setShowNameModal] = useState(false);
+  const [name, setName] = useState('');
 
   // Scroll to top on step change
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function KuesionerPage() {
 
   useEffect(() => {
     const role = sessionStorage.getItem('screening_user_role');
-    const name = sessionStorage.getItem('screening_username');
+    const storedName = sessionStorage.getItem('screening_username');
 
     if (role === 'admin') {
       alert('Admin tidak diperbolehkan melakukan pengisian kuesioner.');
@@ -77,13 +79,35 @@ export default function KuesionerPage() {
       return;
     }
 
-    if (!name) {
-      router.push('/homepage');
+    if (!storedName) {
+      setShowNameModal(true);
       return;
     }
 
-    setUserName(name);
+    setUserName(storedName);
   }, [router]);
+
+  const handleNameSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim();
+    if (!trimmedName) return;
+
+    const lowerName = trimmedName.toLowerCase();
+    if (lowerName === 'admin' || lowerName === 'guest') {
+      alert('Nama ini tidak dapat digunakan.');
+      return;
+    }
+
+    try {
+      sessionStorage.setItem('screening_username', trimmedName);
+      sessionStorage.setItem('screening_user_role', 'guest');
+      sessionStorage.setItem('screening_logged_in', 'false');
+      setUserName(trimmedName);
+      setShowNameModal(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // Derived values
   const info = STEP_INFO[step];
@@ -637,6 +661,53 @@ export default function KuesionerPage() {
             </motion.div>
           </AnimatePresence>
         </div>
+
+        {/* ═══════════ NAME INPUT MODAL ═══════════ */}
+        <AnimatePresence>
+          {showNameModal && (
+            <div className="fixed inset-0 bg-on-background/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, scale: 0.95, y: 20, filter: 'blur(10px)' }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="bg-surface-container-lowest border border-outline-variant p-6 sm:p-8 rounded-2xl shadow-xl w-[90vw] max-w-[420px] min-w-[300px] relative mx-auto"
+              >
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-5 mx-auto">
+                  <span className="material-symbols-outlined text-[32px]">person_add</span>
+                </div>
+                <h2 className="text-2xl font-bold text-on-surface mb-2 text-center">Selamat Datang!</h2>
+                <p className="text-base text-on-surface-variant mb-6 text-center leading-relaxed">
+                  Masukkan nama kamu untuk memulai proses screening.
+                </p>
+
+                <form onSubmit={handleNameSubmit} className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-on-surface-variant flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[18px]">person</span>
+                      Nama Panjang
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Contoh: Budi Santoso"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full bg-surface border border-outline-variant rounded-xl px-4 py-3.5 text-on-surface text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-base px-4 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 mt-1"
+                  >
+                    Lanjutkan ke Screening
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </form>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </main>
     </div>
   );
