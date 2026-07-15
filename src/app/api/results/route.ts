@@ -10,8 +10,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Missing data' }, { status: 400 });
     }
 
+    // Upsert User based on respondentName
+    const user = await prisma.user.upsert({
+      where: { username: respondentName },
+      update: {},
+      create: { username: respondentName },
+    });
+
     const newResult = await prisma.assessmentResult.create({
       data: {
+        userId: user.id,
         respondentName: respondentName,
         overallScore: `(${result.svasTotal}/30)`,
         zone: result.zone,
