@@ -6,14 +6,15 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
   try {
     const dbData = await prisma.assessmentResult.findMany({
-      orderBy: { date: 'desc' }
+      orderBy: { date: 'desc' },
+      include: { user: true }
     });
 
     // Map Prisma schema to expected frontend format
     const formattedData = dbData.map((item: any) => ({
       id: item.id,
       createdAt: item.date,
-      userName: item.respondentName,
+      userName: item.user?.respondentName || item.respondentName,
       input: item.rawInput,
       result: item.rawResult
     }));
@@ -47,6 +48,14 @@ export async function PUT(request: Request) {
   try {
     const { id, userName } = await request.json();
     if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
+
+    const result = await prisma.assessmentResult.findUnique({ where: { id } });
+    if (result && result.userId) {
+      await prisma.user.update({
+        where: { id: result.userId },
+        data: { respondentName: userName }
+      });
+    }
 
     await prisma.assessmentResult.update({
       where: { id },
