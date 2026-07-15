@@ -361,7 +361,7 @@ export default function AdminDashboard() {
                         r.result.zone === 'BERISIKO' ? 'bg-[#fef3c7] text-[#92400e]' : 
                         'bg-[#fee2e2] text-[#991b1b]'
                       }`}>
-                        {r.result.zone}
+                        {r.result.zone === 'KECANDUAN_TINGGI' ? 'Kecanduan' : r.result.zone}
                       </span>
                     </td>
                     <td className="p-4 font-bold text-on-surface">{r.result.detoxPercentage}%</td>
