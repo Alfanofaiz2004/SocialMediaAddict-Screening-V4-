@@ -15,6 +15,41 @@ export default function ScreeningHeader() {
   const [showNameModal, setShowNameModal] = useState(false);
   const [name, setName] = useState('');
   const [mounted, setMounted] = useState(false);
+  
+  // Scroll tracking state
+  const [activeHash, setActiveHash] = useState('');
+
+  useEffect(() => {
+    if (pathname !== '/homepage') {
+      setActiveHash('');
+      return;
+    }
+
+    const handleScroll = () => {
+      // Check from bottom-most section upwards
+      const sections = ['cara-kerja', 'dimensi-ukur'];
+      let current = '';
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If the section is in the top half of the screen
+          if (rect.top <= window.innerHeight * 0.4) {
+            current = `#${section}`;
+            break;
+          }
+        }
+      }
+      setActiveHash(current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Run once on mount to set initial state
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
 
   useEffect(() => {
     setMounted(true);
@@ -73,9 +108,9 @@ export default function ScreeningHeader() {
           <Link
             href="/homepage"
             className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
-              pathname === '/homepage' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+              pathname === '/homepage' && activeHash === '' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
             } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
-              pathname === '/homepage' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+              pathname === '/homepage' && activeHash === '' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
             }`}
           >
             Beranda
@@ -83,13 +118,21 @@ export default function ScreeningHeader() {
 
           <Link
             href="/homepage#dimensi-ukur"
-            className="whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
+            className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
+              pathname === '/homepage' && activeHash === '#dimensi-ukur' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+            } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
+              pathname === '/homepage' && activeHash === '#dimensi-ukur' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+            }`}
           >
             Dimensi Ukur
           </Link>
           <Link
             href="/homepage#cara-kerja"
-            className="whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
+            className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
+              pathname === '/homepage' && activeHash === '#cara-kerja' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+            } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
+              pathname === '/homepage' && activeHash === '#cara-kerja' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+            }`}
           >
             Cara Kerja
           </Link>
@@ -148,7 +191,7 @@ export default function ScreeningHeader() {
               href="/homepage"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`font-semibold text-base transition-colors ${
-                pathname === '/homepage' ? 'text-primary' : 'text-on-surface-variant'
+                pathname === '/homepage' && activeHash === '' ? 'text-primary' : 'text-on-surface-variant'
               }`}
             >
               Beranda
@@ -157,14 +200,18 @@ export default function ScreeningHeader() {
             <Link
               href="/homepage#dimensi-ukur"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
+              className={`font-semibold text-base transition-colors ${
+                pathname === '/homepage' && activeHash === '#dimensi-ukur' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+              }`}
             >
               Dimensi Ukur
             </Link>
             <Link
               href="/homepage#cara-kerja"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
+              className={`font-semibold text-base transition-colors ${
+                pathname === '/homepage' && activeHash === '#cara-kerja' ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
+              }`}
             >
               Cara Kerja
             </Link>
