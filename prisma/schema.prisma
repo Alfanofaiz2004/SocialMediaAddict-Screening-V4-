@@ -7,13 +7,13 @@ generator client {
 }
 
 model User {
-  id             Int                @id @default(autoincrement())
-  respondentName String             @unique
+  UserID         Int                @id @default(autoincrement())
+  Username       String             @unique
 }
 
 model AssessmentResult {
-  id             String   @id @default(uuid())
-  respondentName String
+  UserID         String   @id @default(uuid())
+  Username       String
   date           DateTime @default(now())
   overallScore   String
   zone           String

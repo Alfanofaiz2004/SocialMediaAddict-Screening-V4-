@@ -11,9 +11,9 @@ export async function GET(request: Request) {
 
     // Map Prisma schema to expected frontend format
     const formattedData = dbData.map((item: any) => ({
-      id: item.id,
+      id: item.UserID,
       createdAt: item.date,
-      userName: item.respondentName,
+      userName: item.Username,
       input: item.rawInput,
       result: item.rawResult
     }));
@@ -33,7 +33,7 @@ export async function DELETE(request: Request) {
     if (!id) return NextResponse.json({ success: false, error: 'Missing ID' }, { status: 400 });
 
     await prisma.assessmentResult.delete({
-      where: { id }
+      where: { UserID: id }
     });
 
     return NextResponse.json({ success: true });
@@ -48,14 +48,14 @@ export async function PUT(request: Request) {
     const { id, userName } = await request.json();
     if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
 
-    const result = await prisma.assessmentResult.findUnique({ where: { id } });
+    const result = await prisma.assessmentResult.findUnique({ where: { UserID: id } });
     if (result) {
-      // Find the user by respondentName manually and update it, 
+      // Find the user by Username manually and update it, 
       // or simply update AssessmentResult since relations are removed.
       try {
         await prisma.user.update({
-          where: { respondentName: result.respondentName },
-          data: { respondentName: userName }
+          where: { Username: result.Username },
+          data: { Username: userName }
         });
       } catch (e) {
         // user might not exist
@@ -63,8 +63,8 @@ export async function PUT(request: Request) {
     }
 
     await prisma.assessmentResult.update({
-      where: { id },
-      data: { respondentName: userName }
+      where: { UserID: id },
+      data: { Username: userName }
     });
 
     return NextResponse.json({ success: true });

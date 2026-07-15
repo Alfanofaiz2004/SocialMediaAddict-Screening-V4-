@@ -56,7 +56,7 @@ export default function HasilPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          respondentName: userName,
+          Username: userName,
           input: {
             svasScores: inputData.svasScores,
             platforms: inputData.platforms,
