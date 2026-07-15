@@ -12,9 +12,9 @@ export async function POST(request: Request) {
 
     // Upsert User based on respondentName
     const user = await prisma.user.upsert({
-      where: { username: respondentName },
+      where: { respondentName: respondentName },
       update: {},
-      create: { username: respondentName },
+      create: { respondentName: respondentName },
     });
 
     const newResult = await prisma.assessmentResult.create({
