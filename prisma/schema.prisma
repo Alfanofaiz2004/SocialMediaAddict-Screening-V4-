@@ -9,13 +9,10 @@ generator client {
 model User {
   id             Int                @id @default(autoincrement())
   respondentName String             @unique
-  results        AssessmentResult[]
 }
 
 model AssessmentResult {
   id             String   @id @default(uuid())
-  userId         Int?
-  user           User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   respondentName String
   date           DateTime @default(now())
   overallScore   String

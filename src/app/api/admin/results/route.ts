@@ -6,15 +6,14 @@ export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
   try {
     const dbData = await prisma.assessmentResult.findMany({
-      orderBy: { date: 'desc' },
-      include: { user: true }
+      orderBy: { date: 'desc' }
     });
 
     // Map Prisma schema to expected frontend format
     const formattedData = dbData.map((item: any) => ({
       id: item.id,
       createdAt: item.date,
-      userName: item.user?.respondentName || item.respondentName,
+      userName: item.respondentName,
       input: item.rawInput,
       result: item.rawResult
     }));
@@ -50,11 +49,17 @@ export async function PUT(request: Request) {
     if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
 
     const result = await prisma.assessmentResult.findUnique({ where: { id } });
-    if (result && result.userId) {
-      await prisma.user.update({
-        where: { id: result.userId },
-        data: { respondentName: userName }
-      });
+    if (result) {
+      // Find the user by respondentName manually and update it, 
+      // or simply update AssessmentResult since relations are removed.
+      try {
+        await prisma.user.update({
+          where: { respondentName: result.respondentName },
+          data: { respondentName: userName }
+        });
+      } catch (e) {
+        // user might not exist
+      }
     }
 
     await prisma.assessmentResult.update({

@@ -19,7 +19,6 @@ export async function POST(request: Request) {
 
     const newResult = await prisma.assessmentResult.create({
       data: {
-        userId: user.id,
         respondentName: respondentName,
         overallScore: `(${result.svasTotal}/30)`,
         zone: result.zone,
