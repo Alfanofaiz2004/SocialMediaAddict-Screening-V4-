@@ -151,8 +151,10 @@ export default function ScreeningLandingPage() {
     e.preventDefault();
     const role = sessionStorage.getItem('screening_user_role');
     if (role === 'admin') {
-      alert('Admin tidak diperbolehkan melakukan pengisian kuesioner. Silakan logout terlebih dahulu.');
-      return;
+      // Auto-logout admin so they can test the screening as a user
+      sessionStorage.removeItem('screening_admin_auth');
+      sessionStorage.removeItem('screening_user_role');
+      sessionStorage.removeItem('screening_username');
     }
 
     const storedName = sessionStorage.getItem('screening_username');
