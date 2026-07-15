@@ -98,7 +98,7 @@ export default function ScreeningHeader() {
   }, [pathname]);
 
   return (
-    <header className="bg-surface/90 backdrop-blur-md border-b-[1.5px] border-primary/20 shadow-sm w-full z-50 sticky top-0 transition-all">
+    <header className="bg-surface/90 backdrop-blur-md border-b-[1.5px] border-primary/20 shadow-sm w-full z-[100] fixed top-0 left-0 right-0 transition-all">
       <div className="flex justify-between items-center w-full px-4 md:px-6 max-w-[1200px] mx-auto h-16 md:h-20">
         <Link href="/homepage" className="w-1/4 flex justify-start items-center cursor-pointer no-underline">
           <img src="/logo.png" alt="MindScroll Logo" className="h-[28px] md:h-[40px] w-auto object-contain" />

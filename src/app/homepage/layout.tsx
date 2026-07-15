@@ -13,7 +13,9 @@ export default function ScreeningLayout({ children }: { children: React.ReactNod
   return (
     <>
       <ScreeningHeader />
-      <TransitionWrapper>{children}</TransitionWrapper>
+      <div className="pt-16 md:pt-20">
+        <TransitionWrapper>{children}</TransitionWrapper>
+      </div>
     </>
   );
 }
