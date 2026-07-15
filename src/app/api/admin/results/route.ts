@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     const formattedData = dbData.map((item: any) => ({
       id: item.id,
       createdAt: item.date,
-      userName: item.username,
+      userName: item.respondentName,
       input: item.rawInput,
       result: item.rawResult
     }));
@@ -50,7 +50,7 @@ export async function PUT(request: Request) {
 
     await prisma.assessmentResult.update({
       where: { id },
-      data: { username: userName }
+      data: { respondentName: userName }
     });
 
     return NextResponse.json({ success: true });

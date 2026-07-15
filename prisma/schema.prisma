@@ -6,28 +6,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
-  id        Int                @id @default(autoincrement())
-  username  String             @unique
-  password  String             // Hashed password
-  phone     String
-  name      String?
-  address   String?
-  age       Int?
-  gender    String?
-  createdAt DateTime           @default(now())
-  results   AssessmentResult[]
-}
-
 model AssessmentResult {
-  id           String   @id @default(uuid())
-  username     String
-  userId       Int?
-  user         User?    @relation(fields: [userId], references: [id])
-  date         DateTime @default(now())
-  overallScore String
-  zone         String
-  svasTotal    Int
-  rawInput     Json
-  rawResult    Json
+  id             String   @id @default(uuid())
+  respondentName String
+  date           DateTime @default(now())
+  overallScore   String
+  zone           String
+  svasTotal      Int
+  rawInput       Json
+  rawResult      Json
 }

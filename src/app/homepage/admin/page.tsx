@@ -33,13 +33,6 @@ export default function AdminDashboard() {
   const [editName, setEditName] = useState('');
   const [showSvasDetails, setShowSvasDetails] = useState(false);
 
-  // Tab State
-  const [activeTab, setActiveTab] = useState<'screening' | 'users'>('screening');
-  
-  // User Management State
-  const [users, setUsers] = useState<any[]>([]);
-  const [visiblePasswords, setVisiblePasswords] = useState<Record<string, boolean>>({});
-
   // Filter State
   const [timeFilter, setTimeFilter] = useState<string>('all');
   
@@ -63,26 +56,9 @@ export default function AdminDashboard() {
       .finally(() => setLoading(false));
   };
 
-  const fetchUsers = () => {
-    fetch('/api/admin/users')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          setUsers(data.users);
-        }
-      })
-      .catch((err) => console.error('Failed to fetch users:', err));
-  };
-
-  useEffect(() => {
-    if (activeTab === 'users') {
-      fetchUsers();
-    }
-  }, [activeTab]);
-
   useEffect(() => {
     if (sessionStorage.getItem('screening_admin_auth') !== 'true') {
-      router.push('/homepage/auth');
+      router.push('/homepage/admin/login');
       return;
     }
     fetchResults();
@@ -136,24 +112,6 @@ export default function AdminDashboard() {
     } catch (e) {
       alert('Error deleting record');
     }
-  };
-
-  const handleDeleteUser = async (id: number) => {
-    if (!confirm('Hapus akun ini permanen? (Semua hasil screening mereka juga akan terhapus)')) return;
-    try {
-      const res = await fetch(`/api/admin/users?id=${id}`, { method: 'DELETE' });
-      if (res.ok) {
-        setUsers(prev => prev.filter(u => u.id !== id));
-      } else {
-        alert('Gagal menghapus user');
-      }
-    } catch (e) {
-      alert('Error menghapus user');
-    }
-  };
-
-  const togglePassword = (id: string) => {
-    setVisiblePasswords(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
   const handleEditSave = async () => {
@@ -243,31 +201,6 @@ export default function AdminDashboard() {
 
       <main className="flex-grow w-full max-w-[1200px] mx-auto px-gutter py-xl flex flex-col gap-lg">
         
-        <div className="flex border-b border-outline-variant mb-4">
-          <button
-            className={`px-6 py-3 font-label-md uppercase tracking-wider font-bold transition-colors ${
-              activeTab === 'screening' 
-                ? 'border-b-2 border-primary text-primary bg-primary/5' 
-                : 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface'
-            }`}
-            onClick={() => setActiveTab('screening')}
-          >
-            Data Screening
-          </button>
-          <button
-            className={`px-6 py-3 font-label-md uppercase tracking-wider font-bold transition-colors ${
-              activeTab === 'users' 
-                ? 'border-b-2 border-primary text-primary bg-primary/5' 
-                : 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface'
-            }`}
-            onClick={() => setActiveTab('users')}
-          >
-            Manajemen User
-          </button>
-        </div>
-
-        {activeTab === 'screening' && (
-          <>
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
           <div>
             <h1 className="font-headline-lg text-headline-lg text-on-surface">Ringkasan Analitik</h1>
@@ -450,69 +383,6 @@ export default function AdminDashboard() {
           </table>
           </div>
         </div>
-        </>
-        )}
-
-        {activeTab === 'users' && (
-          <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm mt-md">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
-              <h2 className="text-xl font-bold text-on-surface">Manajemen Akun User</h2>
-              <p className="font-body-md text-on-surface-variant">Total User: {users.length}</p>
-            </div>
-            
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[800px]">
-                <thead>
-                  <tr className="border-b border-outline-variant bg-surface-container-low text-on-surface-variant font-label-sm uppercase tracking-wider">
-                    <th className="p-4">Tanggal Daftar</th>
-                    <th className="p-4">Username</th>
-                    <th className="p-4">Nama Lengkap</th>
-                    <th className="p-4">Password</th>
-                    <th className="p-4">Telepon</th>
-                    <th className="p-4 text-center">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {users.length === 0 ? (
-                    <tr><td colSpan={6} className="p-lg text-center text-on-surface-variant">Belum ada user yang terdaftar.</td></tr>
-                  ) : (
-                    users.map((u) => (
-                      <tr key={u.id} className="border-b border-outline-variant hover:bg-surface-container-lowest/50 transition-colors">
-                        <td className="p-4 text-sm text-on-surface-variant">{new Date(u.createdAt).toLocaleDateString()}</td>
-                        <td className="p-4 font-bold text-on-surface">{u.username}</td>
-                        <td className="p-4 text-on-surface">{u.name || '-'}</td>
-                        <td className="p-4 text-on-surface flex items-center gap-2">
-                          <span className="font-mono bg-surface-container p-1 rounded min-w-[80px] inline-block text-center tracking-widest">
-                            {visiblePasswords[u.id] ? u.password : '••••••'}
-                          </span>
-                          <button 
-                            onClick={() => togglePassword(u.id)}
-                            className="text-on-surface-variant hover:text-primary transition-colors"
-                            title={visiblePasswords[u.id] ? 'Sembunyikan' : 'Tampilkan'}
-                          >
-                            <span className="material-symbols-outlined text-[18px]">
-                              {visiblePasswords[u.id] ? 'visibility_off' : 'visibility'}
-                            </span>
-                          </button>
-                        </td>
-                        <td className="p-4 text-on-surface">{u.phone || '-'}</td>
-                        <td className="p-4 text-center">
-                          <button 
-                            onClick={() => handleDeleteUser(u.id)} 
-                            className="text-error hover:text-on-error-container" 
-                            title="Hapus Akun"
-                          >
-                            <span className="material-symbols-outlined text-[20px]">delete</span>
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
       </main>
 
       {/* Edit Modal */}

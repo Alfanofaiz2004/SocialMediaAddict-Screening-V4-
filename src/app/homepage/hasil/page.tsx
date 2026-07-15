@@ -56,7 +56,7 @@ export default function HasilPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userName: userName,
+          respondentName: userName,
           input: {
             svasScores: inputData.svasScores,
             platforms: inputData.platforms,
@@ -682,7 +682,7 @@ export default function HasilPage() {
                   onClick={handleSelesai}
                   className="w-full sm:w-auto bg-surface border-2 border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary font-medium px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm no-underline text-sm hover:shadow-md"
                 >
-                  <span className="material-symbols-outlined text-[18px]">home</span>
+                  <span className="material-symbols-outlined text-[18px]">done_all</span>
                   Selesai
                 </button>
               </div>
