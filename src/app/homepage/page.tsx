@@ -513,7 +513,7 @@ export default function ScreeningLandingPage() {
                 <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed">
                   Hasil screening ini bersifat <strong>edukatif dan indikatif</strong> — bukan diagnosis klinis.
                   Jika kamu merasa membutuhkan bantuan profesional, kami sangat menyarankan untuk berkonsultasi
-                  dengan psikolog atau konselor berlisensi.
+                  dengan tenaga ahli.
                 </p>
                 <button
                   onClick={() => router.push('/homepage/artikel')}
