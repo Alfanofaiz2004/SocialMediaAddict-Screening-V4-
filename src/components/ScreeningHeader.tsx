@@ -1,13 +1,61 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScreeningHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Modal states
+  const [showNameModal, setShowNameModal] = useState(false);
+  const [name, setName] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const handleOpen = () => setShowNameModal(true);
+    window.addEventListener('open-screening-modal', handleOpen);
+    return () => window.removeEventListener('open-screening-modal', handleOpen);
+  }, []);
+
+  const handleScreeningClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const storedName = sessionStorage.getItem('screening_username');
+    if (storedName) {
+      router.push('/homepage/kuesioner');
+    } else {
+      setShowNameModal(true);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const handleNameSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmedName = name.trim();
+    if (!trimmedName) return;
+
+    const lowerName = trimmedName.toLowerCase();
+    if (lowerName === 'admin' || lowerName === 'guest') {
+      alert('Nama ini tidak dapat digunakan.');
+      return;
+    }
+
+    try {
+      sessionStorage.setItem('screening_username', trimmedName);
+      sessionStorage.setItem('screening_user_role', 'guest');
+      sessionStorage.setItem('screening_logged_in', 'false');
+      setShowNameModal(false);
+      window.dispatchEvent(new Event('name-submitted'));
+      router.push('/homepage/kuesioner');
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // Close menu when route changes
   useEffect(() => {
@@ -47,6 +95,7 @@ export default function ScreeningHeader() {
           </Link>
           <Link
             href="/homepage/kuesioner"
+            onClick={handleScreeningClick}
             className={`whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 ${
               pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
             } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
@@ -121,7 +170,7 @@ export default function ScreeningHeader() {
             </Link>
             <Link
               href="/homepage/kuesioner"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={handleScreeningClick}
               className={`font-semibold text-base transition-colors ${
                 pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant'
               }`}
@@ -140,6 +189,69 @@ export default function ScreeningHeader() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* ═══════════ GLOBAL NAME INPUT MODAL ═══════════ */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {showNameModal && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.15 } }}
+              className="fixed inset-0 bg-on-background/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.15 } }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="bg-surface-container-lowest border border-outline-variant p-6 sm:p-8 rounded-2xl shadow-xl w-[90vw] max-w-[420px] min-w-[300px] relative mx-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setShowNameModal(false)}
+                  className="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface transition-colors"
+                >
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+
+                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-5 mx-auto">
+                  <span className="material-symbols-outlined text-[32px]">person_add</span>
+                </div>
+                <h2 className="text-2xl font-bold text-on-surface mb-2 text-center">Selamat Datang!</h2>
+                <p className="text-base text-on-surface-variant mb-6 text-center leading-relaxed">
+                  Masukkan nama kamu untuk memulai proses screening.
+                </p>
+
+                <form onSubmit={handleNameSubmit} className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-on-surface-variant flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-[18px]">person</span>
+                      Nama Panjang
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Contoh: Budi Santoso"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full bg-surface border border-outline-variant rounded-xl px-4 py-3.5 text-on-surface text-base focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
+                      required
+                      autoFocus
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary hover:bg-primary-container text-on-primary font-label-md text-base px-4 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 mt-1"
+                  >
+                    Lanjutkan ke Screening
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                  </button>
+                </form>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </header>
   );
 }
