@@ -397,7 +397,7 @@ export default function ScreeningLandingPage() {
         </section>
 
         {/* ═══════════ 6 DIMENSIONS ═══════════ */}
-        <section className="w-full py-16 md:py-20">
+        <section id="dimensi-ukur" className="w-full py-16 md:py-20 scroll-mt-20">
           <div className="max-w-max-width-content mx-auto px-gutter">
             <motion.div
               initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
@@ -508,7 +508,7 @@ export default function ScreeningLandingPage() {
               <div className="relative z-10">
                 <span className="material-symbols-outlined text-[48px] mb-4 opacity-80">shield_with_heart</span>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                  Siap Mengenal Diri Kamu Lebih Dalam?
+                  Ingin Tahu Lebih Dalam Tentang SVAS-6?
                 </h2>
                 <p className="text-lg opacity-90 max-w-2xl mx-auto mb-8 leading-relaxed">
                   Hasil screening ini bersifat <strong>edukatif dan indikatif</strong> — bukan diagnosis klinis.
@@ -516,10 +516,10 @@ export default function ScreeningLandingPage() {
                   dengan psikolog atau konselor berlisensi.
                 </p>
                 <button
-                  onClick={handleStart}
+                  onClick={() => router.push('/homepage/artikel')}
                   className="group bg-white text-primary font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 inline-flex items-center gap-3"
                 >
-                  Mulai Screening Sekarang
+                  Baca Artikel Ini
                   <span className="material-symbols-outlined text-[22px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </button>
               </div>

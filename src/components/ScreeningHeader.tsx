@@ -33,14 +33,16 @@ export default function ScreeningHeader() {
             Beranda
           </Link>
           <Link
-            href="/homepage/kuesioner"
-            className={`relative font-semibold text-base transition-all duration-300 pb-1 ${
-              pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant hover:text-primary'
-            } after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center ${
-              pathname?.startsWith('/homepage/kuesioner') ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
-            }`}
+            href="/homepage#cara-kerja"
+            className="relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
           >
-            Screening
+            Cara Kerja
+          </Link>
+          <Link
+            href="/homepage#dimensi-ukur"
+            className="relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
+          >
+            Dimensi Ukur
           </Link>
           <Link
             href="/homepage/artikel"
@@ -50,7 +52,7 @@ export default function ScreeningHeader() {
               pathname?.startsWith('/homepage/artikel') ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
             }`}
           >
-            Tentang Tes
+            Tentang SVAS-6
           </Link>
         </nav>
 
@@ -92,13 +94,18 @@ export default function ScreeningHeader() {
               Beranda
             </Link>
             <Link
-              href="/homepage/kuesioner"
+              href="/homepage#cara-kerja"
               onClick={() => setIsMobileMenuOpen(false)}
-              className={`font-semibold text-base transition-colors ${
-                pathname?.startsWith('/homepage/kuesioner') ? 'text-primary' : 'text-on-surface-variant'
-              }`}
+              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
             >
-              Screening
+              Cara Kerja
+            </Link>
+            <Link
+              href="/homepage#dimensi-ukur"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
+            >
+              Dimensi Ukur
             </Link>
             <Link
               href="/homepage/artikel"
@@ -107,7 +114,7 @@ export default function ScreeningHeader() {
                 pathname?.startsWith('/homepage/artikel') ? 'text-primary' : 'text-on-surface-variant'
               }`}
             >
-              Tentang Tes
+              Tentang SVAS-6
             </Link>
           </motion.div>
         )}
