@@ -2,8 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import AdminCharts from '@/components/AdminCharts';
 import { ZONES, SVAS_QUESTIONS, SVAS_OPTIONS } from '@/lib/screening-constants';
 import { ZoneType } from '@/lib/screening-types';
+import { CriteriaBarChart, PlatformBarChart, SVASRadarChart, DimensionAccordion } from '@/components/ResultVisualizations';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface AdminResult {
@@ -26,7 +29,10 @@ export default function AdminDashboard() {
 
   // Modal States
   const [viewModal, setViewModal] = useState<AdminResult | null>(null);
-  
+  const [editModal, setEditModal] = useState<AdminResult | null>(null);
+  const [editName, setEditName] = useState('');
+  const [showSvasDetails, setShowSvasDetails] = useState(false);
+
   // Filter State
   const [timeFilter, setTimeFilter] = useState<string>('all');
   
@@ -108,6 +114,25 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleEditSave = async () => {
+    if (!editModal || !editName.trim()) return;
+    try {
+      const res = await fetch('/api/admin/results', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: editModal.id, userName: editName.trim() })
+      });
+      if (res.ok) {
+        setResults(prev => prev.map(r => r.id === editModal.id ? { ...r, userName: editName.trim() } : r));
+        setEditModal(null);
+      } else {
+        alert('Failed to update record');
+      }
+    } catch (e) {
+      alert('Error updating record');
+    }
+  };
+
   // Filtering Logic
   const filteredResults = results.filter((r) => {
     if (timeFilter === 'all') return true;
@@ -155,87 +180,108 @@ export default function AdminDashboard() {
   const paginatedResults = filteredResults.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   if (loading) {
-    return <div className="min-h-screen bg-white flex items-center justify-center font-sans text-gray-500">Memuat Data Dashboard...</div>;
+    return <div className="min-h-screen bg-background flex items-center justify-center font-body-md text-on-surface-variant">Memuat Data...</div>;
   }
 
   return (
-    <div className="bg-gray-50 text-gray-900 min-h-screen flex flex-col font-sans antialiased relative">
+    <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased relative">
       {/* Admin Header */}
-      <header className="bg-white border-b border-gray-200 w-full z-40 sticky top-0 shadow-sm">
-        <div className="flex justify-between items-center w-full px-6 max-w-7xl mx-auto h-16">
-          <div className="flex items-center gap-3 font-semibold text-lg text-emerald-600">
-            <span className="material-symbols-outlined text-[24px]">admin_panel_settings</span>
-            MindScroll Admin
+      <header className="bg-surface border-b border-outline-variant w-full z-40 sticky top-0">
+        <div className="flex justify-between items-center w-full px-gutter max-w-[1200px] mx-auto h-16">
+          <div className="flex items-center gap-xs font-headline-md text-primary font-bold">
+            <span className="material-symbols-outlined mr-2">admin_panel_settings</span>
+            MindScroll Admin Dashboard
           </div>
-          <button onClick={handleLogout} className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition-colors">
-            <span className="font-medium text-sm">Logout</span>
-            <span className="material-symbols-outlined text-[20px]">logout</span>
+          <button onClick={handleLogout} className="flex items-center gap-2 text-on-surface-variant hover:text-error transition-colors">
+            <span className="font-label-md">Logout</span>
+            <span className="material-symbols-outlined">logout</span>
           </button>
         </div>
       </header>
 
-      <main className="flex-grow w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8">
+      <main className="flex-grow w-full max-w-[1200px] mx-auto px-gutter py-xl flex flex-col gap-lg">
         
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard Screening</h1>
-            <p className="text-sm text-gray-500 mt-1">Mengelola data hasil skrining pengguna.</p>
+            <h1 className="font-headline-lg text-headline-lg text-on-surface">Ringkasan Analitik</h1>
+            <p className="font-body-md text-on-surface-variant">Menampilkan data dari {filteredResults.length} tes</p>
           </div>
           
-          <div className="flex items-center gap-2 bg-white border border-gray-300 rounded-md px-3 py-1.5 shadow-sm">
-            <span className="material-symbols-outlined text-gray-500 text-[20px]">filter_list</span>
+          <div className="flex items-center gap-2 bg-surface border border-outline-variant rounded-lg px-3 py-1.5 shadow-sm">
+            <span className="material-symbols-outlined text-on-surface-variant text-[20px]">filter_list</span>
             <select 
               value={timeFilter} 
               onChange={(e) => setTimeFilter(e.target.value)}
-              className="bg-transparent border-none focus:outline-none text-sm text-gray-700 font-medium cursor-pointer"
+              className="bg-transparent border-none focus:outline-none font-label-md text-on-surface cursor-pointer pr-2"
             >
-              <option value="all">Semua Waktu</option>
               <option value="today">Hari Ini</option>
               <option value="weekly">7 Hari Terakhir</option>
               <option value="monthly">Bulan Ini</option>
               <option value="past_1_month">30 Hari Terakhir</option>
               <option value="past_1_year">1 Tahun Terakhir</option>
+              <option value="all">Semua Waktu</option>
             </select>
           </div>
         </div>
 
         {/* Top KPIs Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full">
-          <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-center shadow-sm">
-            <div className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-md w-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
+          >
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">today</span> Input Hari Ini
             </div>
-            <div className="text-3xl text-emerald-600 font-bold">{inputsToday}</div>
-          </div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{inputsToday}</div>
+          </motion.div>
           
-          <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-center shadow-sm">
-            <div className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">fact_check</span> Total Tes (Filtered)
+          <motion.div 
+            initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
+          >
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">fact_check</span> Total Tes
             </div>
-            <div className="text-3xl text-emerald-600 font-bold">{filteredResults.length}</div>
-          </div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{filteredResults.length}</div>
+          </motion.div>
           
-          <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-center shadow-sm">
-            <div className="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-2 flex items-center gap-2">
+          <motion.div 
+            initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
+          >
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">monitoring</span> Rata-rata Skor
             </div>
-            <div className="text-3xl text-emerald-600 font-bold">{avgScore}%</div>
-          </div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{avgScore}%</div>
+          </motion.div>
+        </div>
+
+        {/* Analytics Section */}
+        <div className="w-full mt-md mb-lg">
+          <AdminCharts results={filteredResults} />
         </div>
 
         {/* Data Table Area */}
-        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-6 md:p-8 shadow-sm mt-md">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
-            <h2 className="text-lg font-bold text-gray-900">Riwayat Screening</h2>
+            <h2 className="text-xl font-bold text-on-surface">Riwayat Screening</h2>
             
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
-              <div className="flex items-center gap-4 bg-gray-50 border border-gray-200 rounded-md px-3 py-1">
-                <div className="flex items-center gap-2 border-r border-gray-300 pr-4">
-                  <span className="text-sm font-medium text-gray-600">Baris:</span>
+              {/* Pagination Controls */}
+              <div className="flex items-center gap-4 bg-surface border border-outline-variant rounded-lg px-3 py-1 shadow-sm">
+                <div className="flex items-center gap-2 border-r border-outline-variant pr-4">
+                  <span className="font-label-md text-on-surface-variant">Baris:</span>
                   <select 
                     value={itemsPerPage} 
                     onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                    className="bg-transparent border-none focus:outline-none text-sm text-gray-800 font-semibold cursor-pointer"
+                    className="bg-transparent border-none focus:outline-none font-label-md text-on-surface cursor-pointer"
                   >
                     <option value={20}>20</option>
                     <option value={50}>50</option>
@@ -247,25 +293,25 @@ export default function AdminDashboard() {
                   <button 
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))} 
                     disabled={currentPage === 1}
-                    className="p-1 rounded text-gray-500 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-colors"
+                    className="p-1 rounded-full hover:bg-surface-variant disabled:opacity-30 disabled:hover:bg-transparent flex items-center justify-center text-on-surface transition-colors"
                   >
                     <span className="material-symbols-outlined text-[20px]">chevron_left</span>
                   </button>
-                  <span className="text-sm font-medium text-gray-700 min-w-[70px] text-center">
+                  <span className="font-label-md text-on-surface min-w-[70px] text-center">
                     {currentPage} / {totalPages}
                   </span>
                   <button 
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} 
                     disabled={currentPage === totalPages}
-                    className="p-1 rounded text-gray-500 hover:bg-gray-200 disabled:opacity-30 flex items-center justify-center transition-colors"
+                    className="p-1 rounded-full hover:bg-surface-variant disabled:opacity-30 disabled:hover:bg-transparent flex items-center justify-center text-on-surface transition-colors"
                   >
                     <span className="material-symbols-outlined text-[20px]">chevron_right</span>
                   </button>
                 </div>
               </div>
 
-              <button onClick={handleExportCSV} className="bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2 rounded-md transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
-                <span className="material-symbols-outlined text-[18px]">download</span> Export CSV
+              <button onClick={handleExportCSV} className="bg-primary hover:bg-primary-container text-on-primary font-label-md px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm w-full sm:w-auto">
+                <span className="material-symbols-outlined text-[20px]">download</span> Export CSV
               </button>
             </div>
           </div>
@@ -273,44 +319,65 @@ export default function AdminDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
-              <tr className="border-b border-gray-200 bg-gray-50 text-gray-600 text-xs font-semibold uppercase tracking-wider">
-                <th className="p-4">Waktu Tes</th>
-                <th className="p-4">Nama Lengkap</th>
-                <th className="p-4 text-center">Tingkat Bahaya</th>
-                <th className="p-4 text-center">Skor Akhir</th>
+              <tr className="border-b border-outline-variant bg-surface-container-low text-on-surface-variant font-label-sm uppercase tracking-wider">
+                <th className="p-4">Tanggal</th>
+                <th className="p-4">Nama</th>
+                <th className="p-4 text-center">Jawaban (Q1-Q6)</th>
+                <th className="p-4 text-center">S-VAS</th>
+                <th className="p-4">Zona</th>
+                <th className="p-4">Skor</th>
                 <th className="p-4 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {paginatedResults.length === 0 ? (
-                <tr><td colSpan={5} className="p-8 text-center text-gray-500">Tidak ada riwayat tes ditemukan.</td></tr>
+                <tr><td colSpan={6} className="p-lg text-center text-on-surface-variant">Tidak ada rekaman tes ditemukan.</td></tr>
               ) : (
-                paginatedResults.map((r) => {
-                  const zoneInfo = ZONES[r.result.zone as ZoneType] || ZONES['NORMAL'];
-                  return (
-                    <tr key={r.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                      <td className="p-4 whitespace-nowrap text-sm text-gray-600">
-                        {new Date(r.createdAt).toLocaleDateString('id-ID', {day: 'numeric', month: 'short', year:'numeric'})} <span className="text-gray-400 ml-1">{new Date(r.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-                      </td>
-                      <td className="p-4 font-medium text-gray-900">{r.userName}</td>
-                      <td className="p-4 text-center">
-                        <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block"
-                          style={{ backgroundColor: `${zoneInfo.color}15`, color: zoneInfo.color, border: `1px solid ${zoneInfo.color}30` }}>
-                          {r.result.zone}
-                        </span>
-                      </td>
-                      <td className="p-4 text-center font-bold text-gray-900">{r.result.detoxPercentage}%</td>
-                      <td className="p-4 text-center flex justify-center gap-3">
-                        <button onClick={() => setViewModal(r)} className="text-emerald-600 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 p-2 rounded-md transition-colors" title="Lihat Detail">
-                          <span className="material-symbols-outlined text-[18px]">visibility</span>
-                        </button>
-                        <button onClick={() => handleDelete(r.id)} className="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded-md transition-colors" title="Hapus Data">
-                          <span className="material-symbols-outlined text-[18px]">delete</span>
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })
+                paginatedResults.map((r) => (
+                  <tr key={r.id} className="border-b border-outline-variant hover:bg-surface-container-lowest/50 transition-colors">
+                    <td className="p-4 whitespace-nowrap text-sm text-on-surface-variant">{new Date(r.createdAt).toLocaleDateString()} {new Date(r.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</td>
+                    <td className="p-4 font-medium text-on-surface">{r.userName}</td>
+                    <td className="p-4">
+                      {r.input.svasScores && r.input.svasScores.length > 0 ? (
+                        <div className="flex justify-center gap-1">
+                          {r.input.svasScores.map((score, i) => (
+                            <span key={i} className={`w-6 h-6 flex items-center justify-center rounded text-[11px] font-bold ${
+                              score >= 4 ? 'bg-error/10 text-error' :
+                              score === 3 ? 'bg-[#f59e0b]/10 text-[#d97706]' :
+                              'bg-primary/10 text-primary'
+                            }`} title={`Q${i+1}: ${score}`}>
+                              {score}
+                            </span>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center text-xs text-on-surface-variant italic">-</div>
+                      )}
+                    </td>
+                    <td className="p-4 text-center text-on-surface-variant">{r.result.svasTotal || '-'}/30</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wider ${
+                        r.result.zone === 'NORMAL' ? 'bg-[#d1fae5] text-[#065f46]' : 
+                        r.result.zone === 'BERISIKO' ? 'bg-[#fef3c7] text-[#92400e]' : 
+                        'bg-[#fee2e2] text-[#991b1b]'
+                      }`}>
+                        {r.result.zone}
+                      </span>
+                    </td>
+                    <td className="p-4 font-bold text-on-surface">{r.result.detoxPercentage}%</td>
+                    <td className="p-4 text-center flex justify-center gap-3">
+                      <button onClick={() => setViewModal(r)} className="text-primary hover:text-primary-container" title="View Details">
+                        <span className="material-symbols-outlined text-[20px]">visibility</span>
+                      </button>
+                      <button onClick={() => { setEditModal(r); setEditName(r.userName); }} className="text-primary hover:text-primary-container" title="Edit Name">
+                        <span className="material-symbols-outlined text-[20px]">edit</span>
+                      </button>
+                      <button onClick={() => handleDelete(r.id)} className="text-error hover:text-on-error-container" title="Delete Record">
+                        <span className="material-symbols-outlined text-[20px]">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
@@ -318,93 +385,247 @@ export default function AdminDashboard() {
         </div>
       </main>
 
-      {/* Simple View Modal */}
+      {/* Edit Modal */}
+      <AnimatePresence>
+        {editModal && (
+          <motion.div 
+            initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(10px)' }}
+            className="fixed inset-0 bg-on-background/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }} animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }} exit={{ scale: 0.95, opacity: 0, filter: 'blur(10px)' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="bg-surface-container-lowest border border-outline-variant rounded-2xl p-xl w-full max-w-[448px] shadow-lg relative"
+            >
+              <button onClick={() => setEditModal(null)} className="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+              <h2 className="font-headline-md text-on-surface mb-xs">Edit Record</h2>
+              <p className="font-body-sm text-on-surface-variant mb-md">Update the user's name for this assessment record.</p>
+            
+            <div className="flex flex-col gap-2 mb-lg">
+              <label className="font-label-sm text-on-surface-variant">Full Name</label>
+              <input 
+                type="text" 
+                value={editName} 
+                onChange={e => setEditName(e.target.value)} 
+                className="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2 focus:outline-none focus:border-primary"
+              />
+            </div>
+            
+              <div className="flex justify-end gap-3">
+                <button onClick={() => setEditModal(null)} className="px-4 py-2 font-label-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-colors">Cancel</button>
+                <button onClick={handleEditSave} className="bg-primary text-on-primary px-4 py-2 font-label-md rounded-lg hover:bg-primary-container transition-colors">Save Changes</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* View Modal */}
       <AnimatePresence>
         {viewModal && (
-          <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+          <motion.div 
+            initial={{ opacity: 0, filter: 'blur(10px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(10px)' }}
+            className="fixed inset-0 bg-on-background/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          >
             <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }} 
-              animate={{ scale: 1, opacity: 1 }} 
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-xl w-full max-w-3xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden"
+              initial={{ scale: 0.95, opacity: 0, y: 20, filter: 'blur(10px)' }} 
+              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }} 
+              exit={{ scale: 0.95, opacity: 0, y: 20, filter: 'blur(10px)' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="bg-surface-container-lowest border border-outline-variant rounded-3xl w-full max-w-5xl shadow-2xl relative flex flex-col max-h-[90vh] overflow-hidden"
             >
               {(() => {
                 const zoneInfo = ZONES[viewModal.result.zone as ZoneType] || ZONES['NORMAL'];
                 return (
                   <>
-                    <div className="p-6 border-b border-gray-200 flex justify-between items-start bg-gray-50">
-                      <div>
-                        <h2 className="text-xl font-bold text-gray-900 mb-1">Detail Skrining</h2>
-                        <p className="text-sm text-gray-500">Nama: <span className="font-semibold text-gray-800">{viewModal.userName}</span> | Waktu: {new Date(viewModal.createdAt).toLocaleString('id-ID')}</p>
+                    {/* Premium Header with Zone Colors */}
+                    <div className="p-xl relative overflow-hidden shrink-0 border-b border-outline-variant" style={{ backgroundColor: zoneInfo.bgColor }}>
+                      <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none text-[120px] leading-none transform translate-x-1/4 -translate-y-1/4">
+                        {zoneInfo.emoji}
                       </div>
-                      <button onClick={() => setViewModal(null)} className="text-gray-400 hover:text-gray-700 p-1">
+                      <button onClick={() => setViewModal(null)} className="absolute top-4 right-4 text-on-surface hover:bg-surface/50 rounded-full p-2 backdrop-blur-sm transition-all z-10">
                         <span className="material-symbols-outlined">close</span>
                       </button>
+                      
+                      <div className="relative z-10">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+                          <div>
+                            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 inline-block shadow-sm"
+                              style={{ backgroundColor: zoneInfo.color, color: '#fff' }}
+                            >
+                              {zoneInfo.label}
+                            </span>
+                            <h2 className="font-display-md text-on-surface font-bold tracking-tight">{viewModal.userName}</h2>
+                            <p className="font-body-sm text-on-surface-variant flex items-center gap-1.5 mt-2 opacity-80">
+                              <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+                              {new Date(viewModal.createdAt).toLocaleString()}
+                            </p>
+                          </div>
+                          
+                          <div className="flex gap-4">
+                            <div className="bg-surface/90 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-outline-variant/30 flex flex-col items-center min-w-[120px]">
+                              <span className="font-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Score Final</span>
+                              <span className="font-display-lg font-bold" style={{ color: zoneInfo.color }}>{viewModal.result.detoxPercentage}%</span>
+                            </div>
+                            <div className="bg-surface/90 backdrop-blur-md rounded-2xl p-4 shadow-sm border border-outline-variant/30 flex flex-col items-center min-w-[120px]">
+                              <span className="font-label-sm text-on-surface-variant uppercase tracking-wider mb-1">S-VAS Total</span>
+                              <span className="font-display-lg font-bold" style={{ color: zoneInfo.color }}>{viewModal.result.svasTotal || '-'}/30</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     
-                    <div className="p-6 overflow-y-auto flex-1 bg-white">
-                      <div className="flex gap-4 mb-8">
-                        <div className="flex-1 bg-gray-50 border border-gray-200 p-4 rounded-lg text-center">
-                          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Status</p>
-                          <p className="text-lg font-bold" style={{ color: zoneInfo.color }}>{zoneInfo.label}</p>
-                        </div>
-                        <div className="flex-1 bg-gray-50 border border-gray-200 p-4 rounded-lg text-center">
-                          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Skor Akhir</p>
-                          <p className="text-xl font-bold text-gray-900">{viewModal.result.detoxPercentage}%</p>
-                        </div>
-                        <div className="flex-1 bg-gray-50 border border-gray-200 p-4 rounded-lg text-center">
-                          <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-1">Total S-VAS</p>
-                          <p className="text-xl font-bold text-gray-900">{viewModal.result.svasTotal || '-'}/30</p>
-                        </div>
-                      </div>
-
-                      <h3 className="text-md font-bold text-gray-900 mb-4 border-b pb-2">Jawaban S-VAS</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        {SVAS_QUESTIONS.map((q, idx) => {
-                          const score = viewModal.input.svasScores?.[idx] ?? 0;
-                          const option = SVAS_OPTIONS.find(o => o.value === score);
-                          return (
-                            <div key={q.id} className="bg-gray-50 border border-gray-200 p-3 rounded-lg flex flex-col gap-2">
-                              <div className="flex justify-between items-center">
-                                <span className="text-xs font-bold text-gray-500 uppercase">{q.dimension}</span>
-                                <span className="text-xs font-bold px-2 py-0.5 rounded bg-white border border-gray-200 text-gray-700">{option?.label} ({score})</span>
-                              </div>
-                              <p className="text-sm text-gray-800">{q.text}</p>
+                    {/* Scrollable Body */}
+                    <div className="p-xl overflow-y-auto flex-1 flex flex-col gap-xl bg-surface-container-lowest">
+                      
+                      {/* Grid 1: Tingkat Kriteria */}
+                      <div className="grid grid-cols-1 gap-8 mb-8">
+                        <div className="bg-surface border border-outline-variant rounded-2xl p-lg shadow-sm flex flex-col">
+                          <div className="flex items-center gap-2 mb-6 justify-center">
+                            <span className="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">bar_chart</span>
+                            <h3 className="font-label-md uppercase tracking-wider text-on-surface">Tingkat Kriteria</h3>
+                          </div>
+                          <div className="flex-1 w-full flex flex-col items-center justify-center mt-4 px-4 sm:px-12">
+                            <CriteriaBarChart criteria={viewModal.result.svasCriteria || []} />
+                            
+                            <div className="w-full mt-10 pt-6 border-t border-outline-variant/50">
+                              <h4 className="font-label-md uppercase tracking-wider text-on-surface mb-4 flex items-center gap-2">
+                                <span className="material-symbols-outlined text-primary">psychology</span>
+                                Penjelasan Detail Dimensi
+                              </h4>
+                              <DimensionAccordion criteria={viewModal.result.svasCriteria || []} />
                             </div>
-                          );
-                        })}
-                      </div>
-
-                      <h3 className="text-md font-bold text-gray-900 mb-4 border-b pb-2">Data Tambahan Konteks</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                          <p className="text-xs text-gray-500 mb-1">Durasi Platform (Total)</p>
-                          <p className="text-md font-bold text-gray-900">{viewModal.result.contextScores?.totalDuration?.toFixed(1) || '-'} Jam</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                          <p className="text-xs text-gray-500 mb-1">Waktu Tidur</p>
-                          <p className="text-md font-bold text-gray-900">{viewModal.input.sleepHours} Jam</p>
-                        </div>
-                        <div className="bg-gray-50 border border-gray-200 p-3 rounded-lg">
-                          <p className="text-xs text-gray-500 mb-1">Gangguan Produktivitas</p>
-                          <p className="text-md font-bold text-gray-900">{viewModal.input.productivityImpact} / 10</p>
+                          </div>
                         </div>
                       </div>
 
-                      <h3 className="text-md font-bold text-gray-900 mb-4 border-b pb-2">Saran Sistem</h3>
-                      <ul className="list-disc pl-5 space-y-2">
-                        {(viewModal.result.recommendations || []).map((rec: any, idx: number) => (
-                          <li key={idx} className="text-sm text-gray-700">
-                            <strong>{rec.title}</strong>: {rec.description}
-                          </li>
-                        ))}
-                      </ul>
+                      {/* SVAS Question Record */}
+                      <div className="bg-surface border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
+                        <div className="bg-surface-variant/30 p-lg border-b border-outline-variant flex items-center gap-2">
+                          <span className="material-symbols-outlined text-[20px] text-primary">fact_check</span>
+                          <h3 className="font-label-md uppercase tracking-wider text-on-surface">Rekam Jawaban Tes S-VAS</h3>
+                        </div>
+                        <div className="p-lg bg-surface-container-lowest">
+                          {viewModal.input.svasScores && viewModal.input.svasScores.length > 0 ? (
+                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                              {SVAS_QUESTIONS.map((q, idx) => {
+                                const score = viewModal.input.svasScores[idx] ?? 0;
+                                const option = SVAS_OPTIONS.find(o => o.value === score);
+                                return (
+                                  <li key={q.id} className="flex flex-col gap-3 pb-6 border-b border-outline-variant/60 last:border-0 md:nth-last-child(-n+2):border-0 md:nth-last-child(-n+2):pb-0">
+                                    <div className="flex items-center justify-between gap-2">
+                                      <span className="text-xs font-bold uppercase tracking-wider" style={{ color: option?.color || '#555' }}>
+                                        {q.dimension}
+                                      </span>
+                                      <span 
+                                        className="px-3 py-1 rounded-md text-[11px] font-bold shadow-sm border"
+                                        style={{ backgroundColor: `${option?.color || '#ccc'}15`, color: option?.color || '#555', borderColor: `${option?.color || '#ccc'}30` }}
+                                      >
+                                        {option?.label || 'N/A'} ({score})
+                                      </span>
+                                    </div>
+                                    <p className="text-base text-on-surface leading-relaxed">{q.text}</p>
+                                  </li>
+                                );
+                              })}
+                            </ul>
+                          ) : (
+                            <p className="text-on-surface-variant text-sm italic py-4 text-center bg-surface-container-low rounded-lg border border-outline-variant/50">Data rekaman jawaban pertanyaan tidak tersedia untuk riwayat ini.</p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-md">
+                        <div className="bg-surface border border-outline-variant rounded-2xl p-lg shadow-sm">
+                          <div className="flex items-center gap-2 mb-6 justify-center">
+                            <span className="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">radar</span>
+                            <h3 className="font-label-md uppercase tracking-wider text-on-surface">Pola Adiksi (S-VAS)</h3>
+                          </div>
+                          <div className="w-full flex justify-center">
+                            <SVASRadarChart criteria={viewModal.result.svasCriteria || []} />
+                          </div>
+                        </div>
+                        {/* Context Data */}
+                        <div className="bg-surface border border-outline-variant rounded-2xl p-lg shadow-sm hover:shadow-md transition-shadow">
+                          <div className="flex items-center gap-2 mb-6 justify-center">
+                            <span className="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">analytics</span>
+                            <h3 className="font-label-md uppercase tracking-wider text-on-surface">Data Konteks Saat Tes</h3>
+                          </div>
+                          <div className="flex flex-col gap-4 mt-4">
+                            <div className="flex items-center justify-between bg-surface-container-low p-4 rounded-xl border border-outline-variant/50">
+                              <div className="flex items-center gap-3 text-on-surface-variant">
+                                <span className="material-symbols-outlined">timer</span>
+                                <span className="font-medium">Durasi Tonton (Jam/Hari)</span>
+                              </div>
+                              <span className="font-bold text-lg text-primary">{viewModal.result.contextScores?.totalDuration?.toFixed(1) || '-'} Jam</span>
+                            </div>
+                            <div className="flex items-center justify-between bg-surface-container-low p-4 rounded-xl border border-outline-variant/50">
+                              <div className="flex items-center gap-3 text-on-surface-variant">
+                                <span className="material-symbols-outlined">bedtime</span>
+                                <span className="font-medium">Waktu Tidur Semalam</span>
+                              </div>
+                              <span className="font-bold text-lg text-primary">{viewModal.input.sleepHours} Jam</span>
+                            </div>
+                            <div className="flex items-center justify-between bg-surface-container-low p-4 rounded-xl border border-outline-variant/50">
+                              <div className="flex items-center gap-3 text-on-surface-variant">
+                                <span className="material-symbols-outlined">trending_down</span>
+                                <span className="font-medium">Ggn. Produktivitas</span>
+                              </div>
+                              <span className="font-bold text-lg text-primary">{viewModal.input.productivityImpact} / 10</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Platform Duration Breakdown */}
+                        <div className="bg-surface border border-outline-variant rounded-2xl p-lg shadow-sm">
+                          <div className="flex items-center gap-2 mb-6">
+                            <span className="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg">pie_chart</span>
+                            <h3 className="font-label-md uppercase tracking-wider text-on-surface">Distribusi Waktu Platform</h3>
+                          </div>
+                          <div className="bg-surface-container-lowest rounded-xl p-md">
+                            <PlatformBarChart 
+                              data={Object.entries(viewModal.input.platforms || {}).map(([name, hours]) => ({ name, hours: hours as number }))} 
+                            />
+                          </div>
+                        </div>
+
+                      {/* Recommendations */}
+                        <div className="bg-surface border border-outline-variant rounded-2xl overflow-hidden shadow-sm">
+                          <div className="bg-primary/5 p-lg border-b border-outline-variant flex items-center gap-2">
+                            <span className="material-symbols-outlined text-[20px] text-primary">lightbulb</span>
+                            <h3 className="font-label-md uppercase tracking-wider text-on-surface text-primary">Saran & Solusi Sistem</h3>
+                          </div>
+                          <div className="p-lg bg-surface-container-lowest">
+                            <div className="grid grid-cols-1 gap-4">
+                              {(viewModal.result.recommendations || []).map((rec: any, idx: number) => (
+                                <div key={idx} className={`border rounded-xl p-md flex flex-col sm:flex-row gap-4 sm:items-start transition-colors hover:bg-surface-variant/20 ${rec.urgent ? 'border-error/30 bg-error/5' : 'border-outline-variant/50'}`}>
+                                  <div className={`p-3 rounded-lg shrink-0 flex items-center justify-center ${rec.urgent ? 'bg-error/10 text-error' : 'bg-primary/10 text-primary'}`}>
+                                    <span className="material-symbols-outlined text-[28px]">
+                                      {rec.icon || 'star'}
+                                    </span>
+                                  </div>
+                                  <div className="flex-1">
+                                    <h4 className="font-title-md text-on-surface mb-2 flex items-center gap-3">
+                                      {rec.title}
+                                      {rec.urgent && <span className="px-2 py-0.5 bg-error text-on-error rounded text-[10px] uppercase font-bold tracking-widest shadow-sm">Urgent</span>}
+                                    </h4>
+                                    <p className="text-base text-on-surface-variant leading-relaxed">{rec.description}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>                      
                     </div>
                   </>
                 );
               })()}
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
