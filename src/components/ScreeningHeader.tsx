@@ -33,16 +33,16 @@ export default function ScreeningHeader() {
             Beranda
           </Link>
           <Link
-            href="/homepage#cara-kerja"
-            className="whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
-          >
-            Cara Kerja
-          </Link>
-          <Link
             href="/homepage#dimensi-ukur"
             className="whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
           >
             Dimensi Ukur
+          </Link>
+          <Link
+            href="/homepage#cara-kerja"
+            className="whitespace-nowrap relative font-semibold text-base transition-all duration-300 pb-1 text-on-surface-variant hover:text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-primary after:transition-transform after:duration-300 after:origin-center after:scale-x-0 hover:after:scale-x-100"
+          >
+            Cara Kerja
           </Link>
           <Link
             href="/homepage/artikel"
@@ -94,18 +94,18 @@ export default function ScreeningHeader() {
               Beranda
             </Link>
             <Link
-              href="/homepage#cara-kerja"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
-            >
-              Cara Kerja
-            </Link>
-            <Link
               href="/homepage#dimensi-ukur"
               onClick={() => setIsMobileMenuOpen(false)}
               className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
             >
               Dimensi Ukur
+            </Link>
+            <Link
+              href="/homepage#cara-kerja"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="font-semibold text-base transition-colors text-on-surface-variant hover:text-primary"
+            >
+              Cara Kerja
             </Link>
             <Link
               href="/homepage/artikel"
