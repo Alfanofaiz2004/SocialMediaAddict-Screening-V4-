@@ -59,8 +59,8 @@ export default function AdminCharts({ results }: { results: any[] }) {
   let normal = 0, berisiko = 0, kecanduan = 0;
   results.forEach(r => {
     const s = r.result.svasTotal || 0;
-    if (s < 15) normal++;
-    else if (s <= 22) berisiko++;
+    if (s <= 14) normal++;
+    else if (s <= 18) berisiko++;
     else kecanduan++;
   });
 
@@ -71,7 +71,7 @@ export default function AdminCharts({ results }: { results: any[] }) {
     dataLabels: { enabled: false },
     legend: { show: false },
     xaxis: { 
-      categories: ['Normal (<15)', 'Berisiko (15-22)', 'Kecanduan (23-30)'],
+      categories: ['Sehat (6-14)', 'Berisiko (15-18)', 'Kecanduan (19-30)'],
       labels: { style: { colors: '#586377' } }
     },
     yaxis: { labels: { style: { colors: '#586377' } } }
