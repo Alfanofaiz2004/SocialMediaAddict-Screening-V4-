@@ -8,9 +8,9 @@ import {
 
 /** Tentukan zona klasifikasi berdasarkan total skor SVAS-6 */
 function determineZone(totalScore: number): ZoneType {
-  if (totalScore >= 19) return 'KECANDUAN_TINGGI';
+  if (totalScore >= 19) return 'KECANDUAN';
   if (totalScore >= 15) return 'BERISIKO';
-  return 'NORMAL';
+  return 'SEHAT';
 }
 
 /** Tentukan dimensi paling bermasalah (skor tertinggi) */

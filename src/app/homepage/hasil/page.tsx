@@ -345,10 +345,10 @@ export default function HasilPage() {
   const zoneInfo = ZONES[result.zone];
   const statusColor = (zone: ZoneType) => {
     switch (zone) {
-      case 'NORMAL': return { bg: '#d4edda', text: '#155724' };
+      case 'SEHAT': return { bg: '#d4edda', text: '#155724' };
       case 'BERISIKO': return { bg: '#fff3cd', text: '#856404' };
-      case 'KECANDUAN_TINGGI': return { bg: '#f8d7da', text: '#721c24' };
-      default: return { bg: '#e2e3e5', text: '#383d41' };
+      case 'KECANDUAN': return { bg: '#f8d7da', text: '#721c24' };
+      default: return { bg: '#f8f9fa', text: '#6c757d' };
     }
   };
   const colorScheme = statusColor(result.zone);
@@ -512,7 +512,7 @@ export default function HasilPage() {
                     className="material-symbols-outlined absolute -right-4 -bottom-4 md:-right-8 md:-bottom-8 text-[60px] md:text-[140px] opacity-[0.07] pointer-events-none select-none"
                     style={{ color: zoneInfo.color }}
                   >
-                    {result.zone === 'NORMAL' ? 'verified' : result.zone === 'BERISIKO' ? 'warning' : 'dangerous'}
+                    {result.zone === 'SEHAT' ? 'verified' : result.zone === 'BERISIKO' ? 'warning' : 'dangerous'}
                   </span>
 
                   <div className="flex items-center gap-2 md:gap-4 relative z-10">
@@ -521,7 +521,7 @@ export default function HasilPage() {
                       style={{ backgroundColor: zoneInfo.color, color: '#fff' }}
                     >
                       <span className="material-symbols-outlined text-[16px] md:text-[32px]">
-                        {result.zone === 'NORMAL' ? 'health_and_safety' : result.zone === 'BERISIKO' ? 'error' : 'warning'}
+                        {result.zone === 'SEHAT' ? 'health_and_safety' : result.zone === 'BERISIKO' ? 'error' : 'warning'}
                       </span>
                     </div>
                     <div className="flex flex-col">

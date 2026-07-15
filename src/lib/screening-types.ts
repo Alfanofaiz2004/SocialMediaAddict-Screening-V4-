@@ -16,7 +16,7 @@ export interface UserInput {
   productivityImpact: number; // 1-10 scale
 }
 
-export type ZoneType = 'NORMAL' | 'BERISIKO' | 'KECANDUAN_TINGGI';
+export type ZoneType = 'SEHAT' | 'BERISIKO' | 'KECANDUAN';
 
 export interface ZoneInfo {
   label: string;

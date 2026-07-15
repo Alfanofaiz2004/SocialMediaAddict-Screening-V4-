@@ -3,13 +3,13 @@ import { ZoneInfo, ZoneType, Recommendation } from './screening-types';
 // ============================================================
 // Zona Klasifikasi (3 Zona — SVAS-6)
 // Total Skor: 6 - 30
-// 6 - 14: NORMAL (Sehat / Low Risk)
+// 6 - 14: SEHAT (Low Risk)
 // 15 - 18: BERISIKO (Moderate Risk)
-// 19 - 30: KECANDUAN_TINGGI (High Risk / Problematic)
+// 19 - 30: KECANDUAN (High Risk / Problematic)
 // ============================================================
 export const ZONES: Record<ZoneType, ZoneInfo> = {
-  NORMAL: {
-    label: 'Normal',
+  SEHAT: {
+    label: 'Sehat',
     color: '#10B981', // Green
     bgColor: 'rgba(16, 185, 129, 0.08)',
     borderColor: 'rgba(16, 185, 129, 0.25)',
@@ -26,7 +26,7 @@ export const ZONES: Record<ZoneType, ZoneInfo> = {
     description: 'Kamu mulai menunjukkan tanda-tanda ketergantungan yang berisiko mengganggu keseharian. Diperlukan intervensi ringan untuk membatasi durasi.',
     emoji: '🟡',
   },
-  KECANDUAN_TINGGI: {
+  KECANDUAN: {
     label: 'Kecanduan',
     color: '#EF4444', // Red
     bgColor: 'rgba(239, 68, 68, 0.08)',
@@ -288,9 +288,9 @@ export const PLATFORM_CONFIG = [
 
 // ============================================================
 // Rekomendasi per Zona
-// ============================================================
+// ============================================================// Rekomendasi dibagi berdasarkan Zona
 export const RECOMMENDATIONS: Record<ZoneType, Recommendation[]> = {
-  NORMAL: [
+  SEHAT: [
     {
       priority: 1,
       title: 'Pesan Motivasi',
@@ -325,7 +325,7 @@ export const RECOMMENDATIONS: Record<ZoneType, Recommendation[]> = {
       icon: 'schedule',
     },
   ],
-  KECANDUAN_TINGGI: [
+  KECANDUAN: [
     {
       priority: 1,
       title: 'Tindakan Segera Pemulihan Mental',
