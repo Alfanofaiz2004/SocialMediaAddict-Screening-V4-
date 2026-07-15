@@ -7,7 +7,6 @@ import { UserInput } from '@/lib/screening-types';
 import { SVAS_QUESTIONS, SVAS_OPTIONS, PLATFORM_CONFIG } from '@/lib/screening-constants';
 import { calculateSVAS6 } from '@/lib/svas-algorithm';
 import { motion, AnimatePresence } from 'framer-motion';
-import ScreeningHeader from '@/components/ScreeningHeader';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 type Step = 'intro' | 'svas' | 'platform' | 'sleep' | 'productivity';
@@ -171,8 +170,6 @@ export default function KuesionerPage() {
 
   return (
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col" ref={containerRef}>
-      <ScreeningHeader />
-
       <main className="flex-grow flex flex-col items-center justify-start w-full">
         {/* ═══════════ TOP PROGRESS BAR ═══════════ */}
         <div className="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-16 z-30">

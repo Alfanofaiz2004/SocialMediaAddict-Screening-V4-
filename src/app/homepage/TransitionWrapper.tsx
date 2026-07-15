@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { FrozenRoute } from './FrozenRoute';
 
 export default function TransitionWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ export default function TransitionWrapper({ children }: { children: React.ReactN
         exit={{ opacity: 0, filter: 'blur(12px)' }}
         transition={{ duration: 0.4, ease: 'easeInOut' }}
       >
-        {children}
+        <FrozenRoute>{children}</FrozenRoute>
       </motion.div>
     </AnimatePresence>
   );

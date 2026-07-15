@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import ScreeningHeader from '@/components/ScreeningHeader';
 import { ScreeningResult, UserInput, ZoneType } from '@/lib/screening-types';
 import { ZONES, DIMENSION_DETAILS } from '@/lib/screening-constants';
 import { CriteriaBarChart, PlatformBarChart, SVASRadarChart, DimensionAccordion } from '@/components/ResultVisualizations';
@@ -448,10 +447,6 @@ export default function HasilPage() {
 
   return (
     <div className="bg-background print:bg-white text-on-background print:text-black min-h-screen flex flex-col font-body-md antialiased overflow-x-hidden">
-      <div className="print:hidden">
-        <ScreeningHeader />
-      </div>
-
       <main ref={dashboardRef} className="flex-grow w-full flex flex-col">
 
         {/* ══════════════════════════════════════════════════════════════════

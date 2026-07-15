@@ -3,13 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import ScreeningHeader from '@/components/ScreeningHeader';
 
 export default function ArtikelPage() {
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
-      <ScreeningHeader />
-
       <main className="flex-grow w-full flex flex-col items-center pb-24">
         {/* Article Container - Dipertahankan lebar max-w-7xl sesuai preferensi */}
         <article className="w-full max-w-7xl px-6 md:px-12 mt-12 md:mt-16 mx-auto">

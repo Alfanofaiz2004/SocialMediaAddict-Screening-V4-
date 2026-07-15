@@ -7,7 +7,13 @@ export const metadata: Metadata = {
 };
 
 import TransitionWrapper from './TransitionWrapper';
+import ScreeningHeader from '@/components/ScreeningHeader';
 
 export default function ScreeningLayout({ children }: { children: React.ReactNode }) {
-  return <TransitionWrapper>{children}</TransitionWrapper>;
+  return (
+    <>
+      <ScreeningHeader />
+      <TransitionWrapper>{children}</TransitionWrapper>
+    </>
+  );
 }

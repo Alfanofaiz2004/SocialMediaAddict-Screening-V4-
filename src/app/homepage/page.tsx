@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import ScreeningHeader from '@/components/ScreeningHeader';
 
 // ─── Animated Counter ──────────────────────────────────────────────────────────
 function AnimatedCounter({ target, suffix = '', duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
@@ -190,8 +189,6 @@ export default function ScreeningLandingPage() {
 
   return (
     <div className="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
-      <ScreeningHeader />
-
       <main className="flex-grow flex flex-col items-center justify-start w-full overflow-x-hidden">
         {/* ═══════════ HERO SECTION ═══════════ */}
         <section className="relative w-full py-16 md:py-24 overflow-hidden">
