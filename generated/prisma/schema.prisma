@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+model User {
+  UserID   Int    @id @default(autoincrement())
+  Username String @unique
+}
+
+model AssessmentResult {
+  UserID       String   @id @default(uuid())
+  Username     String
+  date         DateTime @default(now())
+  overallScore String
+  zone         String
+  svasTotal    Int
+  rawInput     Json
+  rawResult    Json
+}
