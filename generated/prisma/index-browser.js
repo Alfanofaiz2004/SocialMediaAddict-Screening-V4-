@@ -129,11 +129,21 @@ exports.Prisma.AssessmentResultScalarFieldEnum = {
   UserID: 'UserID',
   Username: 'Username',
   date: 'date',
-  overallScore: 'overallScore',
   zone: 'zone',
   svasTotal: 'svasTotal',
-  rawInput: 'rawInput',
-  rawResult: 'rawResult'
+  q1_salience: 'q1_salience',
+  q2_mood: 'q2_mood',
+  q3_tolerance: 'q3_tolerance',
+  q4_withdrawal: 'q4_withdrawal',
+  q5_conflict: 'q5_conflict',
+  q6_relapse: 'q6_relapse',
+  socialMediaHours: 'socialMediaHours',
+  sleepHours: 'sleepHours',
+  productivityImpact: 'productivityImpact',
+  instagramHours: 'instagramHours',
+  tiktokHours: 'tiktokHours',
+  youtubeHours: 'youtubeHours',
+  twitterHours: 'twitterHours'
 };
 
 exports.Prisma.SortOrder = {
@@ -141,19 +151,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
-  JsonNull: Prisma.JsonNull
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 

@@ -20,11 +20,21 @@ export async function POST(request: Request) {
     const newResult = await prisma.assessmentResult.create({
       data: {
         Username: Username,
-        overallScore: `(${result.svasTotal}/30)`,
         zone: result.zone,
         svasTotal: result.svasTotal,
-        rawInput: input,
-        rawResult: result,
+        q1_salience: input.svasScores[0] ?? 0,
+        q2_mood: input.svasScores[1] ?? 0,
+        q3_tolerance: input.svasScores[2] ?? 0,
+        q4_withdrawal: input.svasScores[3] ?? 0,
+        q5_conflict: input.svasScores[4] ?? 0,
+        q6_relapse: input.svasScores[5] ?? 0,
+        socialMediaHours: result.contextScores.totalDuration ?? 0,
+        sleepHours: input.sleepHours ?? 0,
+        productivityImpact: input.productivityImpact ?? 0,
+        instagramHours: input.platforms.instagram ?? 0,
+        tiktokHours: input.platforms.tiktok ?? 0,
+        youtubeHours: input.platforms.youtube ?? 0,
+        twitterHours: input.platforms.twitter ?? 0,
       },
     });
 

@@ -357,11 +357,11 @@ export default function AdminDashboard() {
                     <td className="p-4 text-center text-on-surface-variant">{r.result.svasTotal || '-'}/30</td>
                     <td className="p-4">
                       <span className={`px-2 py-1 rounded text-xs font-bold uppercase tracking-wider ${
-                        r.result.zone === 'NORMAL' ? 'bg-[#d1fae5] text-[#065f46]' : 
+                        r.result.zone === 'SEHAT' ? 'bg-[#d1fae5] text-[#065f46]' : 
                         r.result.zone === 'BERISIKO' ? 'bg-[#fef3c7] text-[#92400e]' : 
                         'bg-[#fee2e2] text-[#991b1b]'
                       }`}>
-                        {r.result.zone === 'KECANDUAN_TINGGI' ? 'Kecanduan' : r.result.zone}
+                        {r.result.zone === 'KECANDUAN' ? 'Kecanduan' : r.result.zone === 'SEHAT' ? 'Sehat' : 'Berisiko'}
                       </span>
                     </td>
                     <td className="p-4 font-bold text-on-surface">{r.result.detoxPercentage}%</td>
@@ -437,7 +437,7 @@ export default function AdminDashboard() {
               className="bg-surface-container-lowest border border-outline-variant rounded-3xl w-full max-w-5xl shadow-2xl relative flex flex-col max-h-[90vh] overflow-hidden"
             >
               {(() => {
-                const zoneInfo = ZONES[viewModal.result.zone as ZoneType] || ZONES['NORMAL'];
+                const zoneInfo = ZONES[viewModal.result.zone as ZoneType] || ZONES['SEHAT'];
                 return (
                   <>
                     {/* Premium Header with Zone Colors */}

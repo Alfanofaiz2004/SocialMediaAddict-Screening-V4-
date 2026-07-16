@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { calculateSVAS6 } from '@/lib/svas-algorithm';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,13 +11,36 @@ export async function GET(request: Request) {
     });
 
     // Map Prisma schema to expected frontend format
-    const formattedData = dbData.map((item: any) => ({
-      id: item.UserID,
-      createdAt: item.date,
-      userName: item.Username,
-      input: item.rawInput,
-      result: item.rawResult
-    }));
+    const formattedData = dbData.map((item: any) => {
+      const input = {
+        svasScores: [
+          item.q1_salience,
+          item.q2_mood,
+          item.q3_tolerance,
+          item.q4_withdrawal,
+          item.q5_conflict,
+          item.q6_relapse,
+        ],
+        platforms: {
+          instagram: item.instagramHours,
+          tiktok: item.tiktokHours,
+          youtube: item.youtubeHours,
+          twitter: item.twitterHours,
+        },
+        sleepHours: item.sleepHours,
+        productivityImpact: item.productivityImpact,
+      };
+
+      const result = calculateSVAS6(input);
+
+      return {
+        id: item.UserID,
+        createdAt: item.date,
+        userName: item.Username,
+        input,
+        result
+      };
+    });
 
     return NextResponse.json({ success: true, data: formattedData });
   } catch (error) {

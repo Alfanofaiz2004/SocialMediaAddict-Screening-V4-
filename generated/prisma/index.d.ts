@@ -1966,78 +1966,198 @@ export namespace Prisma {
 
   export type AssessmentResultAvgAggregateOutputType = {
     svasTotal: number | null
+    q1_salience: number | null
+    q2_mood: number | null
+    q3_tolerance: number | null
+    q4_withdrawal: number | null
+    q5_conflict: number | null
+    q6_relapse: number | null
+    socialMediaHours: number | null
+    sleepHours: number | null
+    productivityImpact: number | null
+    instagramHours: number | null
+    tiktokHours: number | null
+    youtubeHours: number | null
+    twitterHours: number | null
   }
 
   export type AssessmentResultSumAggregateOutputType = {
     svasTotal: number | null
+    q1_salience: number | null
+    q2_mood: number | null
+    q3_tolerance: number | null
+    q4_withdrawal: number | null
+    q5_conflict: number | null
+    q6_relapse: number | null
+    socialMediaHours: number | null
+    sleepHours: number | null
+    productivityImpact: number | null
+    instagramHours: number | null
+    tiktokHours: number | null
+    youtubeHours: number | null
+    twitterHours: number | null
   }
 
   export type AssessmentResultMinAggregateOutputType = {
     UserID: string | null
     Username: string | null
     date: Date | null
-    overallScore: string | null
     zone: string | null
     svasTotal: number | null
+    q1_salience: number | null
+    q2_mood: number | null
+    q3_tolerance: number | null
+    q4_withdrawal: number | null
+    q5_conflict: number | null
+    q6_relapse: number | null
+    socialMediaHours: number | null
+    sleepHours: number | null
+    productivityImpact: number | null
+    instagramHours: number | null
+    tiktokHours: number | null
+    youtubeHours: number | null
+    twitterHours: number | null
   }
 
   export type AssessmentResultMaxAggregateOutputType = {
     UserID: string | null
     Username: string | null
     date: Date | null
-    overallScore: string | null
     zone: string | null
     svasTotal: number | null
+    q1_salience: number | null
+    q2_mood: number | null
+    q3_tolerance: number | null
+    q4_withdrawal: number | null
+    q5_conflict: number | null
+    q6_relapse: number | null
+    socialMediaHours: number | null
+    sleepHours: number | null
+    productivityImpact: number | null
+    instagramHours: number | null
+    tiktokHours: number | null
+    youtubeHours: number | null
+    twitterHours: number | null
   }
 
   export type AssessmentResultCountAggregateOutputType = {
     UserID: number
     Username: number
     date: number
-    overallScore: number
     zone: number
     svasTotal: number
-    rawInput: number
-    rawResult: number
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
     _all: number
   }
 
 
   export type AssessmentResultAvgAggregateInputType = {
     svasTotal?: true
+    q1_salience?: true
+    q2_mood?: true
+    q3_tolerance?: true
+    q4_withdrawal?: true
+    q5_conflict?: true
+    q6_relapse?: true
+    socialMediaHours?: true
+    sleepHours?: true
+    productivityImpact?: true
+    instagramHours?: true
+    tiktokHours?: true
+    youtubeHours?: true
+    twitterHours?: true
   }
 
   export type AssessmentResultSumAggregateInputType = {
     svasTotal?: true
+    q1_salience?: true
+    q2_mood?: true
+    q3_tolerance?: true
+    q4_withdrawal?: true
+    q5_conflict?: true
+    q6_relapse?: true
+    socialMediaHours?: true
+    sleepHours?: true
+    productivityImpact?: true
+    instagramHours?: true
+    tiktokHours?: true
+    youtubeHours?: true
+    twitterHours?: true
   }
 
   export type AssessmentResultMinAggregateInputType = {
     UserID?: true
     Username?: true
     date?: true
-    overallScore?: true
     zone?: true
     svasTotal?: true
+    q1_salience?: true
+    q2_mood?: true
+    q3_tolerance?: true
+    q4_withdrawal?: true
+    q5_conflict?: true
+    q6_relapse?: true
+    socialMediaHours?: true
+    sleepHours?: true
+    productivityImpact?: true
+    instagramHours?: true
+    tiktokHours?: true
+    youtubeHours?: true
+    twitterHours?: true
   }
 
   export type AssessmentResultMaxAggregateInputType = {
     UserID?: true
     Username?: true
     date?: true
-    overallScore?: true
     zone?: true
     svasTotal?: true
+    q1_salience?: true
+    q2_mood?: true
+    q3_tolerance?: true
+    q4_withdrawal?: true
+    q5_conflict?: true
+    q6_relapse?: true
+    socialMediaHours?: true
+    sleepHours?: true
+    productivityImpact?: true
+    instagramHours?: true
+    tiktokHours?: true
+    youtubeHours?: true
+    twitterHours?: true
   }
 
   export type AssessmentResultCountAggregateInputType = {
     UserID?: true
     Username?: true
     date?: true
-    overallScore?: true
     zone?: true
     svasTotal?: true
-    rawInput?: true
-    rawResult?: true
+    q1_salience?: true
+    q2_mood?: true
+    q3_tolerance?: true
+    q4_withdrawal?: true
+    q5_conflict?: true
+    q6_relapse?: true
+    socialMediaHours?: true
+    sleepHours?: true
+    productivityImpact?: true
+    instagramHours?: true
+    tiktokHours?: true
+    youtubeHours?: true
+    twitterHours?: true
     _all?: true
   }
 
@@ -2131,11 +2251,21 @@ export namespace Prisma {
     UserID: string
     Username: string
     date: Date
-    overallScore: string
     zone: string
     svasTotal: number
-    rawInput: JsonValue
-    rawResult: JsonValue
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
     _count: AssessmentResultCountAggregateOutputType | null
     _avg: AssessmentResultAvgAggregateOutputType | null
     _sum: AssessmentResultSumAggregateOutputType | null
@@ -2161,47 +2291,87 @@ export namespace Prisma {
     UserID?: boolean
     Username?: boolean
     date?: boolean
-    overallScore?: boolean
     zone?: boolean
     svasTotal?: boolean
-    rawInput?: boolean
-    rawResult?: boolean
+    q1_salience?: boolean
+    q2_mood?: boolean
+    q3_tolerance?: boolean
+    q4_withdrawal?: boolean
+    q5_conflict?: boolean
+    q6_relapse?: boolean
+    socialMediaHours?: boolean
+    sleepHours?: boolean
+    productivityImpact?: boolean
+    instagramHours?: boolean
+    tiktokHours?: boolean
+    youtubeHours?: boolean
+    twitterHours?: boolean
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
     Username?: boolean
     date?: boolean
-    overallScore?: boolean
     zone?: boolean
     svasTotal?: boolean
-    rawInput?: boolean
-    rawResult?: boolean
+    q1_salience?: boolean
+    q2_mood?: boolean
+    q3_tolerance?: boolean
+    q4_withdrawal?: boolean
+    q5_conflict?: boolean
+    q6_relapse?: boolean
+    socialMediaHours?: boolean
+    sleepHours?: boolean
+    productivityImpact?: boolean
+    instagramHours?: boolean
+    tiktokHours?: boolean
+    youtubeHours?: boolean
+    twitterHours?: boolean
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
     Username?: boolean
     date?: boolean
-    overallScore?: boolean
     zone?: boolean
     svasTotal?: boolean
-    rawInput?: boolean
-    rawResult?: boolean
+    q1_salience?: boolean
+    q2_mood?: boolean
+    q3_tolerance?: boolean
+    q4_withdrawal?: boolean
+    q5_conflict?: boolean
+    q6_relapse?: boolean
+    socialMediaHours?: boolean
+    sleepHours?: boolean
+    productivityImpact?: boolean
+    instagramHours?: boolean
+    tiktokHours?: boolean
+    youtubeHours?: boolean
+    twitterHours?: boolean
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectScalar = {
     UserID?: boolean
     Username?: boolean
     date?: boolean
-    overallScore?: boolean
     zone?: boolean
     svasTotal?: boolean
-    rawInput?: boolean
-    rawResult?: boolean
+    q1_salience?: boolean
+    q2_mood?: boolean
+    q3_tolerance?: boolean
+    q4_withdrawal?: boolean
+    q5_conflict?: boolean
+    q6_relapse?: boolean
+    socialMediaHours?: boolean
+    sleepHours?: boolean
+    productivityImpact?: boolean
+    instagramHours?: boolean
+    tiktokHours?: boolean
+    youtubeHours?: boolean
+    twitterHours?: boolean
   }
 
-  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "Username" | "date" | "overallScore" | "zone" | "svasTotal" | "rawInput" | "rawResult", ExtArgs["result"]["assessmentResult"]>
+  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "Username" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
 
   export type $AssessmentResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AssessmentResult"
@@ -2210,11 +2380,21 @@ export namespace Prisma {
       UserID: string
       Username: string
       date: Date
-      overallScore: string
       zone: string
       svasTotal: number
-      rawInput: Prisma.JsonValue
-      rawResult: Prisma.JsonValue
+      q1_salience: number
+      q2_mood: number
+      q3_tolerance: number
+      q4_withdrawal: number
+      q5_conflict: number
+      q6_relapse: number
+      socialMediaHours: number
+      sleepHours: number
+      productivityImpact: number
+      instagramHours: number
+      tiktokHours: number
+      youtubeHours: number
+      twitterHours: number
     }, ExtArgs["result"]["assessmentResult"]>
     composites: {}
   }
@@ -2641,11 +2821,21 @@ export namespace Prisma {
     readonly UserID: FieldRef<"AssessmentResult", 'String'>
     readonly Username: FieldRef<"AssessmentResult", 'String'>
     readonly date: FieldRef<"AssessmentResult", 'DateTime'>
-    readonly overallScore: FieldRef<"AssessmentResult", 'String'>
     readonly zone: FieldRef<"AssessmentResult", 'String'>
     readonly svasTotal: FieldRef<"AssessmentResult", 'Int'>
-    readonly rawInput: FieldRef<"AssessmentResult", 'Json'>
-    readonly rawResult: FieldRef<"AssessmentResult", 'Json'>
+    readonly q1_salience: FieldRef<"AssessmentResult", 'Int'>
+    readonly q2_mood: FieldRef<"AssessmentResult", 'Int'>
+    readonly q3_tolerance: FieldRef<"AssessmentResult", 'Int'>
+    readonly q4_withdrawal: FieldRef<"AssessmentResult", 'Int'>
+    readonly q5_conflict: FieldRef<"AssessmentResult", 'Int'>
+    readonly q6_relapse: FieldRef<"AssessmentResult", 'Int'>
+    readonly socialMediaHours: FieldRef<"AssessmentResult", 'Float'>
+    readonly sleepHours: FieldRef<"AssessmentResult", 'Float'>
+    readonly productivityImpact: FieldRef<"AssessmentResult", 'Int'>
+    readonly instagramHours: FieldRef<"AssessmentResult", 'Float'>
+    readonly tiktokHours: FieldRef<"AssessmentResult", 'Float'>
+    readonly youtubeHours: FieldRef<"AssessmentResult", 'Float'>
+    readonly twitterHours: FieldRef<"AssessmentResult", 'Float'>
   }
     
 
@@ -3043,11 +3233,21 @@ export namespace Prisma {
     UserID: 'UserID',
     Username: 'Username',
     date: 'date',
-    overallScore: 'overallScore',
     zone: 'zone',
     svasTotal: 'svasTotal',
-    rawInput: 'rawInput',
-    rawResult: 'rawResult'
+    q1_salience: 'q1_salience',
+    q2_mood: 'q2_mood',
+    q3_tolerance: 'q3_tolerance',
+    q4_withdrawal: 'q4_withdrawal',
+    q5_conflict: 'q5_conflict',
+    q6_relapse: 'q6_relapse',
+    socialMediaHours: 'socialMediaHours',
+    sleepHours: 'sleepHours',
+    productivityImpact: 'productivityImpact',
+    instagramHours: 'instagramHours',
+    tiktokHours: 'tiktokHours',
+    youtubeHours: 'youtubeHours',
+    twitterHours: 'twitterHours'
   };
 
   export type AssessmentResultScalarFieldEnum = (typeof AssessmentResultScalarFieldEnum)[keyof typeof AssessmentResultScalarFieldEnum]
@@ -3061,28 +3261,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -3129,20 +3313,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -3209,22 +3379,42 @@ export namespace Prisma {
     UserID?: StringFilter<"AssessmentResult"> | string
     Username?: StringFilter<"AssessmentResult"> | string
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
-    overallScore?: StringFilter<"AssessmentResult"> | string
     zone?: StringFilter<"AssessmentResult"> | string
     svasTotal?: IntFilter<"AssessmentResult"> | number
-    rawInput?: JsonFilter<"AssessmentResult">
-    rawResult?: JsonFilter<"AssessmentResult">
+    q1_salience?: IntFilter<"AssessmentResult"> | number
+    q2_mood?: IntFilter<"AssessmentResult"> | number
+    q3_tolerance?: IntFilter<"AssessmentResult"> | number
+    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
+    q5_conflict?: IntFilter<"AssessmentResult"> | number
+    q6_relapse?: IntFilter<"AssessmentResult"> | number
+    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
+    sleepHours?: FloatFilter<"AssessmentResult"> | number
+    productivityImpact?: IntFilter<"AssessmentResult"> | number
+    instagramHours?: FloatFilter<"AssessmentResult"> | number
+    tiktokHours?: FloatFilter<"AssessmentResult"> | number
+    youtubeHours?: FloatFilter<"AssessmentResult"> | number
+    twitterHours?: FloatFilter<"AssessmentResult"> | number
   }
 
   export type AssessmentResultOrderByWithRelationInput = {
     UserID?: SortOrder
     Username?: SortOrder
     date?: SortOrder
-    overallScore?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
-    rawInput?: SortOrder
-    rawResult?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type AssessmentResultWhereUniqueInput = Prisma.AtLeast<{
@@ -3234,22 +3424,42 @@ export namespace Prisma {
     NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
     Username?: StringFilter<"AssessmentResult"> | string
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
-    overallScore?: StringFilter<"AssessmentResult"> | string
     zone?: StringFilter<"AssessmentResult"> | string
     svasTotal?: IntFilter<"AssessmentResult"> | number
-    rawInput?: JsonFilter<"AssessmentResult">
-    rawResult?: JsonFilter<"AssessmentResult">
+    q1_salience?: IntFilter<"AssessmentResult"> | number
+    q2_mood?: IntFilter<"AssessmentResult"> | number
+    q3_tolerance?: IntFilter<"AssessmentResult"> | number
+    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
+    q5_conflict?: IntFilter<"AssessmentResult"> | number
+    q6_relapse?: IntFilter<"AssessmentResult"> | number
+    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
+    sleepHours?: FloatFilter<"AssessmentResult"> | number
+    productivityImpact?: IntFilter<"AssessmentResult"> | number
+    instagramHours?: FloatFilter<"AssessmentResult"> | number
+    tiktokHours?: FloatFilter<"AssessmentResult"> | number
+    youtubeHours?: FloatFilter<"AssessmentResult"> | number
+    twitterHours?: FloatFilter<"AssessmentResult"> | number
   }, "UserID">
 
   export type AssessmentResultOrderByWithAggregationInput = {
     UserID?: SortOrder
     Username?: SortOrder
     date?: SortOrder
-    overallScore?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
-    rawInput?: SortOrder
-    rawResult?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
     _count?: AssessmentResultCountOrderByAggregateInput
     _avg?: AssessmentResultAvgOrderByAggregateInput
     _max?: AssessmentResultMaxOrderByAggregateInput
@@ -3264,11 +3474,21 @@ export namespace Prisma {
     UserID?: StringWithAggregatesFilter<"AssessmentResult"> | string
     Username?: StringWithAggregatesFilter<"AssessmentResult"> | string
     date?: DateTimeWithAggregatesFilter<"AssessmentResult"> | Date | string
-    overallScore?: StringWithAggregatesFilter<"AssessmentResult"> | string
     zone?: StringWithAggregatesFilter<"AssessmentResult"> | string
     svasTotal?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    rawInput?: JsonWithAggregatesFilter<"AssessmentResult">
-    rawResult?: JsonWithAggregatesFilter<"AssessmentResult">
+    q1_salience?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    q2_mood?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    q3_tolerance?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    q4_withdrawal?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    q5_conflict?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    q6_relapse?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    socialMediaHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+    sleepHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+    productivityImpact?: IntWithAggregatesFilter<"AssessmentResult"> | number
+    instagramHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+    tiktokHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+    youtubeHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+    twitterHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
   }
 
   export type UserCreateInput = {
@@ -3307,77 +3527,147 @@ export namespace Prisma {
     UserID?: string
     Username: string
     date?: Date | string
-    overallScore: string
     zone: string
     svasTotal: number
-    rawInput: JsonNullValueInput | InputJsonValue
-    rawResult: JsonNullValueInput | InputJsonValue
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
   }
 
   export type AssessmentResultUncheckedCreateInput = {
     UserID?: string
     Username: string
     date?: Date | string
-    overallScore: string
     zone: string
     svasTotal: number
-    rawInput: JsonNullValueInput | InputJsonValue
-    rawResult: JsonNullValueInput | InputJsonValue
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
   }
 
   export type AssessmentResultUpdateInput = {
     UserID?: StringFieldUpdateOperationsInput | string
     Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    overallScore?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
-    rawInput?: JsonNullValueInput | InputJsonValue
-    rawResult?: JsonNullValueInput | InputJsonValue
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssessmentResultUncheckedUpdateInput = {
     UserID?: StringFieldUpdateOperationsInput | string
     Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    overallScore?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
-    rawInput?: JsonNullValueInput | InputJsonValue
-    rawResult?: JsonNullValueInput | InputJsonValue
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssessmentResultCreateManyInput = {
     UserID?: string
     Username: string
     date?: Date | string
-    overallScore: string
     zone: string
     svasTotal: number
-    rawInput: JsonNullValueInput | InputJsonValue
-    rawResult: JsonNullValueInput | InputJsonValue
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
   }
 
   export type AssessmentResultUpdateManyMutationInput = {
     UserID?: StringFieldUpdateOperationsInput | string
     Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    overallScore?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
-    rawInput?: JsonNullValueInput | InputJsonValue
-    rawResult?: JsonNullValueInput | InputJsonValue
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type AssessmentResultUncheckedUpdateManyInput = {
     UserID?: StringFieldUpdateOperationsInput | string
     Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    overallScore?: StringFieldUpdateOperationsInput | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
-    rawInput?: JsonNullValueInput | InputJsonValue
-    rawResult?: JsonNullValueInput | InputJsonValue
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3473,65 +3763,113 @@ export namespace Prisma {
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type AssessmentResultCountOrderByAggregateInput = {
     UserID?: SortOrder
     Username?: SortOrder
     date?: SortOrder
-    overallScore?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
-    rawInput?: SortOrder
-    rawResult?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type AssessmentResultAvgOrderByAggregateInput = {
     svasTotal?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type AssessmentResultMaxOrderByAggregateInput = {
     UserID?: SortOrder
     Username?: SortOrder
     date?: SortOrder
-    overallScore?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type AssessmentResultMinOrderByAggregateInput = {
     UserID?: SortOrder
     Username?: SortOrder
     date?: SortOrder
-    overallScore?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type AssessmentResultSumOrderByAggregateInput = {
     svasTotal?: SortOrder
+    q1_salience?: SortOrder
+    q2_mood?: SortOrder
+    q3_tolerance?: SortOrder
+    q4_withdrawal?: SortOrder
+    q5_conflict?: SortOrder
+    q6_relapse?: SortOrder
+    socialMediaHours?: SortOrder
+    sleepHours?: SortOrder
+    productivityImpact?: SortOrder
+    instagramHours?: SortOrder
+    tiktokHours?: SortOrder
+    youtubeHours?: SortOrder
+    twitterHours?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -3547,31 +3885,21 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3588,6 +3916,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3683,28 +4019,21 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
 

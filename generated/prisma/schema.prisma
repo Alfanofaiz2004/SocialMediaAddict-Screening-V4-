@@ -13,12 +13,22 @@ model User {
 }
 
 model AssessmentResult {
-  UserID       String   @id @default(uuid())
-  Username     String
-  date         DateTime @default(now())
-  overallScore String
-  zone         String
-  svasTotal    Int
-  rawInput     Json
-  rawResult    Json
+  UserID             String   @id @default(uuid())
+  Username           String
+  date               DateTime @default(now())
+  zone               String
+  svasTotal          Int
+  q1_salience        Int
+  q2_mood            Int
+  q3_tolerance       Int
+  q4_withdrawal      Int
+  q5_conflict        Int
+  q6_relapse         Int
+  socialMediaHours   Float
+  sleepHours         Float
+  productivityImpact Int
+  instagramHours     Float
+  tiktokHours        Float
+  youtubeHours       Float
+  twitterHours       Float
 }

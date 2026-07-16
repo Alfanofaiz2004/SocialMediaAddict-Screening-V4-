@@ -15,9 +15,9 @@ export default function AdminCharts({ results }: { results: any[] }) {
 
   // 1. Zone Distribution (Donut)
   const zoneData = {
-    green: results.filter((r) => r.result.zone === 'NORMAL').length,
+    green: results.filter((r) => r.result.zone === 'SEHAT').length,
     yellow: results.filter((r) => r.result.zone === 'BERISIKO').length,
-    red: results.filter((r) => r.result.zone === 'KECANDUAN_TINGGI').length,
+    red: results.filter((r) => r.result.zone === 'KECANDUAN').length,
   };
   const zoneOptions: any = {
     chart: { type: 'donut', fontFamily: 'Inter, sans-serif' },
@@ -92,9 +92,9 @@ export default function AdminCharts({ results }: { results: any[] }) {
     else if (sleep <= 8) bucket = '6 - 8h';
     else bucket = '> 8h';
 
-    if (z === 'NORMAL') sleepBuckets[bucket as keyof typeof sleepBuckets].green++;
+    if (z === 'SEHAT') sleepBuckets[bucket as keyof typeof sleepBuckets].green++;
     else if (z === 'BERISIKO') sleepBuckets[bucket as keyof typeof sleepBuckets].yellow++;
-    else if (z === 'KECANDUAN_TINGGI') sleepBuckets[bucket as keyof typeof sleepBuckets].red++;
+    else if (z === 'KECANDUAN') sleepBuckets[bucket as keyof typeof sleepBuckets].red++;
   });
 
   const sleepOptions: any = {

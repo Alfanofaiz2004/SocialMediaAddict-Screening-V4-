@@ -75,13 +75,22 @@ export interface ScreeningResult {
 }
 
 export interface AssessmentResult {
-  id?: string;
-  username: string;
-  userId?: number;
-  date: string | Date;
-  overallScore: string;
+  UserID?: string;
+  Username: string;
+  date?: string | Date;
   zone: ZoneType;
   svasTotal: number;
-  rawInput: any;
-  rawResult: any;
+  q1_salience: number;
+  q2_mood: number;
+  q3_tolerance: number;
+  q4_withdrawal: number;
+  q5_conflict: number;
+  q6_relapse: number;
+  socialMediaHours: number;
+  sleepHours: number;
+  productivityImpact: number;
+  instagramHours: number;
+  tiktokHours: number;
+  youtubeHours: number;
+  twitterHours: number;
 }
