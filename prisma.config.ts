@@ -8,10 +8,10 @@ export default defineConfig({
     url: process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || "",
   },
   migrations: {
-    url: process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || "",
+    url: process.env.DIRECT_URL || process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || "",
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL || "",
+    url: process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL || "",
   }
 });
