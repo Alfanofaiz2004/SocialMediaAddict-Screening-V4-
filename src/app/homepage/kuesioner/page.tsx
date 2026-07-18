@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { UserInput } from '@/lib/screening-types';
 import { SVAS_QUESTIONS, SVAS_OPTIONS, PLATFORM_CONFIG } from '@/lib/screening-constants';
 import { calculateSVAS6 } from '@/lib/svas-algorithm';
@@ -60,11 +59,22 @@ export default function KuesionerPage() {
   const [sleepHours, setSleepHours] = useState(7);
   const [productivityImpact, setProductivityImpact] = useState(5);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('screening_username') || '';
+    }
+    return '';
+  });
 
   // Scroll to top on step change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
+
+  // Notify parent/layout of the current step
+  useEffect(() => {
+    const event = new CustomEvent('screening-step-changed', { detail: step });
+    window.dispatchEvent(event);
   }, [step]);
 
   useEffect(() => {
@@ -82,7 +92,7 @@ export default function KuesionerPage() {
       return;
     }
 
-    setUserName(storedName);
+
 
     const handleNameSubmitted = () => {
       const newName = sessionStorage.getItem('screening_username');
@@ -108,12 +118,6 @@ export default function KuesionerPage() {
     else if (step === 'productivity') handleCalculate();
   };
 
-  const goBack = () => {
-    if (step === 'svas') setStep('intro');
-    else if (step === 'platform') setStep('svas');
-    else if (step === 'sleep') setStep('platform');
-    else if (step === 'productivity') setStep('sleep');
-  };
 
   const isNextDisabled = () => {
     if (step === 'svas') return !svasComplete;
@@ -180,7 +184,7 @@ export default function KuesionerPage() {
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col" ref={containerRef}>
       <main className="flex-grow flex flex-col items-center justify-start w-full">
         {/* ═══════════ TOP PROGRESS BAR ═══════════ */}
-        <div className="w-full bg-surface-container-lowest border-b border-outline-variant sticky top-16 z-30">
+        <div className={`w-full bg-surface-container-lowest border-b border-outline-variant sticky z-30 transition-all duration-300 ${step === 'intro' ? 'top-16 md:top-20' : 'top-0'}`}>
           <div className="max-w-5xl mx-auto px-4 md:px-8 py-4">
             {/* Step indicators */}
             <div className="flex items-center justify-between mb-3">
@@ -605,20 +609,7 @@ export default function KuesionerPage() {
               )}
 
               {/* ═══════════ ACTION BUTTONS ═══════════ */}
-              <div className="flex justify-between items-center mt-10 pt-6 border-t border-outline-variant">
-                {step !== 'intro' ? (
-                  <button
-                    onClick={goBack}
-                    className="flex items-center gap-1.5 md:gap-2 text-on-surface-variant hover:text-primary transition-all px-3 py-2 md:px-4 md:py-2.5 rounded-xl hover:bg-primary/5 text-sm md:text-base font-medium"
-                    disabled={isCalculating}
-                  >
-                    <span className="material-symbols-outlined text-[18px] md:text-[20px]">arrow_back</span>
-                    Kembali
-                  </button>
-                ) : (
-                  <div />
-                )}
-
+              <div className="flex justify-end items-center mt-10 pt-6 border-t border-outline-variant">
                 <button
                   onClick={goNext}
                   disabled={isNextDisabled() || isCalculating}

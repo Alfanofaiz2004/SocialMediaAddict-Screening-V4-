@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function ScreeningHeader() {
+export default function ScreeningHeader({ variant = 'normal' }: { variant?: 'normal' | 'hasil' }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -98,11 +98,23 @@ export default function ScreeningHeader() {
   }, [pathname]);
 
   return (
-    <header className="bg-surface/90 backdrop-blur-md border-b-[1.5px] border-primary/20 shadow-sm w-full z-[100] fixed top-0 left-0 right-0 transition-all">
-      <div className="flex justify-between items-center w-full px-4 md:px-6 max-w-[1200px] mx-auto h-16 md:h-20">
-        <Link href="/homepage" className="w-1/4 flex justify-start items-center cursor-pointer no-underline">
-          <img src="/logo.png" alt="MindScroll Logo" className="h-[28px] md:h-[40px] w-auto object-contain" />
-        </Link>
+    <motion.header 
+      initial={{ y: '-100%' }}
+      animate={{ y: 0 }}
+      exit={{ y: '-100%' }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-surface/90 backdrop-blur-md border-b-[1.5px] border-primary/20 shadow-sm w-full z-[100] fixed top-0 left-0 right-0 transition-colors"
+    >
+      <div className={`flex items-center w-full px-4 md:px-6 max-w-[1200px] mx-auto h-16 md:h-20 ${variant === 'hasil' ? 'justify-center' : 'justify-between'}`}>
+        {variant === 'hasil' ? (
+          <div className="flex justify-center items-center cursor-default">
+            <img src="/logo.png" alt="MindScroll Logo" className="h-[28px] md:h-[40px] w-auto object-contain" />
+          </div>
+        ) : (
+          <>
+            <Link href="/homepage" className="w-1/4 flex justify-start items-center cursor-pointer no-underline">
+              <img src="/logo.png" alt="MindScroll Logo" className="h-[28px] md:h-[40px] w-auto object-contain" />
+            </Link>
 
         <nav className="hidden md:flex justify-center gap-6 h-full items-center flex-1">
           <Link
@@ -175,6 +187,8 @@ export default function ScreeningHeader() {
             </AnimatePresence>
           </button>
         </div>
+          </>
+        )}
       </div>
 
       {/* Mobile Menu Dropdown */}
@@ -299,6 +313,6 @@ export default function ScreeningHeader() {
         </AnimatePresence>,
         document.body
       )}
-    </header>
+    </motion.header>
   );
 }

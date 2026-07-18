@@ -295,6 +295,42 @@ export default function ArtikelPage() {
               </li>
             </ul>
 
+            {/* ─── PENJELASAN SKOR SVAS-6 ─── */}
+            <div className="bg-surface-variant/30 rounded-2xl p-6 md:p-8 space-y-6 text-base md:text-lg font-normal border border-outline-variant mb-12">
+              <h3 className="text-2xl font-bold text-on-surface mb-4 flex items-center gap-2">
+                <span className="material-symbols-outlined text-[28px] text-primary">calculate</span>
+                Cara Membaca Skor SVAS-6 (Contoh: 26/30)
+              </h3>
+              <p className="mb-4">
+                Mungkin kamu bertanya-tanya, dari mana datangnya angka <strong>30</strong> dan apa maksudnya?
+              </p>
+              <ul className="list-disc pl-6 space-y-2 mb-4">
+                <li>Tes SVAS ini terdiri dari <strong>6 pertanyaan</strong> utama.</li>
+                <li>Setiap pertanyaan memiliki bobot nilai dari <strong>1 sampai 5</strong> (1 = Sangat Jarang, 5 = Sangat Sering).</li>
+                <li>Skor minimal yang bisa kamu dapatkan adalah <strong>6</strong> (jika menjawab skor 1 di semua pertanyaan).</li>
+                <li>Skor maksimal yang bisa kamu dapatkan adalah <strong>30</strong> (jika menjawab skor 5 di semua pertanyaan).</li>
+              </ul>
+              <p className="mb-6">
+                Skor total (misalnya 26/30) merupakan akumulasi tingkat keseringanmu mengalami perilaku adiktif. Semakin mendekati angka 30, semakin tinggi intensitas kecanduanmu. 
+              </p>
+              
+              <h4 className="text-xl font-bold text-on-surface mt-6 mb-4">Batas Kategori Skor (Cut-off Points):</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-[#10B981]/10 border border-[#10B981]/30 p-5 rounded-xl">
+                  <div className="text-[#10B981] font-bold text-xl mb-1 flex items-center gap-2">SEHAT</div>
+                  <div className="font-extrabold text-2xl text-on-surface">Skor 6 - 14</div>
+                </div>
+                <div className="bg-[#F59E0B]/10 border border-[#F59E0B]/30 p-5 rounded-xl">
+                  <div className="text-[#F59E0B] font-bold text-xl mb-1 flex items-center gap-2">BERISIKO</div>
+                  <div className="font-extrabold text-2xl text-on-surface">Skor 15 - 18</div>
+                </div>
+                <div className="bg-[#EF4444]/10 border border-[#EF4444]/30 p-5 rounded-xl">
+                  <div className="text-[#EF4444] font-bold text-xl mb-1 flex items-center gap-2">KECANDUAN</div>
+                  <div className="font-extrabold text-2xl text-on-surface">Skor 19 - 30</div>
+                </div>
+              </div>
+            </div>
+
             <h2 className="text-3xl md:text-4xl font-bold text-on-surface mt-16 mb-8 text-left">
               Kenapa Kami Juga Menanyakan Kualitas Tidur & Produktivitas?
             </h2>

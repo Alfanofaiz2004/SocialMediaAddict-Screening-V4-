@@ -6,16 +6,8 @@ export const metadata: Metadata = {
     'A clinical-grade screening tool using the SVAS-6 scale to evaluate digital addiction and mental health impact.',
 };
 
-import TransitionWrapper from './TransitionWrapper';
-import ScreeningHeader from '@/components/ScreeningHeader';
+import ScreeningLayoutWrapper from './ScreeningLayoutWrapper';
 
 export default function ScreeningLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <ScreeningHeader />
-      <div className="pt-16 md:pt-20">
-        <TransitionWrapper>{children}</TransitionWrapper>
-      </div>
-    </>
-  );
+  return <ScreeningLayoutWrapper>{children}</ScreeningLayoutWrapper>;
 }
