@@ -10,11 +10,13 @@ generator client {
 model User {
   UserID         Int                @id @default(autoincrement())
   Username       String             @unique
+  results        AssessmentResult[]
 }
 
 model AssessmentResult {
   UserID             String   @id @default(uuid())
-  Username           String
+  userId             Int
+  user               User     @relation(fields: [userId], references: [UserID], onDelete: Cascade)
   date               DateTime @default(now())
   zone               String
   svasTotal          Int

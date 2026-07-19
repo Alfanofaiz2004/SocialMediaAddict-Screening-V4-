@@ -952,6 +952,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    results: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    results?: boolean | UserCountOutputTypeCountResultsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AssessmentResultWhereInput
+  }
+
 
   /**
    * Models
@@ -1131,6 +1161,8 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
     Username?: boolean
+    results?: boolean | User$resultsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1149,10 +1181,18 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "Username", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    results?: boolean | User$resultsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      results: Prisma.$AssessmentResultPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       UserID: number
       Username: string
@@ -1550,6 +1590,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    results<T extends User$resultsArgs<ExtArgs> = {}>(args?: Subset<T, User$resultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1598,6 +1639,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1616,6 +1661,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1633,6 +1682,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1682,6 +1735,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1729,6 +1786,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -1778,6 +1839,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1825,6 +1890,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1892,6 +1961,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1918,6 +1991,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1938,6 +2015,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.results
+   */
+  export type User$resultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AssessmentResult
+     */
+    select?: AssessmentResultSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AssessmentResult
+     */
+    omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
+    where?: AssessmentResultWhereInput
+    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
+    cursor?: AssessmentResultWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AssessmentResultScalarFieldEnum | AssessmentResultScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1949,6 +2050,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -1965,6 +2070,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultAvgAggregateOutputType = {
+    userId: number | null
     svasTotal: number | null
     q1_salience: number | null
     q2_mood: number | null
@@ -1982,6 +2088,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultSumAggregateOutputType = {
+    userId: number | null
     svasTotal: number | null
     q1_salience: number | null
     q2_mood: number | null
@@ -2000,7 +2107,7 @@ export namespace Prisma {
 
   export type AssessmentResultMinAggregateOutputType = {
     UserID: string | null
-    Username: string | null
+    userId: number | null
     date: Date | null
     zone: string | null
     svasTotal: number | null
@@ -2021,7 +2128,7 @@ export namespace Prisma {
 
   export type AssessmentResultMaxAggregateOutputType = {
     UserID: string | null
-    Username: string | null
+    userId: number | null
     date: Date | null
     zone: string | null
     svasTotal: number | null
@@ -2042,7 +2149,7 @@ export namespace Prisma {
 
   export type AssessmentResultCountAggregateOutputType = {
     UserID: number
-    Username: number
+    userId: number
     date: number
     zone: number
     svasTotal: number
@@ -2064,6 +2171,7 @@ export namespace Prisma {
 
 
   export type AssessmentResultAvgAggregateInputType = {
+    userId?: true
     svasTotal?: true
     q1_salience?: true
     q2_mood?: true
@@ -2081,6 +2189,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultSumAggregateInputType = {
+    userId?: true
     svasTotal?: true
     q1_salience?: true
     q2_mood?: true
@@ -2099,7 +2208,7 @@ export namespace Prisma {
 
   export type AssessmentResultMinAggregateInputType = {
     UserID?: true
-    Username?: true
+    userId?: true
     date?: true
     zone?: true
     svasTotal?: true
@@ -2120,7 +2229,7 @@ export namespace Prisma {
 
   export type AssessmentResultMaxAggregateInputType = {
     UserID?: true
-    Username?: true
+    userId?: true
     date?: true
     zone?: true
     svasTotal?: true
@@ -2141,7 +2250,7 @@ export namespace Prisma {
 
   export type AssessmentResultCountAggregateInputType = {
     UserID?: true
-    Username?: true
+    userId?: true
     date?: true
     zone?: true
     svasTotal?: true
@@ -2249,7 +2358,7 @@ export namespace Prisma {
 
   export type AssessmentResultGroupByOutputType = {
     UserID: string
-    Username: string
+    userId: number
     date: Date
     zone: string
     svasTotal: number
@@ -2289,7 +2398,7 @@ export namespace Prisma {
 
   export type AssessmentResultSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
-    Username?: boolean
+    userId?: boolean
     date?: boolean
     zone?: boolean
     svasTotal?: boolean
@@ -2306,11 +2415,12 @@ export namespace Prisma {
     tiktokHours?: boolean
     youtubeHours?: boolean
     twitterHours?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
-    Username?: boolean
+    userId?: boolean
     date?: boolean
     zone?: boolean
     svasTotal?: boolean
@@ -2327,11 +2437,12 @@ export namespace Prisma {
     tiktokHours?: boolean
     youtubeHours?: boolean
     twitterHours?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
-    Username?: boolean
+    userId?: boolean
     date?: boolean
     zone?: boolean
     svasTotal?: boolean
@@ -2348,11 +2459,12 @@ export namespace Prisma {
     tiktokHours?: boolean
     youtubeHours?: boolean
     twitterHours?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectScalar = {
     UserID?: boolean
-    Username?: boolean
+    userId?: boolean
     date?: boolean
     zone?: boolean
     svasTotal?: boolean
@@ -2371,14 +2483,25 @@ export namespace Prisma {
     twitterHours?: boolean
   }
 
-  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "Username" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
+  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
+  export type AssessmentResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AssessmentResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AssessmentResultIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
 
   export type $AssessmentResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AssessmentResult"
-    objects: {}
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       UserID: string
-      Username: string
+      userId: number
       date: Date
       zone: string
       svasTotal: number
@@ -2789,6 +2912,7 @@ export namespace Prisma {
    */
   export interface Prisma__AssessmentResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2819,7 +2943,7 @@ export namespace Prisma {
    */
   interface AssessmentResultFieldRefs {
     readonly UserID: FieldRef<"AssessmentResult", 'String'>
-    readonly Username: FieldRef<"AssessmentResult", 'String'>
+    readonly userId: FieldRef<"AssessmentResult", 'Int'>
     readonly date: FieldRef<"AssessmentResult", 'DateTime'>
     readonly zone: FieldRef<"AssessmentResult", 'String'>
     readonly svasTotal: FieldRef<"AssessmentResult", 'Int'>
@@ -2853,6 +2977,10 @@ export namespace Prisma {
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
+    /**
      * Filter, which AssessmentResult to fetch.
      */
     where: AssessmentResultWhereUniqueInput
@@ -2871,6 +2999,10 @@ export namespace Prisma {
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
+    /**
      * Filter, which AssessmentResult to fetch.
      */
     where: AssessmentResultWhereUniqueInput
@@ -2888,6 +3020,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
     /**
      * Filter, which AssessmentResult to fetch.
      */
@@ -2937,6 +3073,10 @@ export namespace Prisma {
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
+    /**
      * Filter, which AssessmentResult to fetch.
      */
     where?: AssessmentResultWhereInput
@@ -2984,6 +3124,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
     /**
      * Filter, which AssessmentResults to fetch.
      */
@@ -3033,6 +3177,10 @@ export namespace Prisma {
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
+    /**
      * The data needed to create a AssessmentResult.
      */
     data: XOR<AssessmentResultCreateInput, AssessmentResultUncheckedCreateInput>
@@ -3066,6 +3214,10 @@ export namespace Prisma {
      */
     data: AssessmentResultCreateManyInput | AssessmentResultCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3080,6 +3232,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
     /**
      * The data needed to update a AssessmentResult.
      */
@@ -3132,6 +3288,10 @@ export namespace Prisma {
      * Limit how many AssessmentResults to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3146,6 +3306,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
     /**
      * The filter to search for the AssessmentResult to update in case it exists.
      */
@@ -3172,6 +3336,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
     /**
      * Filter which AssessmentResult to delete.
      */
@@ -3204,6 +3372,10 @@ export namespace Prisma {
      * Omit specific fields from the AssessmentResult
      */
     omit?: AssessmentResultOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AssessmentResultInclude<ExtArgs> | null
   }
 
 
@@ -3231,7 +3403,7 @@ export namespace Prisma {
 
   export const AssessmentResultScalarFieldEnum: {
     UserID: 'UserID',
-    Username: 'Username',
+    userId: 'userId',
     date: 'date',
     zone: 'zone',
     svasTotal: 'svasTotal',
@@ -3339,11 +3511,13 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     UserID?: IntFilter<"User"> | number
     Username?: StringFilter<"User"> | string
+    results?: AssessmentResultListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     UserID?: SortOrder
     Username?: SortOrder
+    results?: AssessmentResultOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3352,6 +3526,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    results?: AssessmentResultListRelationFilter
   }, "UserID" | "Username">
 
   export type UserOrderByWithAggregationInput = {
@@ -3377,7 +3552,7 @@ export namespace Prisma {
     OR?: AssessmentResultWhereInput[]
     NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
     UserID?: StringFilter<"AssessmentResult"> | string
-    Username?: StringFilter<"AssessmentResult"> | string
+    userId?: IntFilter<"AssessmentResult"> | number
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
     zone?: StringFilter<"AssessmentResult"> | string
     svasTotal?: IntFilter<"AssessmentResult"> | number
@@ -3394,11 +3569,12 @@ export namespace Prisma {
     tiktokHours?: FloatFilter<"AssessmentResult"> | number
     youtubeHours?: FloatFilter<"AssessmentResult"> | number
     twitterHours?: FloatFilter<"AssessmentResult"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type AssessmentResultOrderByWithRelationInput = {
     UserID?: SortOrder
-    Username?: SortOrder
+    userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
@@ -3415,6 +3591,7 @@ export namespace Prisma {
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
     twitterHours?: SortOrder
+    user?: UserOrderByWithRelationInput
   }
 
   export type AssessmentResultWhereUniqueInput = Prisma.AtLeast<{
@@ -3422,7 +3599,7 @@ export namespace Prisma {
     AND?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
     OR?: AssessmentResultWhereInput[]
     NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    Username?: StringFilter<"AssessmentResult"> | string
+    userId?: IntFilter<"AssessmentResult"> | number
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
     zone?: StringFilter<"AssessmentResult"> | string
     svasTotal?: IntFilter<"AssessmentResult"> | number
@@ -3439,11 +3616,12 @@ export namespace Prisma {
     tiktokHours?: FloatFilter<"AssessmentResult"> | number
     youtubeHours?: FloatFilter<"AssessmentResult"> | number
     twitterHours?: FloatFilter<"AssessmentResult"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "UserID">
 
   export type AssessmentResultOrderByWithAggregationInput = {
     UserID?: SortOrder
-    Username?: SortOrder
+    userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
@@ -3472,7 +3650,7 @@ export namespace Prisma {
     OR?: AssessmentResultScalarWhereWithAggregatesInput[]
     NOT?: AssessmentResultScalarWhereWithAggregatesInput | AssessmentResultScalarWhereWithAggregatesInput[]
     UserID?: StringWithAggregatesFilter<"AssessmentResult"> | string
-    Username?: StringWithAggregatesFilter<"AssessmentResult"> | string
+    userId?: IntWithAggregatesFilter<"AssessmentResult"> | number
     date?: DateTimeWithAggregatesFilter<"AssessmentResult"> | Date | string
     zone?: StringWithAggregatesFilter<"AssessmentResult"> | string
     svasTotal?: IntWithAggregatesFilter<"AssessmentResult"> | number
@@ -3493,20 +3671,24 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     Username: string
+    results?: AssessmentResultCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     UserID?: number
     Username: string
+    results?: AssessmentResultUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     Username?: StringFieldUpdateOperationsInput | string
+    results?: AssessmentResultUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     UserID?: IntFieldUpdateOperationsInput | number
     Username?: StringFieldUpdateOperationsInput | string
+    results?: AssessmentResultUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3525,7 +3707,6 @@ export namespace Prisma {
 
   export type AssessmentResultCreateInput = {
     UserID?: string
-    Username: string
     date?: Date | string
     zone: string
     svasTotal: number
@@ -3542,11 +3723,12 @@ export namespace Prisma {
     tiktokHours: number
     youtubeHours: number
     twitterHours: number
+    user: UserCreateNestedOneWithoutResultsInput
   }
 
   export type AssessmentResultUncheckedCreateInput = {
     UserID?: string
-    Username: string
+    userId: number
     date?: Date | string
     zone: string
     svasTotal: number
@@ -3567,7 +3749,6 @@ export namespace Prisma {
 
   export type AssessmentResultUpdateInput = {
     UserID?: StringFieldUpdateOperationsInput | string
-    Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3584,11 +3765,12 @@ export namespace Prisma {
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
     twitterHours?: FloatFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutResultsNestedInput
   }
 
   export type AssessmentResultUncheckedUpdateInput = {
     UserID?: StringFieldUpdateOperationsInput | string
-    Username?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3609,7 +3791,7 @@ export namespace Prisma {
 
   export type AssessmentResultCreateManyInput = {
     UserID?: string
-    Username: string
+    userId: number
     date?: Date | string
     zone: string
     svasTotal: number
@@ -3630,7 +3812,6 @@ export namespace Prisma {
 
   export type AssessmentResultUpdateManyMutationInput = {
     UserID?: StringFieldUpdateOperationsInput | string
-    Username?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3651,7 +3832,7 @@ export namespace Prisma {
 
   export type AssessmentResultUncheckedUpdateManyInput = {
     UserID?: StringFieldUpdateOperationsInput | string
-    Username?: StringFieldUpdateOperationsInput | string
+    userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3694,6 +3875,16 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type AssessmentResultListRelationFilter = {
+    every?: AssessmentResultWhereInput
+    some?: AssessmentResultWhereInput
+    none?: AssessmentResultWhereInput
+  }
+
+  export type AssessmentResultOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -3775,9 +3966,14 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
   export type AssessmentResultCountOrderByAggregateInput = {
     UserID?: SortOrder
-    Username?: SortOrder
+    userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
@@ -3797,6 +3993,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultAvgOrderByAggregateInput = {
+    userId?: SortOrder
     svasTotal?: SortOrder
     q1_salience?: SortOrder
     q2_mood?: SortOrder
@@ -3815,7 +4012,7 @@ export namespace Prisma {
 
   export type AssessmentResultMaxOrderByAggregateInput = {
     UserID?: SortOrder
-    Username?: SortOrder
+    userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
@@ -3836,7 +4033,7 @@ export namespace Prisma {
 
   export type AssessmentResultMinOrderByAggregateInput = {
     UserID?: SortOrder
-    Username?: SortOrder
+    userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
     svasTotal?: SortOrder
@@ -3856,6 +4053,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultSumOrderByAggregateInput = {
+    userId?: SortOrder
     svasTotal?: SortOrder
     q1_salience?: SortOrder
     q2_mood?: SortOrder
@@ -3902,8 +4100,36 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type AssessmentResultCreateNestedManyWithoutUserInput = {
+    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
+    createMany?: AssessmentResultCreateManyUserInputEnvelope
+    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+  }
+
+  export type AssessmentResultUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
+    createMany?: AssessmentResultCreateManyUserInputEnvelope
+    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type AssessmentResultUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
+    upsert?: AssessmentResultUpsertWithWhereUniqueWithoutUserInput | AssessmentResultUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AssessmentResultCreateManyUserInputEnvelope
+    set?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    disconnect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    delete?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    update?: AssessmentResultUpdateWithWhereUniqueWithoutUserInput | AssessmentResultUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AssessmentResultUpdateManyWithWhereWithoutUserInput | AssessmentResultUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3912,6 +4138,26 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type AssessmentResultUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
+    upsert?: AssessmentResultUpsertWithWhereUniqueWithoutUserInput | AssessmentResultUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AssessmentResultCreateManyUserInputEnvelope
+    set?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    disconnect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    delete?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+    update?: AssessmentResultUpdateWithWhereUniqueWithoutUserInput | AssessmentResultUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AssessmentResultUpdateManyWithWhereWithoutUserInput | AssessmentResultUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutResultsInput = {
+    create?: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResultsInput
+    connect?: UserWhereUniqueInput
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -3924,6 +4170,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutResultsNestedInput = {
+    create?: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutResultsInput
+    upsert?: UserUpsertWithoutResultsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutResultsInput, UserUpdateWithoutResultsInput>, UserUncheckedUpdateWithoutResultsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4034,6 +4288,210 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type AssessmentResultCreateWithoutUserInput = {
+    UserID?: string
+    date?: Date | string
+    zone: string
+    svasTotal: number
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
+  }
+
+  export type AssessmentResultUncheckedCreateWithoutUserInput = {
+    UserID?: string
+    date?: Date | string
+    zone: string
+    svasTotal: number
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
+  }
+
+  export type AssessmentResultCreateOrConnectWithoutUserInput = {
+    where: AssessmentResultWhereUniqueInput
+    create: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput>
+  }
+
+  export type AssessmentResultCreateManyUserInputEnvelope = {
+    data: AssessmentResultCreateManyUserInput | AssessmentResultCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AssessmentResultUpsertWithWhereUniqueWithoutUserInput = {
+    where: AssessmentResultWhereUniqueInput
+    update: XOR<AssessmentResultUpdateWithoutUserInput, AssessmentResultUncheckedUpdateWithoutUserInput>
+    create: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput>
+  }
+
+  export type AssessmentResultUpdateWithWhereUniqueWithoutUserInput = {
+    where: AssessmentResultWhereUniqueInput
+    data: XOR<AssessmentResultUpdateWithoutUserInput, AssessmentResultUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AssessmentResultUpdateManyWithWhereWithoutUserInput = {
+    where: AssessmentResultScalarWhereInput
+    data: XOR<AssessmentResultUpdateManyMutationInput, AssessmentResultUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AssessmentResultScalarWhereInput = {
+    AND?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
+    OR?: AssessmentResultScalarWhereInput[]
+    NOT?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
+    UserID?: StringFilter<"AssessmentResult"> | string
+    userId?: IntFilter<"AssessmentResult"> | number
+    date?: DateTimeFilter<"AssessmentResult"> | Date | string
+    zone?: StringFilter<"AssessmentResult"> | string
+    svasTotal?: IntFilter<"AssessmentResult"> | number
+    q1_salience?: IntFilter<"AssessmentResult"> | number
+    q2_mood?: IntFilter<"AssessmentResult"> | number
+    q3_tolerance?: IntFilter<"AssessmentResult"> | number
+    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
+    q5_conflict?: IntFilter<"AssessmentResult"> | number
+    q6_relapse?: IntFilter<"AssessmentResult"> | number
+    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
+    sleepHours?: FloatFilter<"AssessmentResult"> | number
+    productivityImpact?: IntFilter<"AssessmentResult"> | number
+    instagramHours?: FloatFilter<"AssessmentResult"> | number
+    tiktokHours?: FloatFilter<"AssessmentResult"> | number
+    youtubeHours?: FloatFilter<"AssessmentResult"> | number
+    twitterHours?: FloatFilter<"AssessmentResult"> | number
+  }
+
+  export type UserCreateWithoutResultsInput = {
+    Username: string
+  }
+
+  export type UserUncheckedCreateWithoutResultsInput = {
+    UserID?: number
+    Username: string
+  }
+
+  export type UserCreateOrConnectWithoutResultsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+  }
+
+  export type UserUpsertWithoutResultsInput = {
+    update: XOR<UserUpdateWithoutResultsInput, UserUncheckedUpdateWithoutResultsInput>
+    create: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutResultsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutResultsInput, UserUncheckedUpdateWithoutResultsInput>
+  }
+
+  export type UserUpdateWithoutResultsInput = {
+    Username?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUncheckedUpdateWithoutResultsInput = {
+    UserID?: IntFieldUpdateOperationsInput | number
+    Username?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AssessmentResultCreateManyUserInput = {
+    UserID?: string
+    date?: Date | string
+    zone: string
+    svasTotal: number
+    q1_salience: number
+    q2_mood: number
+    q3_tolerance: number
+    q4_withdrawal: number
+    q5_conflict: number
+    q6_relapse: number
+    socialMediaHours: number
+    sleepHours: number
+    productivityImpact: number
+    instagramHours: number
+    tiktokHours: number
+    youtubeHours: number
+    twitterHours: number
+  }
+
+  export type AssessmentResultUpdateWithoutUserInput = {
+    UserID?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    zone?: StringFieldUpdateOperationsInput | string
+    svasTotal?: IntFieldUpdateOperationsInput | number
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AssessmentResultUncheckedUpdateWithoutUserInput = {
+    UserID?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    zone?: StringFieldUpdateOperationsInput | string
+    svasTotal?: IntFieldUpdateOperationsInput | number
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type AssessmentResultUncheckedUpdateManyWithoutUserInput = {
+    UserID?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    zone?: StringFieldUpdateOperationsInput | string
+    svasTotal?: IntFieldUpdateOperationsInput | number
+    q1_salience?: IntFieldUpdateOperationsInput | number
+    q2_mood?: IntFieldUpdateOperationsInput | number
+    q3_tolerance?: IntFieldUpdateOperationsInput | number
+    q4_withdrawal?: IntFieldUpdateOperationsInput | number
+    q5_conflict?: IntFieldUpdateOperationsInput | number
+    q6_relapse?: IntFieldUpdateOperationsInput | number
+    socialMediaHours?: FloatFieldUpdateOperationsInput | number
+    sleepHours?: FloatFieldUpdateOperationsInput | number
+    productivityImpact?: IntFieldUpdateOperationsInput | number
+    instagramHours?: FloatFieldUpdateOperationsInput | number
+    tiktokHours?: FloatFieldUpdateOperationsInput | number
+    youtubeHours?: FloatFieldUpdateOperationsInput | number
+    twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
 

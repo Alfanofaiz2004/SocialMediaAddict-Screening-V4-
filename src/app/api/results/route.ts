@@ -19,7 +19,7 @@ export async function POST(request: Request) {
 
     const newResult = await prisma.assessmentResult.create({
       data: {
-        Username: Username,
+        userId: user.UserID,
         zone: result.zone,
         svasTotal: result.svasTotal,
         q1_salience: input.svasScores[0] ?? 0,
