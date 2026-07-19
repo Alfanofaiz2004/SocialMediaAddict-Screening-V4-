@@ -125,7 +125,7 @@ exports.Prisma.UserScalarFieldEnum = {
   Username: 'Username'
 };
 
-exports.Prisma.AssessmentResultScalarFieldEnum = {
+exports.Prisma.ScreeningRecordScalarFieldEnum = {
   UserID_hash: 'UserID_hash',
   userId: 'userId',
   date: 'date',
@@ -159,7 +159,7 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  AssessmentResult: 'AssessmentResult'
+  ScreeningRecord: 'ScreeningRecord'
 };
 
 /**

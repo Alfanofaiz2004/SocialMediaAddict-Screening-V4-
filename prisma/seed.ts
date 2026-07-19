@@ -18,12 +18,12 @@ async function main() {
     },
   });
 
-  const result1 = await prisma.assessmentResult.upsert({
-    where: { UserID: 'test-uuid-1' },
+  const result1 = await prisma.screeningRecord.upsert({
+    where: { UserID_hash: 'test-uuid-1' },
     update: {},
     create: {
-      UserID: 'test-uuid-1',
-      Username: user1.Username,
+      UserID_hash: 'test-uuid-1',
+      userId: user1.UserID,
       zone: 'KECANDUAN',
       svasTotal: 25,
       q1_salience: 4,

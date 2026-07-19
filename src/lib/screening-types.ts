@@ -74,9 +74,9 @@ export interface ScreeningResult {
   svasTotal: number;         // raw sum of 6 scores (6-30)
 }
 
-export interface AssessmentResult {
-  UserID?: string;
-  Username: string;
+export interface ScreeningRecord {
+  UserID_hash?: string;
+  userId: number;
   date?: string | Date;
   zone: ZoneType;
   svasTotal: number;

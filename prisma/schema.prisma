@@ -10,10 +10,10 @@ generator client {
 model User {
   UserID         Int                @id @default(autoincrement())
   Username       String             @unique
-  results        AssessmentResult[]
+  screeningRecords ScreeningRecord[]
 }
 
-model AssessmentResult {
+model ScreeningRecord {
   UserID_hash        String   @id @default(uuid())
   userId             Int
   user               User     @relation(fields: [userId], references: [UserID], onDelete: Cascade)

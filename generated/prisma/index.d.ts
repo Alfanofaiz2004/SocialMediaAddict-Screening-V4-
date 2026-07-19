@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
- * Model AssessmentResult
+ * Model ScreeningRecord
  * 
  */
-export type AssessmentResult = $Result.DefaultSelection<Prisma.$AssessmentResultPayload>
+export type ScreeningRecord = $Result.DefaultSelection<Prisma.$ScreeningRecordPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -156,14 +156,14 @@ export class PrismaClient<
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.assessmentResult`: Exposes CRUD operations for the **AssessmentResult** model.
+   * `prisma.screeningRecord`: Exposes CRUD operations for the **ScreeningRecord** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more AssessmentResults
-    * const assessmentResults = await prisma.assessmentResult.findMany()
+    * // Fetch zero or more ScreeningRecords
+    * const screeningRecords = await prisma.screeningRecord.findMany()
     * ```
     */
-  get assessmentResult(): Prisma.AssessmentResultDelegate<ExtArgs, ClientOptions>;
+  get screeningRecord(): Prisma.ScreeningRecordDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -599,7 +599,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
-    AssessmentResult: 'AssessmentResult'
+    ScreeningRecord: 'ScreeningRecord'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -615,7 +615,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "assessmentResult"
+      modelProps: "user" | "screeningRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -693,77 +693,77 @@ export namespace Prisma {
           }
         }
       }
-      AssessmentResult: {
-        payload: Prisma.$AssessmentResultPayload<ExtArgs>
-        fields: Prisma.AssessmentResultFieldRefs
+      ScreeningRecord: {
+        payload: Prisma.$ScreeningRecordPayload<ExtArgs>
+        fields: Prisma.ScreeningRecordFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.AssessmentResultFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload> | null
+            args: Prisma.ScreeningRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.AssessmentResultFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           findFirst: {
-            args: Prisma.AssessmentResultFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload> | null
+            args: Prisma.ScreeningRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.AssessmentResultFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           findMany: {
-            args: Prisma.AssessmentResultFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>[]
+            args: Prisma.ScreeningRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>[]
           }
           create: {
-            args: Prisma.AssessmentResultCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           createMany: {
-            args: Prisma.AssessmentResultCreateManyArgs<ExtArgs>
+            args: Prisma.ScreeningRecordCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.AssessmentResultCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>[]
+            args: Prisma.ScreeningRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>[]
           }
           delete: {
-            args: Prisma.AssessmentResultDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           update: {
-            args: Prisma.AssessmentResultUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           deleteMany: {
-            args: Prisma.AssessmentResultDeleteManyArgs<ExtArgs>
+            args: Prisma.ScreeningRecordDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.AssessmentResultUpdateManyArgs<ExtArgs>
+            args: Prisma.ScreeningRecordUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.AssessmentResultUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>[]
+            args: Prisma.ScreeningRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>[]
           }
           upsert: {
-            args: Prisma.AssessmentResultUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AssessmentResultPayload>
+            args: Prisma.ScreeningRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ScreeningRecordPayload>
           }
           aggregate: {
-            args: Prisma.AssessmentResultAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAssessmentResult>
+            args: Prisma.ScreeningRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateScreeningRecord>
           }
           groupBy: {
-            args: Prisma.AssessmentResultGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentResultGroupByOutputType>[]
+            args: Prisma.ScreeningRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ScreeningRecordGroupByOutputType>[]
           }
           count: {
-            args: Prisma.AssessmentResultCountArgs<ExtArgs>
-            result: $Utils.Optional<AssessmentResultCountAggregateOutputType> | number
+            args: Prisma.ScreeningRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<ScreeningRecordCountAggregateOutputType> | number
           }
         }
       }
@@ -876,7 +876,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
-    assessmentResult?: AssessmentResultOmit
+    screeningRecord?: ScreeningRecordOmit
   }
 
   /* Types for Logging */
@@ -957,11 +957,11 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    results: number
+    screeningRecords: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    results?: boolean | UserCountOutputTypeCountResultsArgs
+    screeningRecords?: boolean | UserCountOutputTypeCountScreeningRecordsArgs
   }
 
   // Custom InputTypes
@@ -978,8 +978,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountResultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentResultWhereInput
+  export type UserCountOutputTypeCountScreeningRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScreeningRecordWhereInput
   }
 
 
@@ -1161,7 +1161,7 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID?: boolean
     Username?: boolean
-    results?: boolean | User$resultsArgs<ExtArgs>
+    screeningRecords?: boolean | User$screeningRecordsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1182,7 +1182,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "Username", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    results?: boolean | User$resultsArgs<ExtArgs>
+    screeningRecords?: boolean | User$screeningRecordsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1191,7 +1191,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      results: Prisma.$AssessmentResultPayload<ExtArgs>[]
+      screeningRecords: Prisma.$ScreeningRecordPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       UserID: number
@@ -1590,7 +1590,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    results<T extends User$resultsArgs<ExtArgs> = {}>(args?: Subset<T, User$resultsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    screeningRecords<T extends User$screeningRecordsArgs<ExtArgs> = {}>(args?: Subset<T, User$screeningRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2015,27 +2015,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.results
+   * User.screeningRecords
    */
-  export type User$resultsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$screeningRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
-    where?: AssessmentResultWhereInput
-    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
-    cursor?: AssessmentResultWhereUniqueInput
+    include?: ScreeningRecordInclude<ExtArgs> | null
+    where?: ScreeningRecordWhereInput
+    orderBy?: ScreeningRecordOrderByWithRelationInput | ScreeningRecordOrderByWithRelationInput[]
+    cursor?: ScreeningRecordWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: AssessmentResultScalarFieldEnum | AssessmentResultScalarFieldEnum[]
+    distinct?: ScreeningRecordScalarFieldEnum | ScreeningRecordScalarFieldEnum[]
   }
 
   /**
@@ -2058,18 +2058,18 @@ export namespace Prisma {
 
 
   /**
-   * Model AssessmentResult
+   * Model ScreeningRecord
    */
 
-  export type AggregateAssessmentResult = {
-    _count: AssessmentResultCountAggregateOutputType | null
-    _avg: AssessmentResultAvgAggregateOutputType | null
-    _sum: AssessmentResultSumAggregateOutputType | null
-    _min: AssessmentResultMinAggregateOutputType | null
-    _max: AssessmentResultMaxAggregateOutputType | null
+  export type AggregateScreeningRecord = {
+    _count: ScreeningRecordCountAggregateOutputType | null
+    _avg: ScreeningRecordAvgAggregateOutputType | null
+    _sum: ScreeningRecordSumAggregateOutputType | null
+    _min: ScreeningRecordMinAggregateOutputType | null
+    _max: ScreeningRecordMaxAggregateOutputType | null
   }
 
-  export type AssessmentResultAvgAggregateOutputType = {
+  export type ScreeningRecordAvgAggregateOutputType = {
     userId: number | null
     svasTotal: number | null
     q1_salience: number | null
@@ -2087,7 +2087,7 @@ export namespace Prisma {
     twitterHours: number | null
   }
 
-  export type AssessmentResultSumAggregateOutputType = {
+  export type ScreeningRecordSumAggregateOutputType = {
     userId: number | null
     svasTotal: number | null
     q1_salience: number | null
@@ -2105,7 +2105,7 @@ export namespace Prisma {
     twitterHours: number | null
   }
 
-  export type AssessmentResultMinAggregateOutputType = {
+  export type ScreeningRecordMinAggregateOutputType = {
     UserID_hash: string | null
     userId: number | null
     date: Date | null
@@ -2126,7 +2126,7 @@ export namespace Prisma {
     twitterHours: number | null
   }
 
-  export type AssessmentResultMaxAggregateOutputType = {
+  export type ScreeningRecordMaxAggregateOutputType = {
     UserID_hash: string | null
     userId: number | null
     date: Date | null
@@ -2147,7 +2147,7 @@ export namespace Prisma {
     twitterHours: number | null
   }
 
-  export type AssessmentResultCountAggregateOutputType = {
+  export type ScreeningRecordCountAggregateOutputType = {
     UserID_hash: number
     userId: number
     date: number
@@ -2170,7 +2170,7 @@ export namespace Prisma {
   }
 
 
-  export type AssessmentResultAvgAggregateInputType = {
+  export type ScreeningRecordAvgAggregateInputType = {
     userId?: true
     svasTotal?: true
     q1_salience?: true
@@ -2188,7 +2188,7 @@ export namespace Prisma {
     twitterHours?: true
   }
 
-  export type AssessmentResultSumAggregateInputType = {
+  export type ScreeningRecordSumAggregateInputType = {
     userId?: true
     svasTotal?: true
     q1_salience?: true
@@ -2206,7 +2206,7 @@ export namespace Prisma {
     twitterHours?: true
   }
 
-  export type AssessmentResultMinAggregateInputType = {
+  export type ScreeningRecordMinAggregateInputType = {
     UserID_hash?: true
     userId?: true
     date?: true
@@ -2227,7 +2227,7 @@ export namespace Prisma {
     twitterHours?: true
   }
 
-  export type AssessmentResultMaxAggregateInputType = {
+  export type ScreeningRecordMaxAggregateInputType = {
     UserID_hash?: true
     userId?: true
     date?: true
@@ -2248,7 +2248,7 @@ export namespace Prisma {
     twitterHours?: true
   }
 
-  export type AssessmentResultCountAggregateInputType = {
+  export type ScreeningRecordCountAggregateInputType = {
     UserID_hash?: true
     userId?: true
     date?: true
@@ -2270,93 +2270,93 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type AssessmentResultAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AssessmentResult to aggregate.
+     * Filter which ScreeningRecord to aggregate.
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AssessmentResults to fetch.
+     * Determine the order of ScreeningRecords to fetch.
      */
-    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
+    orderBy?: ScreeningRecordOrderByWithRelationInput | ScreeningRecordOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: AssessmentResultWhereUniqueInput
+    cursor?: ScreeningRecordWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AssessmentResults from the position of the cursor.
+     * Take `±n` ScreeningRecords from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AssessmentResults.
+     * Skip the first `n` ScreeningRecords.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned AssessmentResults
+     * Count returned ScreeningRecords
     **/
-    _count?: true | AssessmentResultCountAggregateInputType
+    _count?: true | ScreeningRecordCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: AssessmentResultAvgAggregateInputType
+    _avg?: ScreeningRecordAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: AssessmentResultSumAggregateInputType
+    _sum?: ScreeningRecordSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: AssessmentResultMinAggregateInputType
+    _min?: ScreeningRecordMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: AssessmentResultMaxAggregateInputType
+    _max?: ScreeningRecordMaxAggregateInputType
   }
 
-  export type GetAssessmentResultAggregateType<T extends AssessmentResultAggregateArgs> = {
-        [P in keyof T & keyof AggregateAssessmentResult]: P extends '_count' | 'count'
+  export type GetScreeningRecordAggregateType<T extends ScreeningRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateScreeningRecord]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateAssessmentResult[P]>
-      : GetScalarType<T[P], AggregateAssessmentResult[P]>
+        : GetScalarType<T[P], AggregateScreeningRecord[P]>
+      : GetScalarType<T[P], AggregateScreeningRecord[P]>
   }
 
 
 
 
-  export type AssessmentResultGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AssessmentResultWhereInput
-    orderBy?: AssessmentResultOrderByWithAggregationInput | AssessmentResultOrderByWithAggregationInput[]
-    by: AssessmentResultScalarFieldEnum[] | AssessmentResultScalarFieldEnum
-    having?: AssessmentResultScalarWhereWithAggregatesInput
+  export type ScreeningRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScreeningRecordWhereInput
+    orderBy?: ScreeningRecordOrderByWithAggregationInput | ScreeningRecordOrderByWithAggregationInput[]
+    by: ScreeningRecordScalarFieldEnum[] | ScreeningRecordScalarFieldEnum
+    having?: ScreeningRecordScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: AssessmentResultCountAggregateInputType | true
-    _avg?: AssessmentResultAvgAggregateInputType
-    _sum?: AssessmentResultSumAggregateInputType
-    _min?: AssessmentResultMinAggregateInputType
-    _max?: AssessmentResultMaxAggregateInputType
+    _count?: ScreeningRecordCountAggregateInputType | true
+    _avg?: ScreeningRecordAvgAggregateInputType
+    _sum?: ScreeningRecordSumAggregateInputType
+    _min?: ScreeningRecordMinAggregateInputType
+    _max?: ScreeningRecordMaxAggregateInputType
   }
 
-  export type AssessmentResultGroupByOutputType = {
+  export type ScreeningRecordGroupByOutputType = {
     UserID_hash: string
     userId: number
     date: Date
@@ -2375,28 +2375,28 @@ export namespace Prisma {
     tiktokHours: number
     youtubeHours: number
     twitterHours: number
-    _count: AssessmentResultCountAggregateOutputType | null
-    _avg: AssessmentResultAvgAggregateOutputType | null
-    _sum: AssessmentResultSumAggregateOutputType | null
-    _min: AssessmentResultMinAggregateOutputType | null
-    _max: AssessmentResultMaxAggregateOutputType | null
+    _count: ScreeningRecordCountAggregateOutputType | null
+    _avg: ScreeningRecordAvgAggregateOutputType | null
+    _sum: ScreeningRecordSumAggregateOutputType | null
+    _min: ScreeningRecordMinAggregateOutputType | null
+    _max: ScreeningRecordMaxAggregateOutputType | null
   }
 
-  type GetAssessmentResultGroupByPayload<T extends AssessmentResultGroupByArgs> = Prisma.PrismaPromise<
+  type GetScreeningRecordGroupByPayload<T extends ScreeningRecordGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<AssessmentResultGroupByOutputType, T['by']> &
+      PickEnumerable<ScreeningRecordGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof AssessmentResultGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ScreeningRecordGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], AssessmentResultGroupByOutputType[P]>
-            : GetScalarType<T[P], AssessmentResultGroupByOutputType[P]>
+              : GetScalarType<T[P], ScreeningRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], ScreeningRecordGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type AssessmentResultSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ScreeningRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID_hash?: boolean
     userId?: boolean
     date?: boolean
@@ -2416,9 +2416,9 @@ export namespace Prisma {
     youtubeHours?: boolean
     twitterHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentResult"]>
+  }, ExtArgs["result"]["screeningRecord"]>
 
-  export type AssessmentResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ScreeningRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID_hash?: boolean
     userId?: boolean
     date?: boolean
@@ -2438,9 +2438,9 @@ export namespace Prisma {
     youtubeHours?: boolean
     twitterHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentResult"]>
+  }, ExtArgs["result"]["screeningRecord"]>
 
-  export type AssessmentResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ScreeningRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     UserID_hash?: boolean
     userId?: boolean
     date?: boolean
@@ -2460,9 +2460,9 @@ export namespace Prisma {
     youtubeHours?: boolean
     twitterHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["assessmentResult"]>
+  }, ExtArgs["result"]["screeningRecord"]>
 
-  export type AssessmentResultSelectScalar = {
+  export type ScreeningRecordSelectScalar = {
     UserID_hash?: boolean
     userId?: boolean
     date?: boolean
@@ -2483,19 +2483,19 @@ export namespace Prisma {
     twitterHours?: boolean
   }
 
-  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID_hash" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
-  export type AssessmentResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID_hash" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["screeningRecord"]>
+  export type ScreeningRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type AssessmentResultIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
-  export type AssessmentResultIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
-  export type $AssessmentResultPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "AssessmentResult"
+  export type $ScreeningRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ScreeningRecord"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
     }
@@ -2518,136 +2518,136 @@ export namespace Prisma {
       tiktokHours: number
       youtubeHours: number
       twitterHours: number
-    }, ExtArgs["result"]["assessmentResult"]>
+    }, ExtArgs["result"]["screeningRecord"]>
     composites: {}
   }
 
-  type AssessmentResultGetPayload<S extends boolean | null | undefined | AssessmentResultDefaultArgs> = $Result.GetResult<Prisma.$AssessmentResultPayload, S>
+  type ScreeningRecordGetPayload<S extends boolean | null | undefined | ScreeningRecordDefaultArgs> = $Result.GetResult<Prisma.$ScreeningRecordPayload, S>
 
-  type AssessmentResultCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AssessmentResultFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AssessmentResultCountAggregateInputType | true
+  type ScreeningRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ScreeningRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ScreeningRecordCountAggregateInputType | true
     }
 
-  export interface AssessmentResultDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AssessmentResult'], meta: { name: 'AssessmentResult' } }
+  export interface ScreeningRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ScreeningRecord'], meta: { name: 'ScreeningRecord' } }
     /**
-     * Find zero or one AssessmentResult that matches the filter.
-     * @param {AssessmentResultFindUniqueArgs} args - Arguments to find a AssessmentResult
+     * Find zero or one ScreeningRecord that matches the filter.
+     * @param {ScreeningRecordFindUniqueArgs} args - Arguments to find a ScreeningRecord
      * @example
-     * // Get one AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.findUnique({
+     * // Get one ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends AssessmentResultFindUniqueArgs>(args: SelectSubset<T, AssessmentResultFindUniqueArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ScreeningRecordFindUniqueArgs>(args: SelectSubset<T, ScreeningRecordFindUniqueArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one AssessmentResult that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ScreeningRecord that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {AssessmentResultFindUniqueOrThrowArgs} args - Arguments to find a AssessmentResult
+     * @param {ScreeningRecordFindUniqueOrThrowArgs} args - Arguments to find a ScreeningRecord
      * @example
-     * // Get one AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.findUniqueOrThrow({
+     * // Get one ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends AssessmentResultFindUniqueOrThrowArgs>(args: SelectSubset<T, AssessmentResultFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ScreeningRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, ScreeningRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AssessmentResult that matches the filter.
+     * Find the first ScreeningRecord that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultFindFirstArgs} args - Arguments to find a AssessmentResult
+     * @param {ScreeningRecordFindFirstArgs} args - Arguments to find a ScreeningRecord
      * @example
-     * // Get one AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.findFirst({
+     * // Get one ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends AssessmentResultFindFirstArgs>(args?: SelectSubset<T, AssessmentResultFindFirstArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ScreeningRecordFindFirstArgs>(args?: SelectSubset<T, ScreeningRecordFindFirstArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first AssessmentResult that matches the filter or
+     * Find the first ScreeningRecord that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultFindFirstOrThrowArgs} args - Arguments to find a AssessmentResult
+     * @param {ScreeningRecordFindFirstOrThrowArgs} args - Arguments to find a ScreeningRecord
      * @example
-     * // Get one AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.findFirstOrThrow({
+     * // Get one ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends AssessmentResultFindFirstOrThrowArgs>(args?: SelectSubset<T, AssessmentResultFindFirstOrThrowArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ScreeningRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, ScreeningRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more AssessmentResults that matches the filter.
+     * Find zero or more ScreeningRecords that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ScreeningRecordFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all AssessmentResults
-     * const assessmentResults = await prisma.assessmentResult.findMany()
+     * // Get all ScreeningRecords
+     * const screeningRecords = await prisma.screeningRecord.findMany()
      * 
-     * // Get first 10 AssessmentResults
-     * const assessmentResults = await prisma.assessmentResult.findMany({ take: 10 })
+     * // Get first 10 ScreeningRecords
+     * const screeningRecords = await prisma.screeningRecord.findMany({ take: 10 })
      * 
      * // Only select the `UserID_hash`
-     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.findMany({ select: { UserID_hash: true } })
+     * const screeningRecordWithUserID_hashOnly = await prisma.screeningRecord.findMany({ select: { UserID_hash: true } })
      * 
      */
-    findMany<T extends AssessmentResultFindManyArgs>(args?: SelectSubset<T, AssessmentResultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ScreeningRecordFindManyArgs>(args?: SelectSubset<T, ScreeningRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a AssessmentResult.
-     * @param {AssessmentResultCreateArgs} args - Arguments to create a AssessmentResult.
+     * Create a ScreeningRecord.
+     * @param {ScreeningRecordCreateArgs} args - Arguments to create a ScreeningRecord.
      * @example
-     * // Create one AssessmentResult
-     * const AssessmentResult = await prisma.assessmentResult.create({
+     * // Create one ScreeningRecord
+     * const ScreeningRecord = await prisma.screeningRecord.create({
      *   data: {
-     *     // ... data to create a AssessmentResult
+     *     // ... data to create a ScreeningRecord
      *   }
      * })
      * 
      */
-    create<T extends AssessmentResultCreateArgs>(args: SelectSubset<T, AssessmentResultCreateArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ScreeningRecordCreateArgs>(args: SelectSubset<T, ScreeningRecordCreateArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many AssessmentResults.
-     * @param {AssessmentResultCreateManyArgs} args - Arguments to create many AssessmentResults.
+     * Create many ScreeningRecords.
+     * @param {ScreeningRecordCreateManyArgs} args - Arguments to create many ScreeningRecords.
      * @example
-     * // Create many AssessmentResults
-     * const assessmentResult = await prisma.assessmentResult.createMany({
+     * // Create many ScreeningRecords
+     * const screeningRecord = await prisma.screeningRecord.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends AssessmentResultCreateManyArgs>(args?: SelectSubset<T, AssessmentResultCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ScreeningRecordCreateManyArgs>(args?: SelectSubset<T, ScreeningRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many AssessmentResults and returns the data saved in the database.
-     * @param {AssessmentResultCreateManyAndReturnArgs} args - Arguments to create many AssessmentResults.
+     * Create many ScreeningRecords and returns the data saved in the database.
+     * @param {ScreeningRecordCreateManyAndReturnArgs} args - Arguments to create many ScreeningRecords.
      * @example
-     * // Create many AssessmentResults
-     * const assessmentResult = await prisma.assessmentResult.createManyAndReturn({
+     * // Create many ScreeningRecords
+     * const screeningRecord = await prisma.screeningRecord.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many AssessmentResults and only return the `UserID_hash`
-     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.createManyAndReturn({
+     * // Create many ScreeningRecords and only return the `UserID_hash`
+     * const screeningRecordWithUserID_hashOnly = await prisma.screeningRecord.createManyAndReturn({
      *   select: { UserID_hash: true },
      *   data: [
      *     // ... provide data here
@@ -2657,28 +2657,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends AssessmentResultCreateManyAndReturnArgs>(args?: SelectSubset<T, AssessmentResultCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ScreeningRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, ScreeningRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a AssessmentResult.
-     * @param {AssessmentResultDeleteArgs} args - Arguments to delete one AssessmentResult.
+     * Delete a ScreeningRecord.
+     * @param {ScreeningRecordDeleteArgs} args - Arguments to delete one ScreeningRecord.
      * @example
-     * // Delete one AssessmentResult
-     * const AssessmentResult = await prisma.assessmentResult.delete({
+     * // Delete one ScreeningRecord
+     * const ScreeningRecord = await prisma.screeningRecord.delete({
      *   where: {
-     *     // ... filter to delete one AssessmentResult
+     *     // ... filter to delete one ScreeningRecord
      *   }
      * })
      * 
      */
-    delete<T extends AssessmentResultDeleteArgs>(args: SelectSubset<T, AssessmentResultDeleteArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ScreeningRecordDeleteArgs>(args: SelectSubset<T, ScreeningRecordDeleteArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one AssessmentResult.
-     * @param {AssessmentResultUpdateArgs} args - Arguments to update one AssessmentResult.
+     * Update one ScreeningRecord.
+     * @param {ScreeningRecordUpdateArgs} args - Arguments to update one ScreeningRecord.
      * @example
-     * // Update one AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.update({
+     * // Update one ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2688,30 +2688,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends AssessmentResultUpdateArgs>(args: SelectSubset<T, AssessmentResultUpdateArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ScreeningRecordUpdateArgs>(args: SelectSubset<T, ScreeningRecordUpdateArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more AssessmentResults.
-     * @param {AssessmentResultDeleteManyArgs} args - Arguments to filter AssessmentResults to delete.
+     * Delete zero or more ScreeningRecords.
+     * @param {ScreeningRecordDeleteManyArgs} args - Arguments to filter ScreeningRecords to delete.
      * @example
-     * // Delete a few AssessmentResults
-     * const { count } = await prisma.assessmentResult.deleteMany({
+     * // Delete a few ScreeningRecords
+     * const { count } = await prisma.screeningRecord.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends AssessmentResultDeleteManyArgs>(args?: SelectSubset<T, AssessmentResultDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ScreeningRecordDeleteManyArgs>(args?: SelectSubset<T, ScreeningRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AssessmentResults.
+     * Update zero or more ScreeningRecords.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ScreeningRecordUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many AssessmentResults
-     * const assessmentResult = await prisma.assessmentResult.updateMany({
+     * // Update many ScreeningRecords
+     * const screeningRecord = await prisma.screeningRecord.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2721,14 +2721,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends AssessmentResultUpdateManyArgs>(args: SelectSubset<T, AssessmentResultUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ScreeningRecordUpdateManyArgs>(args: SelectSubset<T, ScreeningRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more AssessmentResults and returns the data updated in the database.
-     * @param {AssessmentResultUpdateManyAndReturnArgs} args - Arguments to update many AssessmentResults.
+     * Update zero or more ScreeningRecords and returns the data updated in the database.
+     * @param {ScreeningRecordUpdateManyAndReturnArgs} args - Arguments to update many ScreeningRecords.
      * @example
-     * // Update many AssessmentResults
-     * const assessmentResult = await prisma.assessmentResult.updateManyAndReturn({
+     * // Update many ScreeningRecords
+     * const screeningRecord = await prisma.screeningRecord.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2737,8 +2737,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more AssessmentResults and only return the `UserID_hash`
-     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.updateManyAndReturn({
+     * // Update zero or more ScreeningRecords and only return the `UserID_hash`
+     * const screeningRecordWithUserID_hashOnly = await prisma.screeningRecord.updateManyAndReturn({
      *   select: { UserID_hash: true },
      *   where: {
      *     // ... provide filter here
@@ -2751,56 +2751,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends AssessmentResultUpdateManyAndReturnArgs>(args: SelectSubset<T, AssessmentResultUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ScreeningRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, ScreeningRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one AssessmentResult.
-     * @param {AssessmentResultUpsertArgs} args - Arguments to update or create a AssessmentResult.
+     * Create or update one ScreeningRecord.
+     * @param {ScreeningRecordUpsertArgs} args - Arguments to update or create a ScreeningRecord.
      * @example
-     * // Update or create a AssessmentResult
-     * const assessmentResult = await prisma.assessmentResult.upsert({
+     * // Update or create a ScreeningRecord
+     * const screeningRecord = await prisma.screeningRecord.upsert({
      *   create: {
-     *     // ... data to create a AssessmentResult
+     *     // ... data to create a ScreeningRecord
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the AssessmentResult we want to update
+     *     // ... the filter for the ScreeningRecord we want to update
      *   }
      * })
      */
-    upsert<T extends AssessmentResultUpsertArgs>(args: SelectSubset<T, AssessmentResultUpsertArgs<ExtArgs>>): Prisma__AssessmentResultClient<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ScreeningRecordUpsertArgs>(args: SelectSubset<T, ScreeningRecordUpsertArgs<ExtArgs>>): Prisma__ScreeningRecordClient<$Result.GetResult<Prisma.$ScreeningRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of AssessmentResults.
+     * Count the number of ScreeningRecords.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultCountArgs} args - Arguments to filter AssessmentResults to count.
+     * @param {ScreeningRecordCountArgs} args - Arguments to filter ScreeningRecords to count.
      * @example
-     * // Count the number of AssessmentResults
-     * const count = await prisma.assessmentResult.count({
+     * // Count the number of ScreeningRecords
+     * const count = await prisma.screeningRecord.count({
      *   where: {
-     *     // ... the filter for the AssessmentResults we want to count
+     *     // ... the filter for the ScreeningRecords we want to count
      *   }
      * })
     **/
-    count<T extends AssessmentResultCountArgs>(
-      args?: Subset<T, AssessmentResultCountArgs>,
+    count<T extends ScreeningRecordCountArgs>(
+      args?: Subset<T, ScreeningRecordCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], AssessmentResultCountAggregateOutputType>
+          : GetScalarType<T['select'], ScreeningRecordCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a AssessmentResult.
+     * Allows you to perform aggregations operations on a ScreeningRecord.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ScreeningRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2820,13 +2820,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends AssessmentResultAggregateArgs>(args: Subset<T, AssessmentResultAggregateArgs>): Prisma.PrismaPromise<GetAssessmentResultAggregateType<T>>
+    aggregate<T extends ScreeningRecordAggregateArgs>(args: Subset<T, ScreeningRecordAggregateArgs>): Prisma.PrismaPromise<GetScreeningRecordAggregateType<T>>
 
     /**
-     * Group by AssessmentResult.
+     * Group by ScreeningRecord.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {AssessmentResultGroupByArgs} args - Group by arguments.
+     * @param {ScreeningRecordGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2841,14 +2841,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends AssessmentResultGroupByArgs,
+      T extends ScreeningRecordGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AssessmentResultGroupByArgs['orderBy'] }
-        : { orderBy?: AssessmentResultGroupByArgs['orderBy'] },
+        ? { orderBy: ScreeningRecordGroupByArgs['orderBy'] }
+        : { orderBy?: ScreeningRecordGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2897,20 +2897,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, AssessmentResultGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAssessmentResultGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ScreeningRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetScreeningRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the AssessmentResult model
+   * Fields of the ScreeningRecord model
    */
-  readonly fields: AssessmentResultFieldRefs;
+  readonly fields: ScreeningRecordFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for AssessmentResult.
+   * The delegate class that acts as a "Promise-like" for ScreeningRecord.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__AssessmentResultClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ScreeningRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -2939,443 +2939,443 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the AssessmentResult model
+   * Fields of the ScreeningRecord model
    */
-  interface AssessmentResultFieldRefs {
-    readonly UserID_hash: FieldRef<"AssessmentResult", 'String'>
-    readonly userId: FieldRef<"AssessmentResult", 'Int'>
-    readonly date: FieldRef<"AssessmentResult", 'DateTime'>
-    readonly zone: FieldRef<"AssessmentResult", 'String'>
-    readonly svasTotal: FieldRef<"AssessmentResult", 'Int'>
-    readonly q1_salience: FieldRef<"AssessmentResult", 'Int'>
-    readonly q2_mood: FieldRef<"AssessmentResult", 'Int'>
-    readonly q3_tolerance: FieldRef<"AssessmentResult", 'Int'>
-    readonly q4_withdrawal: FieldRef<"AssessmentResult", 'Int'>
-    readonly q5_conflict: FieldRef<"AssessmentResult", 'Int'>
-    readonly q6_relapse: FieldRef<"AssessmentResult", 'Int'>
-    readonly socialMediaHours: FieldRef<"AssessmentResult", 'Float'>
-    readonly sleepHours: FieldRef<"AssessmentResult", 'Float'>
-    readonly productivityImpact: FieldRef<"AssessmentResult", 'Int'>
-    readonly instagramHours: FieldRef<"AssessmentResult", 'Float'>
-    readonly tiktokHours: FieldRef<"AssessmentResult", 'Float'>
-    readonly youtubeHours: FieldRef<"AssessmentResult", 'Float'>
-    readonly twitterHours: FieldRef<"AssessmentResult", 'Float'>
+  interface ScreeningRecordFieldRefs {
+    readonly UserID_hash: FieldRef<"ScreeningRecord", 'String'>
+    readonly userId: FieldRef<"ScreeningRecord", 'Int'>
+    readonly date: FieldRef<"ScreeningRecord", 'DateTime'>
+    readonly zone: FieldRef<"ScreeningRecord", 'String'>
+    readonly svasTotal: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q1_salience: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q2_mood: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q3_tolerance: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q4_withdrawal: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q5_conflict: FieldRef<"ScreeningRecord", 'Int'>
+    readonly q6_relapse: FieldRef<"ScreeningRecord", 'Int'>
+    readonly socialMediaHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly sleepHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly productivityImpact: FieldRef<"ScreeningRecord", 'Int'>
+    readonly instagramHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly tiktokHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly youtubeHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly twitterHours: FieldRef<"ScreeningRecord", 'Float'>
   }
     
 
   // Custom InputTypes
   /**
-   * AssessmentResult findUnique
+   * ScreeningRecord findUnique
    */
-  export type AssessmentResultFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter, which AssessmentResult to fetch.
+     * Filter, which ScreeningRecord to fetch.
      */
-    where: AssessmentResultWhereUniqueInput
+    where: ScreeningRecordWhereUniqueInput
   }
 
   /**
-   * AssessmentResult findUniqueOrThrow
+   * ScreeningRecord findUniqueOrThrow
    */
-  export type AssessmentResultFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter, which AssessmentResult to fetch.
+     * Filter, which ScreeningRecord to fetch.
      */
-    where: AssessmentResultWhereUniqueInput
+    where: ScreeningRecordWhereUniqueInput
   }
 
   /**
-   * AssessmentResult findFirst
+   * ScreeningRecord findFirst
    */
-  export type AssessmentResultFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter, which AssessmentResult to fetch.
+     * Filter, which ScreeningRecord to fetch.
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AssessmentResults to fetch.
+     * Determine the order of ScreeningRecords to fetch.
      */
-    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
+    orderBy?: ScreeningRecordOrderByWithRelationInput | ScreeningRecordOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AssessmentResults.
+     * Sets the position for searching for ScreeningRecords.
      */
-    cursor?: AssessmentResultWhereUniqueInput
+    cursor?: ScreeningRecordWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AssessmentResults from the position of the cursor.
+     * Take `±n` ScreeningRecords from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AssessmentResults.
+     * Skip the first `n` ScreeningRecords.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AssessmentResults.
+     * Filter by unique combinations of ScreeningRecords.
      */
-    distinct?: AssessmentResultScalarFieldEnum | AssessmentResultScalarFieldEnum[]
+    distinct?: ScreeningRecordScalarFieldEnum | ScreeningRecordScalarFieldEnum[]
   }
 
   /**
-   * AssessmentResult findFirstOrThrow
+   * ScreeningRecord findFirstOrThrow
    */
-  export type AssessmentResultFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter, which AssessmentResult to fetch.
+     * Filter, which ScreeningRecord to fetch.
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AssessmentResults to fetch.
+     * Determine the order of ScreeningRecords to fetch.
      */
-    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
+    orderBy?: ScreeningRecordOrderByWithRelationInput | ScreeningRecordOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for AssessmentResults.
+     * Sets the position for searching for ScreeningRecords.
      */
-    cursor?: AssessmentResultWhereUniqueInput
+    cursor?: ScreeningRecordWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AssessmentResults from the position of the cursor.
+     * Take `±n` ScreeningRecords from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AssessmentResults.
+     * Skip the first `n` ScreeningRecords.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AssessmentResults.
+     * Filter by unique combinations of ScreeningRecords.
      */
-    distinct?: AssessmentResultScalarFieldEnum | AssessmentResultScalarFieldEnum[]
+    distinct?: ScreeningRecordScalarFieldEnum | ScreeningRecordScalarFieldEnum[]
   }
 
   /**
-   * AssessmentResult findMany
+   * ScreeningRecord findMany
    */
-  export type AssessmentResultFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter, which AssessmentResults to fetch.
+     * Filter, which ScreeningRecords to fetch.
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of AssessmentResults to fetch.
+     * Determine the order of ScreeningRecords to fetch.
      */
-    orderBy?: AssessmentResultOrderByWithRelationInput | AssessmentResultOrderByWithRelationInput[]
+    orderBy?: ScreeningRecordOrderByWithRelationInput | ScreeningRecordOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing AssessmentResults.
+     * Sets the position for listing ScreeningRecords.
      */
-    cursor?: AssessmentResultWhereUniqueInput
+    cursor?: ScreeningRecordWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` AssessmentResults from the position of the cursor.
+     * Take `±n` ScreeningRecords from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` AssessmentResults.
+     * Skip the first `n` ScreeningRecords.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of AssessmentResults.
+     * Filter by unique combinations of ScreeningRecords.
      */
-    distinct?: AssessmentResultScalarFieldEnum | AssessmentResultScalarFieldEnum[]
+    distinct?: ScreeningRecordScalarFieldEnum | ScreeningRecordScalarFieldEnum[]
   }
 
   /**
-   * AssessmentResult create
+   * ScreeningRecord create
    */
-  export type AssessmentResultCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * The data needed to create a AssessmentResult.
+     * The data needed to create a ScreeningRecord.
      */
-    data: XOR<AssessmentResultCreateInput, AssessmentResultUncheckedCreateInput>
+    data: XOR<ScreeningRecordCreateInput, ScreeningRecordUncheckedCreateInput>
   }
 
   /**
-   * AssessmentResult createMany
+   * ScreeningRecord createMany
    */
-  export type AssessmentResultCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many AssessmentResults.
+     * The data used to create many ScreeningRecords.
      */
-    data: AssessmentResultCreateManyInput | AssessmentResultCreateManyInput[]
+    data: ScreeningRecordCreateManyInput | ScreeningRecordCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * AssessmentResult createManyAndReturn
+   * ScreeningRecord createManyAndReturn
    */
-  export type AssessmentResultCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ScreeningRecordSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
-     * The data used to create many AssessmentResults.
+     * The data used to create many ScreeningRecords.
      */
-    data: AssessmentResultCreateManyInput | AssessmentResultCreateManyInput[]
+    data: ScreeningRecordCreateManyInput | ScreeningRecordCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ScreeningRecordIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * AssessmentResult update
+   * ScreeningRecord update
    */
-  export type AssessmentResultUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * The data needed to update a AssessmentResult.
+     * The data needed to update a ScreeningRecord.
      */
-    data: XOR<AssessmentResultUpdateInput, AssessmentResultUncheckedUpdateInput>
+    data: XOR<ScreeningRecordUpdateInput, ScreeningRecordUncheckedUpdateInput>
     /**
-     * Choose, which AssessmentResult to update.
+     * Choose, which ScreeningRecord to update.
      */
-    where: AssessmentResultWhereUniqueInput
+    where: ScreeningRecordWhereUniqueInput
   }
 
   /**
-   * AssessmentResult updateMany
+   * ScreeningRecord updateMany
    */
-  export type AssessmentResultUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update AssessmentResults.
+     * The data used to update ScreeningRecords.
      */
-    data: XOR<AssessmentResultUpdateManyMutationInput, AssessmentResultUncheckedUpdateManyInput>
+    data: XOR<ScreeningRecordUpdateManyMutationInput, ScreeningRecordUncheckedUpdateManyInput>
     /**
-     * Filter which AssessmentResults to update
+     * Filter which ScreeningRecords to update
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
-     * Limit how many AssessmentResults to update.
+     * Limit how many ScreeningRecords to update.
      */
     limit?: number
   }
 
   /**
-   * AssessmentResult updateManyAndReturn
+   * ScreeningRecord updateManyAndReturn
    */
-  export type AssessmentResultUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ScreeningRecordSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
-     * The data used to update AssessmentResults.
+     * The data used to update ScreeningRecords.
      */
-    data: XOR<AssessmentResultUpdateManyMutationInput, AssessmentResultUncheckedUpdateManyInput>
+    data: XOR<ScreeningRecordUpdateManyMutationInput, ScreeningRecordUncheckedUpdateManyInput>
     /**
-     * Filter which AssessmentResults to update
+     * Filter which ScreeningRecords to update
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
-     * Limit how many AssessmentResults to update.
+     * Limit how many ScreeningRecords to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ScreeningRecordIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * AssessmentResult upsert
+   * ScreeningRecord upsert
    */
-  export type AssessmentResultUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * The filter to search for the AssessmentResult to update in case it exists.
+     * The filter to search for the ScreeningRecord to update in case it exists.
      */
-    where: AssessmentResultWhereUniqueInput
+    where: ScreeningRecordWhereUniqueInput
     /**
-     * In case the AssessmentResult found by the `where` argument doesn't exist, create a new AssessmentResult with this data.
+     * In case the ScreeningRecord found by the `where` argument doesn't exist, create a new ScreeningRecord with this data.
      */
-    create: XOR<AssessmentResultCreateInput, AssessmentResultUncheckedCreateInput>
+    create: XOR<ScreeningRecordCreateInput, ScreeningRecordUncheckedCreateInput>
     /**
-     * In case the AssessmentResult was found with the provided `where` argument, update it with this data.
+     * In case the ScreeningRecord was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<AssessmentResultUpdateInput, AssessmentResultUncheckedUpdateInput>
+    update: XOR<ScreeningRecordUpdateInput, ScreeningRecordUncheckedUpdateInput>
   }
 
   /**
-   * AssessmentResult delete
+   * ScreeningRecord delete
    */
-  export type AssessmentResultDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
     /**
-     * Filter which AssessmentResult to delete.
+     * Filter which ScreeningRecord to delete.
      */
-    where: AssessmentResultWhereUniqueInput
+    where: ScreeningRecordWhereUniqueInput
   }
 
   /**
-   * AssessmentResult deleteMany
+   * ScreeningRecord deleteMany
    */
-  export type AssessmentResultDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which AssessmentResults to delete
+     * Filter which ScreeningRecords to delete
      */
-    where?: AssessmentResultWhereInput
+    where?: ScreeningRecordWhereInput
     /**
-     * Limit how many AssessmentResults to delete.
+     * Limit how many ScreeningRecords to delete.
      */
     limit?: number
   }
 
   /**
-   * AssessmentResult without action
+   * ScreeningRecord without action
    */
-  export type AssessmentResultDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ScreeningRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the AssessmentResult
+     * Select specific fields to fetch from the ScreeningRecord
      */
-    select?: AssessmentResultSelect<ExtArgs> | null
+    select?: ScreeningRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the AssessmentResult
+     * Omit specific fields from the ScreeningRecord
      */
-    omit?: AssessmentResultOmit<ExtArgs> | null
+    omit?: ScreeningRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: AssessmentResultInclude<ExtArgs> | null
+    include?: ScreeningRecordInclude<ExtArgs> | null
   }
 
 
@@ -3401,7 +3401,7 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-  export const AssessmentResultScalarFieldEnum: {
+  export const ScreeningRecordScalarFieldEnum: {
     UserID_hash: 'UserID_hash',
     userId: 'userId',
     date: 'date',
@@ -3422,7 +3422,7 @@ export namespace Prisma {
     twitterHours: 'twitterHours'
   };
 
-  export type AssessmentResultScalarFieldEnum = (typeof AssessmentResultScalarFieldEnum)[keyof typeof AssessmentResultScalarFieldEnum]
+  export type ScreeningRecordScalarFieldEnum = (typeof ScreeningRecordScalarFieldEnum)[keyof typeof ScreeningRecordScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3511,13 +3511,13 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     UserID?: IntFilter<"User"> | number
     Username?: StringFilter<"User"> | string
-    results?: AssessmentResultListRelationFilter
+    screeningRecords?: ScreeningRecordListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     UserID?: SortOrder
     Username?: SortOrder
-    results?: AssessmentResultOrderByRelationAggregateInput
+    screeningRecords?: ScreeningRecordOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3526,7 +3526,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    results?: AssessmentResultListRelationFilter
+    screeningRecords?: ScreeningRecordListRelationFilter
   }, "UserID" | "Username">
 
   export type UserOrderByWithAggregationInput = {
@@ -3547,32 +3547,32 @@ export namespace Prisma {
     Username?: StringWithAggregatesFilter<"User"> | string
   }
 
-  export type AssessmentResultWhereInput = {
-    AND?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    OR?: AssessmentResultWhereInput[]
-    NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    UserID_hash?: StringFilter<"AssessmentResult"> | string
-    userId?: IntFilter<"AssessmentResult"> | number
-    date?: DateTimeFilter<"AssessmentResult"> | Date | string
-    zone?: StringFilter<"AssessmentResult"> | string
-    svasTotal?: IntFilter<"AssessmentResult"> | number
-    q1_salience?: IntFilter<"AssessmentResult"> | number
-    q2_mood?: IntFilter<"AssessmentResult"> | number
-    q3_tolerance?: IntFilter<"AssessmentResult"> | number
-    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
-    q5_conflict?: IntFilter<"AssessmentResult"> | number
-    q6_relapse?: IntFilter<"AssessmentResult"> | number
-    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
-    sleepHours?: FloatFilter<"AssessmentResult"> | number
-    productivityImpact?: IntFilter<"AssessmentResult"> | number
-    instagramHours?: FloatFilter<"AssessmentResult"> | number
-    tiktokHours?: FloatFilter<"AssessmentResult"> | number
-    youtubeHours?: FloatFilter<"AssessmentResult"> | number
-    twitterHours?: FloatFilter<"AssessmentResult"> | number
+  export type ScreeningRecordWhereInput = {
+    AND?: ScreeningRecordWhereInput | ScreeningRecordWhereInput[]
+    OR?: ScreeningRecordWhereInput[]
+    NOT?: ScreeningRecordWhereInput | ScreeningRecordWhereInput[]
+    UserID_hash?: StringFilter<"ScreeningRecord"> | string
+    userId?: IntFilter<"ScreeningRecord"> | number
+    date?: DateTimeFilter<"ScreeningRecord"> | Date | string
+    zone?: StringFilter<"ScreeningRecord"> | string
+    svasTotal?: IntFilter<"ScreeningRecord"> | number
+    q1_salience?: IntFilter<"ScreeningRecord"> | number
+    q2_mood?: IntFilter<"ScreeningRecord"> | number
+    q3_tolerance?: IntFilter<"ScreeningRecord"> | number
+    q4_withdrawal?: IntFilter<"ScreeningRecord"> | number
+    q5_conflict?: IntFilter<"ScreeningRecord"> | number
+    q6_relapse?: IntFilter<"ScreeningRecord"> | number
+    socialMediaHours?: FloatFilter<"ScreeningRecord"> | number
+    sleepHours?: FloatFilter<"ScreeningRecord"> | number
+    productivityImpact?: IntFilter<"ScreeningRecord"> | number
+    instagramHours?: FloatFilter<"ScreeningRecord"> | number
+    tiktokHours?: FloatFilter<"ScreeningRecord"> | number
+    youtubeHours?: FloatFilter<"ScreeningRecord"> | number
+    twitterHours?: FloatFilter<"ScreeningRecord"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
-  export type AssessmentResultOrderByWithRelationInput = {
+  export type ScreeningRecordOrderByWithRelationInput = {
     UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
@@ -3594,32 +3594,32 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
   }
 
-  export type AssessmentResultWhereUniqueInput = Prisma.AtLeast<{
+  export type ScreeningRecordWhereUniqueInput = Prisma.AtLeast<{
     UserID_hash?: string
-    AND?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    OR?: AssessmentResultWhereInput[]
-    NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    userId?: IntFilter<"AssessmentResult"> | number
-    date?: DateTimeFilter<"AssessmentResult"> | Date | string
-    zone?: StringFilter<"AssessmentResult"> | string
-    svasTotal?: IntFilter<"AssessmentResult"> | number
-    q1_salience?: IntFilter<"AssessmentResult"> | number
-    q2_mood?: IntFilter<"AssessmentResult"> | number
-    q3_tolerance?: IntFilter<"AssessmentResult"> | number
-    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
-    q5_conflict?: IntFilter<"AssessmentResult"> | number
-    q6_relapse?: IntFilter<"AssessmentResult"> | number
-    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
-    sleepHours?: FloatFilter<"AssessmentResult"> | number
-    productivityImpact?: IntFilter<"AssessmentResult"> | number
-    instagramHours?: FloatFilter<"AssessmentResult"> | number
-    tiktokHours?: FloatFilter<"AssessmentResult"> | number
-    youtubeHours?: FloatFilter<"AssessmentResult"> | number
-    twitterHours?: FloatFilter<"AssessmentResult"> | number
+    AND?: ScreeningRecordWhereInput | ScreeningRecordWhereInput[]
+    OR?: ScreeningRecordWhereInput[]
+    NOT?: ScreeningRecordWhereInput | ScreeningRecordWhereInput[]
+    userId?: IntFilter<"ScreeningRecord"> | number
+    date?: DateTimeFilter<"ScreeningRecord"> | Date | string
+    zone?: StringFilter<"ScreeningRecord"> | string
+    svasTotal?: IntFilter<"ScreeningRecord"> | number
+    q1_salience?: IntFilter<"ScreeningRecord"> | number
+    q2_mood?: IntFilter<"ScreeningRecord"> | number
+    q3_tolerance?: IntFilter<"ScreeningRecord"> | number
+    q4_withdrawal?: IntFilter<"ScreeningRecord"> | number
+    q5_conflict?: IntFilter<"ScreeningRecord"> | number
+    q6_relapse?: IntFilter<"ScreeningRecord"> | number
+    socialMediaHours?: FloatFilter<"ScreeningRecord"> | number
+    sleepHours?: FloatFilter<"ScreeningRecord"> | number
+    productivityImpact?: IntFilter<"ScreeningRecord"> | number
+    instagramHours?: FloatFilter<"ScreeningRecord"> | number
+    tiktokHours?: FloatFilter<"ScreeningRecord"> | number
+    youtubeHours?: FloatFilter<"ScreeningRecord"> | number
+    twitterHours?: FloatFilter<"ScreeningRecord"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "UserID_hash">
 
-  export type AssessmentResultOrderByWithAggregationInput = {
+  export type ScreeningRecordOrderByWithAggregationInput = {
     UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
@@ -3638,57 +3638,57 @@ export namespace Prisma {
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
     twitterHours?: SortOrder
-    _count?: AssessmentResultCountOrderByAggregateInput
-    _avg?: AssessmentResultAvgOrderByAggregateInput
-    _max?: AssessmentResultMaxOrderByAggregateInput
-    _min?: AssessmentResultMinOrderByAggregateInput
-    _sum?: AssessmentResultSumOrderByAggregateInput
+    _count?: ScreeningRecordCountOrderByAggregateInput
+    _avg?: ScreeningRecordAvgOrderByAggregateInput
+    _max?: ScreeningRecordMaxOrderByAggregateInput
+    _min?: ScreeningRecordMinOrderByAggregateInput
+    _sum?: ScreeningRecordSumOrderByAggregateInput
   }
 
-  export type AssessmentResultScalarWhereWithAggregatesInput = {
-    AND?: AssessmentResultScalarWhereWithAggregatesInput | AssessmentResultScalarWhereWithAggregatesInput[]
-    OR?: AssessmentResultScalarWhereWithAggregatesInput[]
-    NOT?: AssessmentResultScalarWhereWithAggregatesInput | AssessmentResultScalarWhereWithAggregatesInput[]
-    UserID_hash?: StringWithAggregatesFilter<"AssessmentResult"> | string
-    userId?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    date?: DateTimeWithAggregatesFilter<"AssessmentResult"> | Date | string
-    zone?: StringWithAggregatesFilter<"AssessmentResult"> | string
-    svasTotal?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q1_salience?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q2_mood?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q3_tolerance?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q4_withdrawal?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q5_conflict?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    q6_relapse?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    socialMediaHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
-    sleepHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
-    productivityImpact?: IntWithAggregatesFilter<"AssessmentResult"> | number
-    instagramHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
-    tiktokHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
-    youtubeHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
-    twitterHours?: FloatWithAggregatesFilter<"AssessmentResult"> | number
+  export type ScreeningRecordScalarWhereWithAggregatesInput = {
+    AND?: ScreeningRecordScalarWhereWithAggregatesInput | ScreeningRecordScalarWhereWithAggregatesInput[]
+    OR?: ScreeningRecordScalarWhereWithAggregatesInput[]
+    NOT?: ScreeningRecordScalarWhereWithAggregatesInput | ScreeningRecordScalarWhereWithAggregatesInput[]
+    UserID_hash?: StringWithAggregatesFilter<"ScreeningRecord"> | string
+    userId?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    date?: DateTimeWithAggregatesFilter<"ScreeningRecord"> | Date | string
+    zone?: StringWithAggregatesFilter<"ScreeningRecord"> | string
+    svasTotal?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q1_salience?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q2_mood?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q3_tolerance?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q4_withdrawal?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q5_conflict?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    q6_relapse?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    socialMediaHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    sleepHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    productivityImpact?: IntWithAggregatesFilter<"ScreeningRecord"> | number
+    instagramHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    tiktokHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    youtubeHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    twitterHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
   }
 
   export type UserCreateInput = {
     Username: string
-    results?: AssessmentResultCreateNestedManyWithoutUserInput
+    screeningRecords?: ScreeningRecordCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     UserID?: number
     Username: string
-    results?: AssessmentResultUncheckedCreateNestedManyWithoutUserInput
+    screeningRecords?: ScreeningRecordUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     Username?: StringFieldUpdateOperationsInput | string
-    results?: AssessmentResultUpdateManyWithoutUserNestedInput
+    screeningRecords?: ScreeningRecordUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     UserID?: IntFieldUpdateOperationsInput | number
     Username?: StringFieldUpdateOperationsInput | string
-    results?: AssessmentResultUncheckedUpdateManyWithoutUserNestedInput
+    screeningRecords?: ScreeningRecordUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3705,7 +3705,7 @@ export namespace Prisma {
     Username?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AssessmentResultCreateInput = {
+  export type ScreeningRecordCreateInput = {
     UserID_hash?: string
     date?: Date | string
     zone: string
@@ -3723,10 +3723,10 @@ export namespace Prisma {
     tiktokHours: number
     youtubeHours: number
     twitterHours: number
-    user: UserCreateNestedOneWithoutResultsInput
+    user: UserCreateNestedOneWithoutScreeningRecordsInput
   }
 
-  export type AssessmentResultUncheckedCreateInput = {
+  export type ScreeningRecordUncheckedCreateInput = {
     UserID_hash?: string
     userId: number
     date?: Date | string
@@ -3747,7 +3747,7 @@ export namespace Prisma {
     twitterHours: number
   }
 
-  export type AssessmentResultUpdateInput = {
+  export type ScreeningRecordUpdateInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -3765,10 +3765,10 @@ export namespace Prisma {
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
     twitterHours?: FloatFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutResultsNestedInput
+    user?: UserUpdateOneRequiredWithoutScreeningRecordsNestedInput
   }
 
-  export type AssessmentResultUncheckedUpdateInput = {
+  export type ScreeningRecordUncheckedUpdateInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3789,7 +3789,7 @@ export namespace Prisma {
     twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type AssessmentResultCreateManyInput = {
+  export type ScreeningRecordCreateManyInput = {
     UserID_hash?: string
     userId: number
     date?: Date | string
@@ -3810,7 +3810,7 @@ export namespace Prisma {
     twitterHours: number
   }
 
-  export type AssessmentResultUpdateManyMutationInput = {
+  export type ScreeningRecordUpdateManyMutationInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -3830,7 +3830,7 @@ export namespace Prisma {
     twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type AssessmentResultUncheckedUpdateManyInput = {
+  export type ScreeningRecordUncheckedUpdateManyInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -3877,13 +3877,13 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type AssessmentResultListRelationFilter = {
-    every?: AssessmentResultWhereInput
-    some?: AssessmentResultWhereInput
-    none?: AssessmentResultWhereInput
+  export type ScreeningRecordListRelationFilter = {
+    every?: ScreeningRecordWhereInput
+    some?: ScreeningRecordWhereInput
+    none?: ScreeningRecordWhereInput
   }
 
-  export type AssessmentResultOrderByRelationAggregateInput = {
+  export type ScreeningRecordOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3971,7 +3971,7 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
-  export type AssessmentResultCountOrderByAggregateInput = {
+  export type ScreeningRecordCountOrderByAggregateInput = {
     UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
@@ -3992,7 +3992,7 @@ export namespace Prisma {
     twitterHours?: SortOrder
   }
 
-  export type AssessmentResultAvgOrderByAggregateInput = {
+  export type ScreeningRecordAvgOrderByAggregateInput = {
     userId?: SortOrder
     svasTotal?: SortOrder
     q1_salience?: SortOrder
@@ -4010,7 +4010,7 @@ export namespace Prisma {
     twitterHours?: SortOrder
   }
 
-  export type AssessmentResultMaxOrderByAggregateInput = {
+  export type ScreeningRecordMaxOrderByAggregateInput = {
     UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
@@ -4031,7 +4031,7 @@ export namespace Prisma {
     twitterHours?: SortOrder
   }
 
-  export type AssessmentResultMinOrderByAggregateInput = {
+  export type ScreeningRecordMinOrderByAggregateInput = {
     UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
@@ -4052,7 +4052,7 @@ export namespace Prisma {
     twitterHours?: SortOrder
   }
 
-  export type AssessmentResultSumOrderByAggregateInput = {
+  export type ScreeningRecordSumOrderByAggregateInput = {
     userId?: SortOrder
     svasTotal?: SortOrder
     q1_salience?: SortOrder
@@ -4100,36 +4100,36 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type AssessmentResultCreateNestedManyWithoutUserInput = {
-    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
-    createMany?: AssessmentResultCreateManyUserInputEnvelope
-    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+  export type ScreeningRecordCreateNestedManyWithoutUserInput = {
+    create?: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput> | ScreeningRecordCreateWithoutUserInput[] | ScreeningRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScreeningRecordCreateOrConnectWithoutUserInput | ScreeningRecordCreateOrConnectWithoutUserInput[]
+    createMany?: ScreeningRecordCreateManyUserInputEnvelope
+    connect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
   }
 
-  export type AssessmentResultUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
-    createMany?: AssessmentResultCreateManyUserInputEnvelope
-    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
+  export type ScreeningRecordUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput> | ScreeningRecordCreateWithoutUserInput[] | ScreeningRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScreeningRecordCreateOrConnectWithoutUserInput | ScreeningRecordCreateOrConnectWithoutUserInput[]
+    createMany?: ScreeningRecordCreateManyUserInputEnvelope
+    connect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type AssessmentResultUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
-    upsert?: AssessmentResultUpsertWithWhereUniqueWithoutUserInput | AssessmentResultUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AssessmentResultCreateManyUserInputEnvelope
-    set?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    disconnect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    delete?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    update?: AssessmentResultUpdateWithWhereUniqueWithoutUserInput | AssessmentResultUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AssessmentResultUpdateManyWithWhereWithoutUserInput | AssessmentResultUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
+  export type ScreeningRecordUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput> | ScreeningRecordCreateWithoutUserInput[] | ScreeningRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScreeningRecordCreateOrConnectWithoutUserInput | ScreeningRecordCreateOrConnectWithoutUserInput[]
+    upsert?: ScreeningRecordUpsertWithWhereUniqueWithoutUserInput | ScreeningRecordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ScreeningRecordCreateManyUserInputEnvelope
+    set?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    disconnect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    delete?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    connect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    update?: ScreeningRecordUpdateWithWhereUniqueWithoutUserInput | ScreeningRecordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ScreeningRecordUpdateManyWithWhereWithoutUserInput | ScreeningRecordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ScreeningRecordScalarWhereInput | ScreeningRecordScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -4140,23 +4140,23 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type AssessmentResultUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput> | AssessmentResultCreateWithoutUserInput[] | AssessmentResultUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: AssessmentResultCreateOrConnectWithoutUserInput | AssessmentResultCreateOrConnectWithoutUserInput[]
-    upsert?: AssessmentResultUpsertWithWhereUniqueWithoutUserInput | AssessmentResultUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: AssessmentResultCreateManyUserInputEnvelope
-    set?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    disconnect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    delete?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    connect?: AssessmentResultWhereUniqueInput | AssessmentResultWhereUniqueInput[]
-    update?: AssessmentResultUpdateWithWhereUniqueWithoutUserInput | AssessmentResultUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: AssessmentResultUpdateManyWithWhereWithoutUserInput | AssessmentResultUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
+  export type ScreeningRecordUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput> | ScreeningRecordCreateWithoutUserInput[] | ScreeningRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ScreeningRecordCreateOrConnectWithoutUserInput | ScreeningRecordCreateOrConnectWithoutUserInput[]
+    upsert?: ScreeningRecordUpsertWithWhereUniqueWithoutUserInput | ScreeningRecordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ScreeningRecordCreateManyUserInputEnvelope
+    set?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    disconnect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    delete?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    connect?: ScreeningRecordWhereUniqueInput | ScreeningRecordWhereUniqueInput[]
+    update?: ScreeningRecordUpdateWithWhereUniqueWithoutUserInput | ScreeningRecordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ScreeningRecordUpdateManyWithWhereWithoutUserInput | ScreeningRecordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ScreeningRecordScalarWhereInput | ScreeningRecordScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutResultsInput = {
-    create?: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutResultsInput
+  export type UserCreateNestedOneWithoutScreeningRecordsInput = {
+    create?: XOR<UserCreateWithoutScreeningRecordsInput, UserUncheckedCreateWithoutScreeningRecordsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutScreeningRecordsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -4172,12 +4172,12 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type UserUpdateOneRequiredWithoutResultsNestedInput = {
-    create?: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutResultsInput
-    upsert?: UserUpsertWithoutResultsInput
+  export type UserUpdateOneRequiredWithoutScreeningRecordsNestedInput = {
+    create?: XOR<UserCreateWithoutScreeningRecordsInput, UserUncheckedCreateWithoutScreeningRecordsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutScreeningRecordsInput
+    upsert?: UserUpsertWithoutScreeningRecordsInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutResultsInput, UserUpdateWithoutResultsInput>, UserUncheckedUpdateWithoutResultsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutScreeningRecordsInput, UserUpdateWithoutScreeningRecordsInput>, UserUncheckedUpdateWithoutScreeningRecordsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4290,7 +4290,7 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type AssessmentResultCreateWithoutUserInput = {
+  export type ScreeningRecordCreateWithoutUserInput = {
     UserID_hash?: string
     date?: Date | string
     zone: string
@@ -4310,7 +4310,7 @@ export namespace Prisma {
     twitterHours: number
   }
 
-  export type AssessmentResultUncheckedCreateWithoutUserInput = {
+  export type ScreeningRecordUncheckedCreateWithoutUserInput = {
     UserID_hash?: string
     date?: Date | string
     zone: string
@@ -4330,91 +4330,91 @@ export namespace Prisma {
     twitterHours: number
   }
 
-  export type AssessmentResultCreateOrConnectWithoutUserInput = {
-    where: AssessmentResultWhereUniqueInput
-    create: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput>
+  export type ScreeningRecordCreateOrConnectWithoutUserInput = {
+    where: ScreeningRecordWhereUniqueInput
+    create: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput>
   }
 
-  export type AssessmentResultCreateManyUserInputEnvelope = {
-    data: AssessmentResultCreateManyUserInput | AssessmentResultCreateManyUserInput[]
+  export type ScreeningRecordCreateManyUserInputEnvelope = {
+    data: ScreeningRecordCreateManyUserInput | ScreeningRecordCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
-  export type AssessmentResultUpsertWithWhereUniqueWithoutUserInput = {
-    where: AssessmentResultWhereUniqueInput
-    update: XOR<AssessmentResultUpdateWithoutUserInput, AssessmentResultUncheckedUpdateWithoutUserInput>
-    create: XOR<AssessmentResultCreateWithoutUserInput, AssessmentResultUncheckedCreateWithoutUserInput>
+  export type ScreeningRecordUpsertWithWhereUniqueWithoutUserInput = {
+    where: ScreeningRecordWhereUniqueInput
+    update: XOR<ScreeningRecordUpdateWithoutUserInput, ScreeningRecordUncheckedUpdateWithoutUserInput>
+    create: XOR<ScreeningRecordCreateWithoutUserInput, ScreeningRecordUncheckedCreateWithoutUserInput>
   }
 
-  export type AssessmentResultUpdateWithWhereUniqueWithoutUserInput = {
-    where: AssessmentResultWhereUniqueInput
-    data: XOR<AssessmentResultUpdateWithoutUserInput, AssessmentResultUncheckedUpdateWithoutUserInput>
+  export type ScreeningRecordUpdateWithWhereUniqueWithoutUserInput = {
+    where: ScreeningRecordWhereUniqueInput
+    data: XOR<ScreeningRecordUpdateWithoutUserInput, ScreeningRecordUncheckedUpdateWithoutUserInput>
   }
 
-  export type AssessmentResultUpdateManyWithWhereWithoutUserInput = {
-    where: AssessmentResultScalarWhereInput
-    data: XOR<AssessmentResultUpdateManyMutationInput, AssessmentResultUncheckedUpdateManyWithoutUserInput>
+  export type ScreeningRecordUpdateManyWithWhereWithoutUserInput = {
+    where: ScreeningRecordScalarWhereInput
+    data: XOR<ScreeningRecordUpdateManyMutationInput, ScreeningRecordUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type AssessmentResultScalarWhereInput = {
-    AND?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
-    OR?: AssessmentResultScalarWhereInput[]
-    NOT?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
-    UserID_hash?: StringFilter<"AssessmentResult"> | string
-    userId?: IntFilter<"AssessmentResult"> | number
-    date?: DateTimeFilter<"AssessmentResult"> | Date | string
-    zone?: StringFilter<"AssessmentResult"> | string
-    svasTotal?: IntFilter<"AssessmentResult"> | number
-    q1_salience?: IntFilter<"AssessmentResult"> | number
-    q2_mood?: IntFilter<"AssessmentResult"> | number
-    q3_tolerance?: IntFilter<"AssessmentResult"> | number
-    q4_withdrawal?: IntFilter<"AssessmentResult"> | number
-    q5_conflict?: IntFilter<"AssessmentResult"> | number
-    q6_relapse?: IntFilter<"AssessmentResult"> | number
-    socialMediaHours?: FloatFilter<"AssessmentResult"> | number
-    sleepHours?: FloatFilter<"AssessmentResult"> | number
-    productivityImpact?: IntFilter<"AssessmentResult"> | number
-    instagramHours?: FloatFilter<"AssessmentResult"> | number
-    tiktokHours?: FloatFilter<"AssessmentResult"> | number
-    youtubeHours?: FloatFilter<"AssessmentResult"> | number
-    twitterHours?: FloatFilter<"AssessmentResult"> | number
+  export type ScreeningRecordScalarWhereInput = {
+    AND?: ScreeningRecordScalarWhereInput | ScreeningRecordScalarWhereInput[]
+    OR?: ScreeningRecordScalarWhereInput[]
+    NOT?: ScreeningRecordScalarWhereInput | ScreeningRecordScalarWhereInput[]
+    UserID_hash?: StringFilter<"ScreeningRecord"> | string
+    userId?: IntFilter<"ScreeningRecord"> | number
+    date?: DateTimeFilter<"ScreeningRecord"> | Date | string
+    zone?: StringFilter<"ScreeningRecord"> | string
+    svasTotal?: IntFilter<"ScreeningRecord"> | number
+    q1_salience?: IntFilter<"ScreeningRecord"> | number
+    q2_mood?: IntFilter<"ScreeningRecord"> | number
+    q3_tolerance?: IntFilter<"ScreeningRecord"> | number
+    q4_withdrawal?: IntFilter<"ScreeningRecord"> | number
+    q5_conflict?: IntFilter<"ScreeningRecord"> | number
+    q6_relapse?: IntFilter<"ScreeningRecord"> | number
+    socialMediaHours?: FloatFilter<"ScreeningRecord"> | number
+    sleepHours?: FloatFilter<"ScreeningRecord"> | number
+    productivityImpact?: IntFilter<"ScreeningRecord"> | number
+    instagramHours?: FloatFilter<"ScreeningRecord"> | number
+    tiktokHours?: FloatFilter<"ScreeningRecord"> | number
+    youtubeHours?: FloatFilter<"ScreeningRecord"> | number
+    twitterHours?: FloatFilter<"ScreeningRecord"> | number
   }
 
-  export type UserCreateWithoutResultsInput = {
+  export type UserCreateWithoutScreeningRecordsInput = {
     Username: string
   }
 
-  export type UserUncheckedCreateWithoutResultsInput = {
+  export type UserUncheckedCreateWithoutScreeningRecordsInput = {
     UserID?: number
     Username: string
   }
 
-  export type UserCreateOrConnectWithoutResultsInput = {
+  export type UserCreateOrConnectWithoutScreeningRecordsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+    create: XOR<UserCreateWithoutScreeningRecordsInput, UserUncheckedCreateWithoutScreeningRecordsInput>
   }
 
-  export type UserUpsertWithoutResultsInput = {
-    update: XOR<UserUpdateWithoutResultsInput, UserUncheckedUpdateWithoutResultsInput>
-    create: XOR<UserCreateWithoutResultsInput, UserUncheckedCreateWithoutResultsInput>
+  export type UserUpsertWithoutScreeningRecordsInput = {
+    update: XOR<UserUpdateWithoutScreeningRecordsInput, UserUncheckedUpdateWithoutScreeningRecordsInput>
+    create: XOR<UserCreateWithoutScreeningRecordsInput, UserUncheckedCreateWithoutScreeningRecordsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutResultsInput = {
+  export type UserUpdateToOneWithWhereWithoutScreeningRecordsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutResultsInput, UserUncheckedUpdateWithoutResultsInput>
+    data: XOR<UserUpdateWithoutScreeningRecordsInput, UserUncheckedUpdateWithoutScreeningRecordsInput>
   }
 
-  export type UserUpdateWithoutResultsInput = {
+  export type UserUpdateWithoutScreeningRecordsInput = {
     Username?: StringFieldUpdateOperationsInput | string
   }
 
-  export type UserUncheckedUpdateWithoutResultsInput = {
+  export type UserUncheckedUpdateWithoutScreeningRecordsInput = {
     UserID?: IntFieldUpdateOperationsInput | number
     Username?: StringFieldUpdateOperationsInput | string
   }
 
-  export type AssessmentResultCreateManyUserInput = {
+  export type ScreeningRecordCreateManyUserInput = {
     UserID_hash?: string
     date?: Date | string
     zone: string
@@ -4434,7 +4434,7 @@ export namespace Prisma {
     twitterHours: number
   }
 
-  export type AssessmentResultUpdateWithoutUserInput = {
+  export type ScreeningRecordUpdateWithoutUserInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -4454,7 +4454,7 @@ export namespace Prisma {
     twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type AssessmentResultUncheckedUpdateWithoutUserInput = {
+  export type ScreeningRecordUncheckedUpdateWithoutUserInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -4474,7 +4474,7 @@ export namespace Prisma {
     twitterHours?: FloatFieldUpdateOperationsInput | number
   }
 
-  export type AssessmentResultUncheckedUpdateManyWithoutUserInput = {
+  export type ScreeningRecordUncheckedUpdateManyWithoutUserInput = {
     UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string

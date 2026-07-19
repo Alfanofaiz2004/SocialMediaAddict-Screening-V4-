@@ -17,7 +17,7 @@ export async function POST(request: Request) {
       create: { Username: Username },
     });
 
-    const newResult = await prisma.assessmentResult.create({
+    const newResult = await prisma.screeningRecord.create({
       data: {
         userId: user.UserID,
         zone: result.zone,

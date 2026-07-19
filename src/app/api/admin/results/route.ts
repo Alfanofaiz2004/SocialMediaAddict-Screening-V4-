@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
-    const dbData = await prisma.assessmentResult.findMany({
+    const dbData = await prisma.screeningRecord.findMany({
       orderBy: { date: 'desc' },
       include: { user: true }
     });
@@ -57,7 +57,7 @@ export async function DELETE(request: Request) {
     
     if (!id) return NextResponse.json({ success: false, error: 'Missing ID' }, { status: 400 });
 
-    await prisma.assessmentResult.delete({
+    await prisma.screeningRecord.delete({
       where: { UserID_hash: id }
     });
 
@@ -73,7 +73,7 @@ export async function PUT(request: Request) {
     const { id, userName } = await request.json();
     if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
 
-    const result = await prisma.assessmentResult.findUnique({ where: { UserID_hash: id } });
+    const result = await prisma.screeningRecord.findUnique({ where: { UserID_hash: id } });
     if (result) {
       try {
         await prisma.user.update({
