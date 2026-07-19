@@ -118,6 +118,12 @@ export default function KuesionerPage() {
     else if (step === 'productivity') handleCalculate();
   };
 
+  const goBack = () => {
+    if (step === 'platform') setStep('svas');
+    else if (step === 'sleep') setStep('platform');
+    else if (step === 'productivity') setStep('sleep');
+  };
+
 
   const isNextDisabled = () => {
     if (step === 'svas') return !svasComplete;
@@ -609,7 +615,16 @@ export default function KuesionerPage() {
               )}
 
               {/* ═══════════ ACTION BUTTONS ═══════════ */}
-              <div className="flex justify-end items-center mt-10 pt-6 border-t border-outline-variant">
+              <div className={`flex items-center mt-10 pt-6 border-t border-outline-variant ${(step !== 'intro' && step !== 'svas') ? 'justify-between' : 'justify-end'}`}>
+                {(step !== 'intro' && step !== 'svas') && (
+                  <button
+                    onClick={goBack}
+                    className="group bg-surface-container-high text-on-surface font-semibold text-sm md:text-base px-6 py-2.5 md:px-8 md:py-3 rounded-xl hover:bg-surface-container-highest transition-all focus:ring-2 focus:ring-primary focus:outline-none flex items-center justify-center gap-1.5 md:gap-2"
+                  >
+                    <span className="material-symbols-outlined text-[18px] md:text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Kembali
+                  </button>
+                )}
                 <button
                   onClick={goNext}
                   disabled={isNextDisabled() || isCalculating}

@@ -126,7 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
 };
 
 exports.Prisma.AssessmentResultScalarFieldEnum = {
-  UserID: 'UserID',
+  UserID_hash: 'UserID_hash',
   userId: 'userId',
   date: 'date',
   zone: 'zone',

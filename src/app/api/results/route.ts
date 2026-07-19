@@ -38,7 +38,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, id: newResult.UserID });
+    return NextResponse.json({ success: true, id: newResult.UserID_hash });
   } catch (error) {
     console.error('Results save error:', error);
     return NextResponse.json({ success: false, error: 'Internal server error' }, { status: 500 });

@@ -14,7 +14,7 @@ model User {
 }
 
 model AssessmentResult {
-  UserID             String   @id @default(uuid())
+  UserID_hash        String   @id @default(uuid())
   userId             Int
   user               User     @relation(fields: [userId], references: [UserID], onDelete: Cascade)
   date               DateTime @default(now())

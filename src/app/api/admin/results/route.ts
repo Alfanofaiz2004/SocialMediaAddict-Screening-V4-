@@ -35,7 +35,7 @@ export async function GET(request: Request) {
       const result = calculateSVAS6(input);
 
       return {
-        id: item.UserID,
+        id: item.UserID_hash,
         createdAt: item.date,
         userName: item.user?.Username || 'Unknown',
         input,
@@ -58,7 +58,7 @@ export async function DELETE(request: Request) {
     if (!id) return NextResponse.json({ success: false, error: 'Missing ID' }, { status: 400 });
 
     await prisma.assessmentResult.delete({
-      where: { UserID: id }
+      where: { UserID_hash: id }
     });
 
     return NextResponse.json({ success: true });
@@ -73,7 +73,7 @@ export async function PUT(request: Request) {
     const { id, userName } = await request.json();
     if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
 
-    const result = await prisma.assessmentResult.findUnique({ where: { UserID: id } });
+    const result = await prisma.assessmentResult.findUnique({ where: { UserID_hash: id } });
     if (result) {
       try {
         await prisma.user.update({

@@ -2106,7 +2106,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMinAggregateOutputType = {
-    UserID: string | null
+    UserID_hash: string | null
     userId: number | null
     date: Date | null
     zone: string | null
@@ -2127,7 +2127,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMaxAggregateOutputType = {
-    UserID: string | null
+    UserID_hash: string | null
     userId: number | null
     date: Date | null
     zone: string | null
@@ -2148,7 +2148,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCountAggregateOutputType = {
-    UserID: number
+    UserID_hash: number
     userId: number
     date: number
     zone: number
@@ -2207,7 +2207,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMinAggregateInputType = {
-    UserID?: true
+    UserID_hash?: true
     userId?: true
     date?: true
     zone?: true
@@ -2228,7 +2228,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMaxAggregateInputType = {
-    UserID?: true
+    UserID_hash?: true
     userId?: true
     date?: true
     zone?: true
@@ -2249,7 +2249,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCountAggregateInputType = {
-    UserID?: true
+    UserID_hash?: true
     userId?: true
     date?: true
     zone?: true
@@ -2357,7 +2357,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultGroupByOutputType = {
-    UserID: string
+    UserID_hash: string
     userId: number
     date: Date
     zone: string
@@ -2397,7 +2397,7 @@ export namespace Prisma {
 
 
   export type AssessmentResultSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    UserID?: boolean
+    UserID_hash?: boolean
     userId?: boolean
     date?: boolean
     zone?: boolean
@@ -2419,7 +2419,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    UserID?: boolean
+    UserID_hash?: boolean
     userId?: boolean
     date?: boolean
     zone?: boolean
@@ -2441,7 +2441,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    UserID?: boolean
+    UserID_hash?: boolean
     userId?: boolean
     date?: boolean
     zone?: boolean
@@ -2463,7 +2463,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["assessmentResult"]>
 
   export type AssessmentResultSelectScalar = {
-    UserID?: boolean
+    UserID_hash?: boolean
     userId?: boolean
     date?: boolean
     zone?: boolean
@@ -2483,7 +2483,7 @@ export namespace Prisma {
     twitterHours?: boolean
   }
 
-  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
+  export type AssessmentResultOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID_hash" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["assessmentResult"]>
   export type AssessmentResultInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2500,7 +2500,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      UserID: string
+      UserID_hash: string
       userId: number
       date: Date
       zone: string
@@ -2601,8 +2601,8 @@ export namespace Prisma {
      * // Get first 10 AssessmentResults
      * const assessmentResults = await prisma.assessmentResult.findMany({ take: 10 })
      * 
-     * // Only select the `UserID`
-     * const assessmentResultWithUserIDOnly = await prisma.assessmentResult.findMany({ select: { UserID: true } })
+     * // Only select the `UserID_hash`
+     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.findMany({ select: { UserID_hash: true } })
      * 
      */
     findMany<T extends AssessmentResultFindManyArgs>(args?: SelectSubset<T, AssessmentResultFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AssessmentResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -2646,9 +2646,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many AssessmentResults and only return the `UserID`
-     * const assessmentResultWithUserIDOnly = await prisma.assessmentResult.createManyAndReturn({
-     *   select: { UserID: true },
+     * // Create many AssessmentResults and only return the `UserID_hash`
+     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.createManyAndReturn({
+     *   select: { UserID_hash: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -2737,9 +2737,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more AssessmentResults and only return the `UserID`
-     * const assessmentResultWithUserIDOnly = await prisma.assessmentResult.updateManyAndReturn({
-     *   select: { UserID: true },
+     * // Update zero or more AssessmentResults and only return the `UserID_hash`
+     * const assessmentResultWithUserID_hashOnly = await prisma.assessmentResult.updateManyAndReturn({
+     *   select: { UserID_hash: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2942,7 +2942,7 @@ export namespace Prisma {
    * Fields of the AssessmentResult model
    */
   interface AssessmentResultFieldRefs {
-    readonly UserID: FieldRef<"AssessmentResult", 'String'>
+    readonly UserID_hash: FieldRef<"AssessmentResult", 'String'>
     readonly userId: FieldRef<"AssessmentResult", 'Int'>
     readonly date: FieldRef<"AssessmentResult", 'DateTime'>
     readonly zone: FieldRef<"AssessmentResult", 'String'>
@@ -3402,7 +3402,7 @@ export namespace Prisma {
 
 
   export const AssessmentResultScalarFieldEnum: {
-    UserID: 'UserID',
+    UserID_hash: 'UserID_hash',
     userId: 'userId',
     date: 'date',
     zone: 'zone',
@@ -3551,7 +3551,7 @@ export namespace Prisma {
     AND?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
     OR?: AssessmentResultWhereInput[]
     NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
-    UserID?: StringFilter<"AssessmentResult"> | string
+    UserID_hash?: StringFilter<"AssessmentResult"> | string
     userId?: IntFilter<"AssessmentResult"> | number
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
     zone?: StringFilter<"AssessmentResult"> | string
@@ -3573,7 +3573,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultOrderByWithRelationInput = {
-    UserID?: SortOrder
+    UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
@@ -3595,7 +3595,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultWhereUniqueInput = Prisma.AtLeast<{
-    UserID?: string
+    UserID_hash?: string
     AND?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
     OR?: AssessmentResultWhereInput[]
     NOT?: AssessmentResultWhereInput | AssessmentResultWhereInput[]
@@ -3617,10 +3617,10 @@ export namespace Prisma {
     youtubeHours?: FloatFilter<"AssessmentResult"> | number
     twitterHours?: FloatFilter<"AssessmentResult"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "UserID">
+  }, "UserID_hash">
 
   export type AssessmentResultOrderByWithAggregationInput = {
-    UserID?: SortOrder
+    UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
@@ -3649,7 +3649,7 @@ export namespace Prisma {
     AND?: AssessmentResultScalarWhereWithAggregatesInput | AssessmentResultScalarWhereWithAggregatesInput[]
     OR?: AssessmentResultScalarWhereWithAggregatesInput[]
     NOT?: AssessmentResultScalarWhereWithAggregatesInput | AssessmentResultScalarWhereWithAggregatesInput[]
-    UserID?: StringWithAggregatesFilter<"AssessmentResult"> | string
+    UserID_hash?: StringWithAggregatesFilter<"AssessmentResult"> | string
     userId?: IntWithAggregatesFilter<"AssessmentResult"> | number
     date?: DateTimeWithAggregatesFilter<"AssessmentResult"> | Date | string
     zone?: StringWithAggregatesFilter<"AssessmentResult"> | string
@@ -3706,7 +3706,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCreateInput = {
-    UserID?: string
+    UserID_hash?: string
     date?: Date | string
     zone: string
     svasTotal: number
@@ -3727,7 +3727,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedCreateInput = {
-    UserID?: string
+    UserID_hash?: string
     userId: number
     date?: Date | string
     zone: string
@@ -3748,7 +3748,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUpdateInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3769,7 +3769,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedUpdateInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -3790,7 +3790,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCreateManyInput = {
-    UserID?: string
+    UserID_hash?: string
     userId: number
     date?: Date | string
     zone: string
@@ -3811,7 +3811,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUpdateManyMutationInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -3831,7 +3831,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedUpdateManyInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
@@ -3972,7 +3972,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCountOrderByAggregateInput = {
-    UserID?: SortOrder
+    UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
@@ -4011,7 +4011,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMaxOrderByAggregateInput = {
-    UserID?: SortOrder
+    UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
@@ -4032,7 +4032,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultMinOrderByAggregateInput = {
-    UserID?: SortOrder
+    UserID_hash?: SortOrder
     userId?: SortOrder
     date?: SortOrder
     zone?: SortOrder
@@ -4291,7 +4291,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCreateWithoutUserInput = {
-    UserID?: string
+    UserID_hash?: string
     date?: Date | string
     zone: string
     svasTotal: number
@@ -4311,7 +4311,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedCreateWithoutUserInput = {
-    UserID?: string
+    UserID_hash?: string
     date?: Date | string
     zone: string
     svasTotal: number
@@ -4360,7 +4360,7 @@ export namespace Prisma {
     AND?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
     OR?: AssessmentResultScalarWhereInput[]
     NOT?: AssessmentResultScalarWhereInput | AssessmentResultScalarWhereInput[]
-    UserID?: StringFilter<"AssessmentResult"> | string
+    UserID_hash?: StringFilter<"AssessmentResult"> | string
     userId?: IntFilter<"AssessmentResult"> | number
     date?: DateTimeFilter<"AssessmentResult"> | Date | string
     zone?: StringFilter<"AssessmentResult"> | string
@@ -4415,7 +4415,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultCreateManyUserInput = {
-    UserID?: string
+    UserID_hash?: string
     date?: Date | string
     zone: string
     svasTotal: number
@@ -4435,7 +4435,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUpdateWithoutUserInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -4455,7 +4455,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedUpdateWithoutUserInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
@@ -4475,7 +4475,7 @@ export namespace Prisma {
   }
 
   export type AssessmentResultUncheckedUpdateManyWithoutUserInput = {
-    UserID?: StringFieldUpdateOperationsInput | string
+    UserID_hash?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     zone?: StringFieldUpdateOperationsInput | string
     svasTotal?: IntFieldUpdateOperationsInput | number
