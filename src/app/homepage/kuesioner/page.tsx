@@ -41,11 +41,11 @@ const STEP_INFO: Record<Step, { num: number; title: string; subtitle: string; ic
 const TOTAL_STEPS = 5;
 
 // ─── Platform Icons ──────────────────────────────────────────────────────────
-const PLATFORM_ICONS: Record<string, { icon: string; gradient: string }> = {
-  instagram: { icon: 'photo_camera', gradient: 'linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)' },
-  tiktok: { icon: 'music_note', gradient: 'linear-gradient(135deg, #00f2ea 0%, #ff0050 100%)' },
-  youtube: { icon: 'play_arrow', gradient: 'linear-gradient(135deg, #FF0000 0%, #CC0000 100%)' },
-  twitter: { icon: 'tag', gradient: 'linear-gradient(135deg, #1DA1F2 0%, #0d8ddb 100%)' },
+const PLATFORM_ICONS: Record<string, { icon: string; bg: string; color: string }> = {
+  instagram: { icon: 'photo_camera', bg: '#fce4ec', color: '#e91e63' },
+  tiktok: { icon: 'music_note', bg: '#eceff1', color: '#000000' },
+  youtube: { icon: 'play_arrow', bg: '#ffebee', color: '#f44336' },
+  twitter: { icon: 'tag', bg: '#e1f5fe', color: '#03a9f4' },
 };
 
 export default function KuesionerPage() {
@@ -430,7 +430,7 @@ export default function KuesionerPage() {
                   {/* Platform cards */}
                   <div className="grid grid-cols-2 gap-3 md:gap-4">
                     {PLATFORM_CONFIG.map((config, i) => {
-                      const pIcon = PLATFORM_ICONS[config.key] || { icon: 'apps', gradient: 'linear-gradient(135deg, #888 0%, #666 100%)' };
+                      const pIcon = PLATFORM_ICONS[config.key] || { icon: 'apps', bg: '#f5f5f5', color: '#757575' };
                       const val = platforms[config.key as keyof PlatformValues] || 0;
                       return (
                         <motion.div
@@ -442,8 +442,8 @@ export default function KuesionerPage() {
                         >
                           <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3 mb-3 md:mb-4">
                             <div
-                              className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center text-white shadow-sm"
-                              style={{ background: pIcon.gradient }}
+                              className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center shadow-sm"
+                              style={{ backgroundColor: pIcon.bg, color: pIcon.color }}
                             >
                               <span className="material-symbols-outlined text-[18px] md:text-[22px]">{pIcon.icon}</span>
                             </div>

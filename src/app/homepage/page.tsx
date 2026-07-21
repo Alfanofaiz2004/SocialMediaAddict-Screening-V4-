@@ -175,15 +175,7 @@ export default function ScreeningLandingPage() {
           <div className="max-w-max-width-content mx-auto px-gutter flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Left: Text */}
             <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-primary/10 text-primary font-label-md text-sm px-4 py-1.5 rounded-full mb-6"
-              >
-                <span className="material-symbols-outlined text-[18px]">science</span>
-                Berbasis Skala SVAS-6 (Short Video Addiction Scale)
-              </motion.div>
+
 
               <motion.h1
                 initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
@@ -226,6 +218,8 @@ export default function ScreeningLandingPage() {
                 </a>
               </motion.div>
 
+
+
               {/* Trust indicators */}
               <motion.div
                 initial={{ opacity: 0, filter: 'blur(10px)' }}
@@ -253,7 +247,7 @@ export default function ScreeningLandingPage() {
               initial={{ opacity: 0, x: 60, filter: 'blur(10px)' }}
               animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="w-full lg:w-1/2 flex justify-center"
+              className="w-full lg:w-1/2 flex flex-col items-center justify-center"
             >
               <div className="relative w-[280px] md:w-[320px]">
                 {/* Phone frame */}
@@ -337,6 +331,15 @@ export default function ScreeningLandingPage() {
                   </div>
                 </motion.div>
               </div>
+              <motion.div
+                initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="inline-flex items-center gap-2 bg-primary/10 text-primary font-label-md text-sm px-4 py-1.5 rounded-full mt-10 shadow-sm"
+              >
+                <span className="material-symbols-outlined text-[18px]">science</span>
+                Berbasis Skala SVAS-6 (Short Video Addiction Scale)
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -377,10 +380,7 @@ export default function ScreeningLandingPage() {
               viewport={{ once: true }}
               className="text-center mb-12"
             >
-              <span className="inline-flex items-center gap-2 bg-primary/10 text-primary font-label-md text-sm px-4 py-1.5 rounded-full mb-4">
-                <span className="material-symbols-outlined text-[18px]">category</span>
-                Berdasarkan Teori Griffiths (2005)
-              </span>
+
               <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-3">
                 6 Dimensi yang Diukur
               </h2>
@@ -414,7 +414,7 @@ export default function ScreeningLandingPage() {
           </div>
         </section>
 
-        {/* ═══════════ HOW IT WORKS ═══════════ */}
+        {/* ═══════════ Cara Kerja ═══════════ */}
         <section id="cara-kerja" className="w-full bg-surface-container-low py-16 md:py-20 border-y border-outline-variant scroll-mt-20">
           <div className="max-w-max-width-content mx-auto px-gutter">
             <motion.div
