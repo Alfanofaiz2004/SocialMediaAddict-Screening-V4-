@@ -20,14 +20,15 @@ export default function ScreeningLayoutWrapper({ children }: { children: React.R
   }, []);
 
   const isHeaderHidden = pathname === '/homepage/kuesioner' && questionnaireStep !== 'intro';
+  const isHeaderHasil = pathname === '/homepage/hasil' || pathname.startsWith('/homepage/admin');
 
   return (
     <>
       <AnimatePresence mode="wait">
         {!isHeaderHidden && (
           <ScreeningHeader 
-            key={pathname === '/homepage/hasil' ? 'hasil' : 'normal'} 
-            variant={pathname === '/homepage/hasil' ? 'hasil' : 'normal'} 
+            key={isHeaderHasil ? 'hasil' : 'normal'} 
+            variant={isHeaderHasil ? 'hasil' : 'normal'} 
           />
         )}
       </AnimatePresence>
