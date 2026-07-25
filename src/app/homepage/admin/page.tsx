@@ -239,41 +239,41 @@ export default function AdminDashboard() {
         </div>
 
         {/* Top KPIs Row */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-md w-full">
           <motion.div 
             initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col justify-center shadow-sm"
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
           >
-            <div className="text-on-surface-variant text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-1 flex items-center justify-center sm:justify-start gap-1">
-              <span className="material-symbols-outlined text-[14px] sm:text-[18px]">today</span> Input Hari Ini
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">today</span> Input Hari Ini
             </div>
-            <div className="text-xl sm:text-3xl text-primary font-bold text-center sm:text-left">{inputsToday}</div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{inputsToday}</div>
           </motion.div>
           
           <motion.div 
             initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.4, delay: 0.2 }}
-            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col justify-center shadow-sm"
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
           >
-            <div className="text-on-surface-variant text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-1 flex items-center justify-center sm:justify-start gap-1">
-              <span className="material-symbols-outlined text-[14px] sm:text-[18px]">fact_check</span> Total Tes
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">fact_check</span> Total Tes
             </div>
-            <div className="text-xl sm:text-3xl text-primary font-bold text-center sm:text-left">{filteredResults.length}</div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{filteredResults.length}</div>
           </motion.div>
           
           <motion.div 
             initial={{ opacity: 0, y: 15, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 0.4, delay: 0.3 }}
-            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col justify-center shadow-sm"
+            className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-center shadow-sm"
           >
-            <div className="text-on-surface-variant text-[9px] sm:text-xs font-bold uppercase tracking-wider mb-1 flex items-center justify-center sm:justify-start gap-1">
-              <span className="material-symbols-outlined text-[14px] sm:text-[18px]">monitoring</span> Rata-rata Skor
+            <div className="text-on-surface-variant font-label-sm uppercase tracking-wider mb-2 flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">monitoring</span> Rata-rata Skor
             </div>
-            <div className="text-xl sm:text-3xl text-primary font-bold text-center sm:text-left">{avgScore}%</div>
+            <div className="font-display-sm text-3xl text-primary font-bold">{avgScore}%</div>
           </motion.div>
         </div>
 

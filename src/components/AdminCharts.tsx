@@ -113,44 +113,44 @@ export default function AdminCharts({ results }: { results: any[] }) {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-2 sm:gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-md w-full">
       {/* Zone Chart */}
-      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col items-center">
-        <h3 className="w-full text-[10px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider text-left mb-2 flex items-center gap-1">
-          <span className="material-symbols-outlined text-[14px] sm:text-[18px]">pie_chart</span> Zone Distribution
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center">
+        <h3 className="w-full font-label-md text-on-surface-variant uppercase tracking-wider text-left mb-4 flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">pie_chart</span> Zone Distribution
         </h3>
-        <div className="flex-grow flex items-center justify-center w-full max-w-[320px]">
-          <ReactApexChart options={zoneOptions} series={[zoneData.green, zoneData.yellow, zoneData.red]} type="donut" height={220} />
+        <div className="flex-grow flex items-center justify-center w-full max-w-[350px]">
+          <ReactApexChart options={zoneOptions} series={[zoneData.green, zoneData.yellow, zoneData.red]} type="donut" height={300} />
         </div>
       </div>
 
       {/* Platform Chart */}
-      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col items-center">
-        <h3 className="w-full text-[10px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider text-left mb-2 flex items-center gap-1">
-          <span className="material-symbols-outlined text-[14px] sm:text-[18px]">phone_iphone</span> Avg Platform Usage
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center">
+        <h3 className="w-full font-label-md text-on-surface-variant uppercase tracking-wider text-left mb-4 flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">phone_iphone</span> Avg Platform Usage
         </h3>
         <div className="flex-grow flex items-center justify-center w-full">
-          <ReactApexChart options={platformOptions} series={[{ name: 'Hours', data: platformAvg }]} type="bar" height={220} width="100%" />
+          <ReactApexChart options={platformOptions} series={[{ name: 'Hours', data: platformAvg }]} type="bar" height={300} width="100%" />
         </div>
       </div>
 
       {/* S-VAS Severity Chart */}
-      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col items-center">
-        <h3 className="w-full text-[10px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider text-left mb-2 flex items-center gap-1">
-          <span className="material-symbols-outlined text-[14px] sm:text-[18px]">psychology</span> S-VAS Severity
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center">
+        <h3 className="w-full font-label-md text-on-surface-variant uppercase tracking-wider text-left mb-4 flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">psychology</span> S-VAS Severity
         </h3>
         <div className="flex-grow flex items-center justify-center w-full">
-          <ReactApexChart options={svasOptions} series={[{ name: 'Users', data: [normal, berisiko, kecanduan] }]} type="bar" height={220} width="100%" />
+          <ReactApexChart options={svasOptions} series={[{ name: 'Users', data: [normal, berisiko, kecanduan] }]} type="bar" height={300} width="100%" />
         </div>
       </div>
 
       {/* Sleep Chart */}
-      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-2.5 sm:p-4 flex flex-col items-center">
-        <h3 className="w-full text-[10px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider text-left mb-2 flex items-center gap-1">
-          <span className="material-symbols-outlined text-[14px] sm:text-[18px]">bedtime</span> Sleep vs Zone
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col items-center">
+        <h3 className="w-full font-label-md text-on-surface-variant uppercase tracking-wider text-left mb-4 flex items-center gap-2">
+          <span className="material-symbols-outlined text-[18px]">bedtime</span> Sleep vs Zone Correlation
         </h3>
         <div className="flex-grow flex items-center justify-center w-full">
-          <ReactApexChart options={sleepOptions} series={sleepSeries} type="bar" height={220} width="100%" />
+          <ReactApexChart options={sleepOptions} series={sleepSeries} type="bar" height={300} width="100%" />
         </div>
       </div>
     </div>
