@@ -44,8 +44,16 @@ export default function AdminDashboard() {
     setCurrentPage(1);
   }, [timeFilter, itemsPerPage]);
 
+  const getAuthHeaders = (): Record<string, string> => {
+    const token = sessionStorage.getItem('screening_admin_token');
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  };
+
   const fetchResults = () => {
-    fetch('/api/admin/results')
+    fetch('/api/admin/results', {
+      headers: getAuthHeaders(),
+      credentials: 'include'
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -68,6 +76,7 @@ export default function AdminDashboard() {
     sessionStorage.removeItem('screening_username');
     sessionStorage.removeItem('screening_auth_token');
     sessionStorage.removeItem('screening_admin_auth');
+    sessionStorage.removeItem('screening_admin_token');
     sessionStorage.removeItem('screening_user_role');
     sessionStorage.removeItem('screening_logged_in');
     router.push('/homepage');
@@ -103,7 +112,11 @@ export default function AdminDashboard() {
   const handleDelete = async (id: string) => {
     if (!confirm('Apakah kamu yakin ingin menghapus data ini secara permanen?')) return;
     try {
-      const res = await fetch(`/api/admin/results?id=${id}`, { method: 'DELETE' });
+      const res = await fetch(`/api/admin/results?id=${id}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+        credentials: 'include'
+      });
       if (res.ok) {
         setResults(prev => prev.filter(r => r.id !== id));
       } else {
@@ -119,7 +132,8 @@ export default function AdminDashboard() {
     try {
       const res = await fetch('/api/admin/results', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
+        credentials: 'include',
         body: JSON.stringify({ id: editModal.id, userName: editName.trim() })
       });
       if (res.ok) {

@@ -1,11 +1,18 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { calculateSVAS6 } from '@/lib/svas-algorithm';
+import { isAuthenticatedAdmin } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
+// ── GET: Fetch All Results (Protected) ──────────────────────────────────────
 export async function GET(request: Request) {
   try {
+    const isAuth = await isAuthenticatedAdmin(request);
+    if (!isAuth) {
+      return NextResponse.json({ success: false, error: 'Akses ditolak: Anda tidak memiliki izin (Unauthorized)' }, { status: 401 });
+    }
+
     const dbData = await prisma.screeningRecord.findMany({
       orderBy: { date: 'desc' },
       include: { user: true }
@@ -45,17 +52,25 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ success: true, data: formattedData });
   } catch (error) {
-    console.error('Failed to fetch results:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch' }, { status: 500 });
+    console.error('Failed to fetch admin results:', error);
+    return NextResponse.json({ success: false, error: 'Gagal mengambil data' }, { status: 500 });
   }
 }
 
+// ── DELETE: Remove Result Record (Protected) ────────────────────────────────
 export async function DELETE(request: Request) {
   try {
+    const isAuth = await isAuthenticatedAdmin(request);
+    if (!isAuth) {
+      return NextResponse.json({ success: false, error: 'Akses ditolak: Anda tidak memiliki izin (Unauthorized)' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     
-    if (!id) return NextResponse.json({ success: false, error: 'Missing ID' }, { status: 400 });
+    if (!id || typeof id !== 'string') {
+      return NextResponse.json({ success: false, error: 'ID tidak valid' }, { status: 400 });
+    }
 
     await prisma.screeningRecord.delete({
       where: { UserID_hash: id }
@@ -64,30 +79,42 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Failed to delete result:', error);
-    return NextResponse.json({ success: false, error: 'Failed to delete' }, { status: 500 });
+    return NextResponse.json({ success: false, error: 'Gagal menghapus data' }, { status: 500 });
   }
 }
 
+// ── PUT: Update Record User Name (Protected) ────────────────────────────────
 export async function PUT(request: Request) {
   try {
-    const { id, userName } = await request.json();
-    if (!id || !userName) return NextResponse.json({ success: false, error: 'Missing Data' }, { status: 400 });
+    const isAuth = await isAuthenticatedAdmin(request);
+    if (!isAuth) {
+      return NextResponse.json({ success: false, error: 'Akses ditolak: Anda tidak memiliki izin (Unauthorized)' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { id, userName } = body;
+    
+    if (!id || !userName || typeof userName !== 'string') {
+      return NextResponse.json({ success: false, error: 'Data tidak valid' }, { status: 400 });
+    }
+
+    const cleanName = userName.trim().slice(0, 50);
 
     const result = await prisma.screeningRecord.findUnique({ where: { UserID_hash: id } });
     if (result) {
       try {
         await prisma.user.update({
           where: { UserID: result.userId },
-          data: { Username: userName }
+          data: { Username: cleanName }
         });
       } catch (e) {
-        // user might not exist
+        // User record fallback
       }
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Failed to update result:', error);
-    return NextResponse.json({ success: false, error: 'Failed to update' }, { status: 500 });
+    return NextResponse.json({ success: false, error: 'Gagal memperbarui data' }, { status: 500 });
   }
 }

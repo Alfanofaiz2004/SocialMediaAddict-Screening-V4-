@@ -27,6 +27,7 @@ export default function AdminLogin() {
 
       if (data.success) {
         sessionStorage.setItem('screening_admin_auth', 'true');
+        sessionStorage.setItem('screening_admin_token', data.token || '');
         sessionStorage.setItem('screening_user_role', 'admin');
         sessionStorage.setItem('screening_username', 'admin');
         router.push('/homepage/admin');
