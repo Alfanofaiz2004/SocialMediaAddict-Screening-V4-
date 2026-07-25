@@ -520,10 +520,10 @@ export default function HasilPage() {
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[8px] md:text-xs font-bold uppercase tracking-widest mb-0 md:mb-1 opacity-80" style={{ color: colorScheme.text }}>
+                      <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest mb-0 md:mb-1 opacity-80" style={{ color: colorScheme.text }}>
                         Status
                       </span>
-                      <h3 className="text-sm md:text-3xl font-extrabold leading-tight" style={{ color: colorScheme.text }}>
+                      <h3 className="text-base md:text-3xl font-extrabold leading-tight" style={{ color: colorScheme.text }}>
                         {zoneInfo.label}
                       </h3>
                     </div>
@@ -532,7 +532,7 @@ export default function HasilPage() {
                   <div className="h-px w-full my-1 md:my-2 opacity-20" style={{ backgroundColor: colorScheme.text }} />
 
                   <p
-                    className="text-[9px] md:text-lg font-medium leading-relaxed relative z-10"
+                    className="text-xs sm:text-sm md:text-lg font-semibold leading-relaxed relative z-10"
                     style={{ color: colorScheme.text }}
                   >
                     {zoneInfo.description}
@@ -619,18 +619,24 @@ export default function HasilPage() {
               <div className="grid grid-cols-3 gap-2 md:gap-4">
                 <div className="bg-surface-container rounded-lg md:rounded-xl p-2 md:p-5 text-center flex flex-col items-center justify-start gap-1 border border-outline-variant/30">
                   <span className="material-symbols-outlined text-primary text-[18px] md:text-[28px]">schedule</span>
-                  <p className="text-base md:text-3xl font-bold text-on-surface mt-0.5 md:mt-1 leading-none">{result.contextScores.totalDuration.toFixed(1)}</p>
-                  <p className="text-[9px] md:text-sm text-on-surface-variant leading-tight">Jam/Hari Total Medsos</p>
+                  <p className="text-sm md:text-2xl font-extrabold text-on-surface mt-0.5 md:mt-1 leading-tight">
+                    {result.contextScores.totalDuration.toFixed(1)} <span className="font-extrabold">jam</span>
+                  </p>
+                  <p className="text-[10px] md:text-sm text-on-surface-variant leading-tight font-medium">Penggunaan media sosial dalam sehari</p>
                 </div>
                 <div className="bg-surface-container rounded-lg md:rounded-xl p-2 md:p-5 text-center flex flex-col items-center justify-start gap-1 border border-outline-variant/30">
                   <span className="material-symbols-outlined text-primary text-[18px] md:text-[28px]">bedtime</span>
-                  <p className="text-base md:text-3xl font-bold text-on-surface mt-0.5 md:mt-1 leading-none">{result.contextScores.sleepHours}</p>
-                  <p className="text-[9px] md:text-sm text-on-surface-variant leading-tight">Jam Tidur Malam</p>
+                  <p className="text-sm md:text-2xl font-extrabold text-on-surface mt-0.5 md:mt-1 leading-tight">
+                    {result.contextScores.sleepHours} <span className="font-extrabold">jam</span>
+                  </p>
+                  <p className="text-[10px] md:text-sm text-on-surface-variant leading-tight font-medium">Kualitas tidur per malam</p>
                 </div>
                 <div className="bg-surface-container rounded-lg md:rounded-xl p-2 md:p-5 text-center flex flex-col items-center justify-start gap-1 border border-outline-variant/30">
                   <span className="material-symbols-outlined text-primary text-[18px] md:text-[28px]">work</span>
-                  <p className="text-base md:text-3xl font-bold text-on-surface mt-0.5 md:mt-1 leading-none">{result.contextScores.productivityImpact}/10</p>
-                  <p className="text-[9px] md:text-sm text-on-surface-variant leading-tight">Gangguan Produktivitas</p>
+                  <p className="text-sm md:text-2xl font-extrabold text-on-surface mt-0.5 md:mt-1 leading-tight">
+                    {result.contextScores.productivityImpact}/10
+                  </p>
+                  <p className="text-[10px] md:text-sm text-on-surface-variant leading-tight font-medium">Gangguan aktivitas harian</p>
                 </div>
               </div>
 

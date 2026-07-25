@@ -243,7 +243,7 @@ export function SVASRadarChart({ criteria }: { criteria: { label: string; score:
 
         {criteria.map((c, i) => {
           // Jarak teks dari chart 
-          const outer = getCoordinates(1.2, i);
+          const outer = getCoordinates(1.22, i);
           const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
           let textAnchor: 'start' | 'middle' | 'end' = 'middle';
           if (Math.cos(angle) > 0.3) textAnchor = 'start';
@@ -257,7 +257,7 @@ export function SVASRadarChart({ criteria }: { criteria: { label: string; score:
               x={outer.x}
               y={outer.y + 4}
               textAnchor={textAnchor}
-              className="text-[9px] md:text-[11px] font-medium fill-on-surface-variant"
+              className="text-[12px] md:text-[14px] font-semibold fill-on-surface-variant"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               {words.length > 1 ? (

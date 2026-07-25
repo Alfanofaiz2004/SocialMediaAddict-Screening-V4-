@@ -377,32 +377,32 @@ export default function KuesionerPage() {
 
                       {/* Options */}
                       <div className="px-4 pb-4 md:px-5 md:pb-5">
-                        <div className="grid grid-cols-1 md:grid-cols-5 gap-1.5 md:gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-2.5 md:gap-3">
                           {SVAS_OPTIONS.map((opt) => {
                             const isSelected = svasScores[idx] === opt.value;
                             return (
                               <button
                                 key={opt.value}
                                 onClick={() => setSvasScore(idx, opt.value)}
-                                className={`relative flex flex-row md:flex-col items-center justify-start md:justify-center gap-3 md:gap-1.5 px-3 py-2 md:p-3 rounded-lg md:rounded-xl border md:border-2 transition-all duration-200 cursor-pointer group ${isSelected
-                                  ? 'border-current shadow-sm md:scale-[1.02]'
-                                  : 'border-transparent bg-surface-container hover:bg-surface-container-high'
+                                className={`relative flex flex-row md:flex-col items-center justify-start md:justify-center gap-3.5 md:gap-2 px-4 py-3.5 md:p-4 rounded-xl md:rounded-2xl border-2 transition-all duration-200 cursor-pointer active:scale-[0.98] select-none group ${isSelected
+                                  ? 'shadow-md md:scale-[1.03]'
+                                  : 'border-outline-variant/60 bg-surface-container-lowest hover:border-primary/40 hover:bg-surface-container-high/50'
                                   }`}
                                 style={isSelected ? {
                                   color: opt.color,
-                                  backgroundColor: `${opt.color}12`,
-                                  borderColor: `${opt.color}60`,
+                                  backgroundColor: `${opt.color}15`,
+                                  borderColor: opt.color,
                                 } : undefined}
                               >
                                 <div
-                                  className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-current' : 'border-outline-variant'
+                                  className={`w-5 h-5 md:w-5 md:h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-all ${isSelected ? 'border-current' : 'border-outline-variant'
                                     }`}
                                 >
                                   {isSelected && (
-                                    <div className="w-2 h-2 rounded-full bg-current" />
+                                    <div className="w-2.5 h-2.5 rounded-full bg-current" />
                                   )}
                                 </div>
-                                <span className={`text-xs md:text-base font-medium text-center leading-tight ${isSelected ? '' : 'text-on-surface-variant'
+                                <span className={`text-sm md:text-base font-semibold text-left md:text-center leading-snug ${isSelected ? 'font-bold' : 'text-on-surface'
                                   }`}>
                                   {opt.label}
                                 </span>
