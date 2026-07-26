@@ -329,6 +329,70 @@ export function DimensionAccordion({ criteria, forceOpen = false }: { criteria: 
 
           const colorCode = c.score <= 2 ? '#10B981' : c.score === 3 ? '#F59E0B' : '#EF4444';
 
+          // ── Konten detail dimensi (shared antara mode normal & forceOpen) ──
+          const contentBlock = (
+            <div className="p-4 md:p-5 pt-0 print:pt-5 border-t border-outline-variant/30 text-xs md:text-base text-on-surface-variant flex flex-col gap-3 md:gap-5 bg-surface-container-lowest leading-relaxed">
+              <div className="mt-4 print:mt-0 text-justify">
+                <span className="font-bold text-on-surface block mb-1 md:mb-2 text-sm md:text-lg text-left">Pengertian:</span>
+                {detail.basic}
+              </div>
+
+              <div
+                className="p-3 md:p-5 bg-surface-variant/20 rounded-lg border-l-[6px] text-justify"
+                style={{ borderColor: colorCode }}
+              >
+                <span className="font-bold text-on-surface block mb-1 md:mb-2 text-sm md:text-lg text-left">
+                  Analisis Skor Kamu ({c.score}/5):
+                </span>
+                {specificDesc}
+
+                {solusiDesc && (
+                  <div className="mt-3 md:mt-5 pt-3 md:pt-5 border-t border-outline-variant/30">
+                    <span className="font-bold text-on-surface mb-1 md:mb-2 text-sm md:text-lg flex items-center gap-2 text-left">
+                      <span className="material-symbols-outlined text-[16px] md:text-[20px]" style={{ color: colorCode }}>lightbulb</span>
+                      Solusi & Rekomendasi
+                    </span>
+                    <ul className="list-disc pl-4 md:pl-5 mt-2 space-y-2 text-xs md:text-base text-on-surface-variant leading-relaxed text-justify">
+                      {Array.isArray(solusiDesc) 
+                        ? solusiDesc.map((item: string, idx: number) => <li key={idx}>{item}</li>)
+                        : <li>{solusiDesc}</li>
+                      }
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+
+          // ══════════════════════════════════════════════════════════════
+          // MODE PDF (forceOpen): Render tanpa animasi Framer Motion
+          // Semua konten langsung ada di DOM dengan height auto
+          // ══════════════════════════════════════════════════════════════
+          if (forceOpen) {
+            return (
+              <div 
+                key={i} 
+                className="border border-outline-variant rounded-lg bg-surface overflow-visible print:border-b print:break-inside-avoid pdf-avoid-break shadow-sm"
+              >
+                {/* Header dengan skor — langsung tampil tanpa print:hidden */}
+                <div className="flex items-center gap-3 p-3 bg-surface-variant/10 border-b border-outline-variant/30">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-xs flex-shrink-0"
+                    style={{ backgroundColor: colorCode }}
+                  >
+                    {c.score}/5
+                  </div>
+                  <span className="text-base font-bold text-on-surface">{c.label}</span>
+                </div>
+                {/* Konten — langsung terbuka penuh */}
+                {contentBlock}
+              </div>
+            );
+          }
+
+          // ══════════════════════════════════════════════════════════════
+          // MODE NORMAL: Render dengan animasi Framer Motion
+          // ══════════════════════════════════════════════════════════════
           return (
             <motion.div 
               key={i} 
@@ -381,37 +445,7 @@ export function DimensionAccordion({ criteria, forceOpen = false }: { criteria: 
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
                     className="overflow-hidden print:!h-auto print:!opacity-100 print:!visible print:block"
                   >
-                    <div className="p-4 md:p-5 pt-0 print:pt-5 border-t border-outline-variant/30 text-xs md:text-base text-on-surface-variant flex flex-col gap-3 md:gap-5 bg-surface-container-lowest leading-relaxed">
-                      <div className="mt-4 print:mt-0 text-justify">
-                        <span className="font-bold text-on-surface block mb-1 md:mb-2 text-sm md:text-lg text-left">Pengertian:</span>
-                        {detail.basic}
-                      </div>
-
-                      <div
-                        className="p-3 md:p-5 bg-surface-variant/20 rounded-lg border-l-[6px] text-justify"
-                        style={{ borderColor: colorCode }}
-                      >
-                        <span className="font-bold text-on-surface block mb-1 md:mb-2 text-sm md:text-lg text-left">
-                          Analisis Skor Kamu ({c.score}/5):
-                        </span>
-                        {specificDesc}
-
-                        {solusiDesc && (
-                          <div className="mt-3 md:mt-5 pt-3 md:pt-5 border-t border-outline-variant/30">
-                            <span className="font-bold text-on-surface mb-1 md:mb-2 text-sm md:text-lg flex items-center gap-2 text-left">
-                              <span className="material-symbols-outlined text-[16px] md:text-[20px]" style={{ color: colorCode }}>lightbulb</span>
-                              Solusi & Rekomendasi
-                            </span>
-                            <ul className="list-disc pl-4 md:pl-5 mt-2 space-y-2 text-xs md:text-base text-on-surface-variant leading-relaxed text-justify">
-                              {Array.isArray(solusiDesc) 
-                                ? solusiDesc.map((item: string, idx: number) => <li key={idx}>{item}</li>)
-                                : <li>{solusiDesc}</li>
-                              }
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    {contentBlock}
                   </motion.div>
               </AnimatePresence>
             </motion.div>

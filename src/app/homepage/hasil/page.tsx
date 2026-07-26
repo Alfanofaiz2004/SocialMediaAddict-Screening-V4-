@@ -168,6 +168,32 @@ export default function HasilPage() {
         parent = parent.parentElement;
       }
 
+      // ── Safety net: Buka semua elemen yang mungkin masih tersembunyi ──
+      const savedAccordions: { el: HTMLElement; origStyle: string }[] = [];
+
+      // Force-show elemen print:flex (header dimensi untuk mode cetak)
+      element.querySelectorAll('[class*="print:flex"]').forEach(el => {
+        const htmlEl = el as HTMLElement;
+        if (getComputedStyle(htmlEl).display === 'none') {
+          savedAccordions.push({ el: htmlEl, origStyle: htmlEl.getAttribute('style') || '' });
+          htmlEl.style.display = 'flex';
+        }
+      });
+
+      // Force-open semua overflow-hidden dengan height 0 (sisa animasi Framer Motion)
+      element.querySelectorAll('.overflow-hidden').forEach(el => {
+        const htmlEl = el as HTMLElement;
+        const s = htmlEl.style;
+        if (s.height === '0px' || s.height === '0' || s.visibility === 'hidden') {
+          savedAccordions.push({ el: htmlEl, origStyle: htmlEl.getAttribute('style') || '' });
+          s.height = 'auto';
+          s.opacity = '1';
+          s.visibility = 'visible';
+          s.overflow = 'visible';
+          s.filter = 'none';
+        }
+      });
+
       await new Promise(r => setTimeout(r, 500));
 
       const totalHeight = element.scrollHeight;
@@ -266,6 +292,9 @@ export default function HasilPage() {
       element.style.overflow = origOverflow;
       parentOverflows.forEach(({ el, orig }) => {
         el.style.overflow = orig;
+      });
+      savedAccordions.forEach(({ el, origStyle }) => {
+        el.setAttribute('style', origStyle);
       });
       hiddenEls.forEach(({ el, orig }) => {
         el.style.display = orig;
