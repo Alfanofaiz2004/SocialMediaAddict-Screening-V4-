@@ -299,7 +299,7 @@ export function SVASRadarChart({ criteria }: { criteria: { label: string; score:
 }
 
 // ─── Dimension Detailed Accordion ──────────────────────────────────────────────
-export function DimensionAccordion({ criteria }: { criteria: { key: string; label: string; score: number }[] }) {
+export function DimensionAccordion({ criteria, forceOpen = false }: { criteria: { key: string; label: string; score: number }[]; forceOpen?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -314,7 +314,7 @@ export function DimensionAccordion({ criteria }: { criteria: { key: string; labe
         {criteria.map((c, i) => {
           const detail = DIMENSION_DETAILS[c.key as keyof typeof DIMENSION_DETAILS] as any;
           if (!detail) return null;
-          const isOpen = openIndex === i;
+          const isOpen = forceOpen || openIndex === i;
 
           let specificDesc = detail.scale12;
           let solusiDesc = detail.solusi12;

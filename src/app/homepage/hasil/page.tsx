@@ -84,9 +84,9 @@ export default function HasilPage() {
     if (!dashboardRef.current || !result) return;
     setIsPrinting(true);
 
-    // Scroll ke atas dan beri jeda untuk animasi (4 detik) agar visualisasi sudah terisi
+    // Scroll ke atas dan beri jeda agar React merender ulang semua accordion dalam keadaan terbuka
     window.scrollTo(0, 0);
-    await new Promise(r => setTimeout(r, 4000));
+    await new Promise(r => setTimeout(r, 600));
 
     try {
       const html2canvas = (await import('html2canvas')).default;
@@ -149,62 +149,34 @@ export default function HasilPage() {
       });
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 3: Buka SEMUA accordion (Penjelasan Detail & Solusi)
+      // STEP 3: Persiapkan DOM & Ukuran untuk Capture (Desktop Layout 1024px)
       // ══════════════════════════════════════════════════════════════════
-      const savedAccordions: { el: HTMLElement; origStyle: string }[] = [];
-
-      // Target: motion.div dengan class overflow-hidden yang punya height: 0px
-      element.querySelectorAll('.overflow-hidden').forEach(el => {
-        const htmlEl = el as HTMLElement;
-        const s = htmlEl.style;
-        if (s.height === '0px' || s.height === '0' || s.visibility === 'hidden') {
-          savedAccordions.push({ el: htmlEl, origStyle: htmlEl.getAttribute('style') || '' });
-          s.height = 'auto';
-          s.opacity = '1';
-          s.visibility = 'visible';
-          s.overflow = 'visible';
-          s.filter = 'none';
-        }
-      });
-
-      // Tampilkan juga header print-only (yang pakai hidden print:flex)
-      element.querySelectorAll('[class*="print:flex"]').forEach(el => {
-        const htmlEl = el as HTMLElement;
-        if (getComputedStyle(htmlEl).display === 'none') {
-          savedAccordions.push({ el: htmlEl, origStyle: htmlEl.getAttribute('style') || '' });
-          htmlEl.style.display = 'flex';
-        }
-      });
-
-      // Tunggu reflow agar DOM ter-update
-      await new Promise(r => setTimeout(r, 300));
-
-      // ══════════════════════════════════════════════════════════════════
-      // STEP 4: Capture screenshot dengan html2canvas
-      // ══════════════════════════════════════════════════════════════════
-      // Simpan ukuran asli dan paksa ke ukuran desktop agar rapi walau di HP
       const origWidth = element.style.width;
       const origMaxWidth = element.style.maxWidth;
       element.style.width = '1024px';
       element.style.maxWidth = '1024px';
       
-      // Tunggu reflow sekali lagi untuk ukuran baru
-      await new Promise(r => setTimeout(r, 150));
+      await new Promise(r => setTimeout(r, 200));
 
       const captureHeight = element.scrollHeight;
+      const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      
+      // Menggunakan scale 1.5 di mobile Android/iOS untuk mencegah batas memori canvas Android (max texture size 4096px)
+      const captureScale = isMobile ? 1.5 : 2;
+
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: captureScale,
         useCORS: true,
         allowTaint: true,
         logging: false,
         backgroundColor: '#ffffff',
+        width: 1024,
         height: captureHeight,
-        windowHeight: captureHeight,
         windowWidth: 1024,
-        scrollY: -window.scrollY,
+        windowHeight: captureHeight,
+        scrollY: 0,
         scrollX: 0,
         onclone: (clonedDoc: Document) => {
-          // Paksa semua elemen framer-motion terlihat di clone juga
           clonedDoc.querySelectorAll('*').forEach(el => {
             const htmlEl = el as HTMLElement;
             const s = htmlEl.style;
@@ -220,14 +192,11 @@ export default function HasilPage() {
       });
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 5: Restore semua perubahan DOM
+      // STEP 4: Restore semua perubahan DOM
       // ══════════════════════════════════════════════════════════════════
       element.style.width = origWidth;
       element.style.maxWidth = origMaxWidth;
       
-      savedAccordions.forEach(({ el, origStyle }) => {
-        el.setAttribute('style', origStyle);
-      });
       hiddenEls.forEach(({ el, orig }) => {
         el.style.display = orig;
       });
@@ -238,27 +207,28 @@ export default function HasilPage() {
       });
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 6: Generate Pageless PDF
+      // STEP 5: Generate Standard A4 Multi-Page PDF (Universal Mobile & Desktop)
       // ══════════════════════════════════════════════════════════════════
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      const canvasW = canvas.width;
-      const canvasH = canvas.height;
+      const imgWidth = 210; // Lebar standard A4 dalam mm
+      const pageHeight = 297; // Tinggi standard A4 dalam mm
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-      const pdfW = 210; // Lebar standard A4 dalam mm
-      const margin = 5;
-      const usableW = pdfW - margin * 2;
-      const totalH = (canvasH * usableW) / canvasW;
-      const pdfH = totalH + margin * 2;
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      let heightLeft = imgHeight;
+      let position = 0;
 
-      // Custom page size yang menyesuaikan tinggi konten (pageless)
-      const pdf = new jsPDF({
-        orientation: 'p',
-        unit: 'mm',
-        format: [pdfW, pdfH]
-      });
+      // Halaman Pertama
+      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
 
-      // Tambahkan seluruh image ke satu halaman tanpa memotong
-      pdf.addImage(imgData, 'JPEG', margin, margin, usableW, totalH);
+      // Halaman Selanjutnya (jika konten melebihi 1 halaman A4)
+      while (heightLeft > 0) {
+        position -= pageHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
 
       // Auto-download
       const now = new Date();
@@ -579,7 +549,7 @@ export default function HasilPage() {
                 <span className="material-symbols-outlined text-primary text-[28px]">psychology</span>
                 <h2 className="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Penjelasan Detail & Solusi</h2>
               </div>
-              <DimensionAccordion criteria={result.svasCriteria} />
+              <DimensionAccordion criteria={result.svasCriteria} forceOpen={isPrinting} />
             </div>
           </AnimatedSection>
         </div>
