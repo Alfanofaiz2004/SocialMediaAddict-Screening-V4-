@@ -194,14 +194,8 @@ export default function HasilPage() {
         }
       });
 
-      await new Promise(r => setTimeout(r, 500));
-
-      const totalHeight = element.scrollHeight;
-      const captureWidth = 1024;
-      const isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
       // ══════════════════════════════════════════════════════════════════
-      // STEP 4: Capture — Chunked untuk Mobile, Full untuk Desktop
+      // STEP 4: Capture — Force Desktop Layout untuk semua device
       // ══════════════════════════════════════════════════════════════════
       // Fungsi onclone yang dipakai bersama
       const oncloneFn = (clonedDoc: Document) => {
@@ -218,71 +212,23 @@ export default function HasilPage() {
         });
       };
 
-      let finalCanvas: HTMLCanvasElement;
-
-      if (isMobile) {
-        // ── MOBILE: Chunked capture ──
-        // Android browser memiliki batas max canvas texture ~4096-8192px.
-        // Kita capture dalam potongan vertikal kecil, lalu gabungkan.
-        const CHUNK_HEIGHT = 2500; // px per chunk (aman untuk semua device)
-        const scale = 1.5;
-        const chunks: HTMLCanvasElement[] = [];
-        let yOffset = 0;
-
-        while (yOffset < totalHeight) {
-          const thisChunkH = Math.min(CHUNK_HEIGHT, totalHeight - yOffset);
-
-          const chunkCanvas = await html2canvas(element, {
-            scale,
-            useCORS: true,
-            allowTaint: true,
-            logging: false,
-            backgroundColor: '#ffffff',
-            width: captureWidth,
-            height: thisChunkH,
-            windowWidth: captureWidth,
-            windowHeight: thisChunkH,
-            x: 0,
-            y: yOffset,
-            scrollX: 0,
-            scrollY: 0,
-            onclone: oncloneFn,
-          });
-
-          chunks.push(chunkCanvas);
-          yOffset += thisChunkH;
-        }
-
-        // Gabungkan semua chunk ke satu canvas besar
-        const finalW = Math.round(captureWidth * scale);
-        const finalH = chunks.reduce((sum, c) => sum + c.height, 0);
-        finalCanvas = document.createElement('canvas');
-        finalCanvas.width = finalW;
-        finalCanvas.height = finalH;
-        const ctx = finalCanvas.getContext('2d')!;
-
-        let drawY = 0;
-        for (const chunk of chunks) {
-          ctx.drawImage(chunk, 0, drawY);
-          drawY += chunk.height;
-        }
-      } else {
-        // ── DESKTOP: Single full capture ──
-        finalCanvas = await html2canvas(element, {
-          scale: 2,
-          useCORS: true,
-          allowTaint: true,
-          logging: false,
-          backgroundColor: '#ffffff',
-          width: captureWidth,
-          height: totalHeight,
-          windowWidth: captureWidth,
-          windowHeight: totalHeight,
-          scrollX: 0,
-          scrollY: 0,
-          onclone: oncloneFn,
-        });
-      }
+      // Kita buat html2canvas merender dalam mode desktop (windowWidth: 1024).
+      // Karena layout desktop menggunakan 2 kolom, tinggi total halaman akan jauh lebih pendek
+      // dibandingkan layout mobile (1 kolom). Ini mencegah crash pada batas ukuran canvas di Android/iOS.
+      // Jangan berikan parameter `height` atau `windowHeight` agar otomatis menyesuaikan
+      // dengan tinggi layout desktop yang baru di-render.
+      const finalCanvas = await html2canvas(element, {
+        scale: 2, // Kualitas tinggi
+        useCORS: true,
+        allowTaint: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+        width: 1024,
+        windowWidth: 1024, // Memaksa media query Tailwind (md:, lg:) aktif
+        scrollX: 0,
+        scrollY: 0,
+        onclone: oncloneFn,
+      });
 
       // ══════════════════════════════════════════════════════════════════
       // STEP 5: Restore semua perubahan DOM
