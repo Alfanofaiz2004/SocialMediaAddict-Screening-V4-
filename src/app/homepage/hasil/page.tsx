@@ -84,9 +84,9 @@ export default function HasilPage() {
     if (!dashboardRef.current || !result) return;
     setIsPrinting(true);
 
-    // Scroll ke atas dan beri jeda agar React merender ulang semua accordion dalam keadaan terbuka
+    // Scroll ke atas dan beri jeda agar React merender ulang semua accordion terbuka
     window.scrollTo(0, 0);
-    await new Promise(r => setTimeout(r, 600));
+    await new Promise(r => setTimeout(r, 800));
 
     try {
       const html2canvas = (await import('html2canvas')).default;
@@ -149,54 +149,124 @@ export default function HasilPage() {
       });
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 3: Persiapkan DOM & Ukuran untuk Capture (Desktop Layout 1024px)
+      // STEP 3: Paksa layout desktop 1024px & ukur tinggi penuh
       // ══════════════════════════════════════════════════════════════════
       const origWidth = element.style.width;
       const origMaxWidth = element.style.maxWidth;
+      const origOverflow = element.style.overflow;
       element.style.width = '1024px';
       element.style.maxWidth = '1024px';
-      
-      await new Promise(r => setTimeout(r, 200));
+      element.style.overflow = 'visible';
 
-      const captureHeight = element.scrollHeight;
-      const isMobile = typeof window !== 'undefined' && /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      
-      // Menggunakan scale 1.5 di mobile Android/iOS untuk mencegah batas memori canvas Android (max texture size 4096px)
-      const captureScale = isMobile ? 1.5 : 2;
+      // Paksa semua parent juga overflow visible agar tidak klip konten
+      const parentOverflows: { el: HTMLElement; orig: string }[] = [];
+      let parent = element.parentElement;
+      while (parent) {
+        const origOvf = parent.style.overflow;
+        parentOverflows.push({ el: parent, orig: origOvf });
+        parent.style.overflow = 'visible';
+        parent = parent.parentElement;
+      }
 
-      const canvas = await html2canvas(element, {
-        scale: captureScale,
-        useCORS: true,
-        allowTaint: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-        width: 1024,
-        height: captureHeight,
-        windowWidth: 1024,
-        windowHeight: captureHeight,
-        scrollY: 0,
-        scrollX: 0,
-        onclone: (clonedDoc: Document) => {
-          clonedDoc.querySelectorAll('*').forEach(el => {
-            const htmlEl = el as HTMLElement;
-            const s = htmlEl.style;
-            if (s.opacity && s.opacity !== '1') s.opacity = '1';
-            if (s.filter && s.filter.includes('blur')) s.filter = 'none';
-            if (s.visibility === 'hidden') s.visibility = 'visible';
-            if (s.height === '0px' || s.height === '0') {
-              s.height = 'auto';
-              s.overflow = 'visible';
-            }
-          });
-        },
-      });
+      await new Promise(r => setTimeout(r, 500));
+
+      const totalHeight = element.scrollHeight;
+      const captureWidth = 1024;
+      const isMobile = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 4: Restore semua perubahan DOM
+      // STEP 4: Capture — Chunked untuk Mobile, Full untuk Desktop
+      // ══════════════════════════════════════════════════════════════════
+      // Fungsi onclone yang dipakai bersama
+      const oncloneFn = (clonedDoc: Document) => {
+        clonedDoc.querySelectorAll('*').forEach(el => {
+          const htmlEl = el as HTMLElement;
+          const s = htmlEl.style;
+          if (s.opacity && s.opacity !== '1') s.opacity = '1';
+          if (s.filter && s.filter.includes('blur')) s.filter = 'none';
+          if (s.visibility === 'hidden') s.visibility = 'visible';
+          if (s.height === '0px' || s.height === '0') {
+            s.height = 'auto';
+            s.overflow = 'visible';
+          }
+        });
+      };
+
+      let finalCanvas: HTMLCanvasElement;
+
+      if (isMobile) {
+        // ── MOBILE: Chunked capture ──
+        // Android browser memiliki batas max canvas texture ~4096-8192px.
+        // Kita capture dalam potongan vertikal kecil, lalu gabungkan.
+        const CHUNK_HEIGHT = 2500; // px per chunk (aman untuk semua device)
+        const scale = 1.5;
+        const chunks: HTMLCanvasElement[] = [];
+        let yOffset = 0;
+
+        while (yOffset < totalHeight) {
+          const thisChunkH = Math.min(CHUNK_HEIGHT, totalHeight - yOffset);
+
+          const chunkCanvas = await html2canvas(element, {
+            scale,
+            useCORS: true,
+            allowTaint: true,
+            logging: false,
+            backgroundColor: '#ffffff',
+            width: captureWidth,
+            height: thisChunkH,
+            windowWidth: captureWidth,
+            windowHeight: thisChunkH,
+            x: 0,
+            y: yOffset,
+            scrollX: 0,
+            scrollY: 0,
+            onclone: oncloneFn,
+          });
+
+          chunks.push(chunkCanvas);
+          yOffset += thisChunkH;
+        }
+
+        // Gabungkan semua chunk ke satu canvas besar
+        const finalW = Math.round(captureWidth * scale);
+        const finalH = chunks.reduce((sum, c) => sum + c.height, 0);
+        finalCanvas = document.createElement('canvas');
+        finalCanvas.width = finalW;
+        finalCanvas.height = finalH;
+        const ctx = finalCanvas.getContext('2d')!;
+
+        let drawY = 0;
+        for (const chunk of chunks) {
+          ctx.drawImage(chunk, 0, drawY);
+          drawY += chunk.height;
+        }
+      } else {
+        // ── DESKTOP: Single full capture ──
+        finalCanvas = await html2canvas(element, {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          logging: false,
+          backgroundColor: '#ffffff',
+          width: captureWidth,
+          height: totalHeight,
+          windowWidth: captureWidth,
+          windowHeight: totalHeight,
+          scrollX: 0,
+          scrollY: 0,
+          onclone: oncloneFn,
+        });
+      }
+
+      // ══════════════════════════════════════════════════════════════════
+      // STEP 5: Restore semua perubahan DOM
       // ══════════════════════════════════════════════════════════════════
       element.style.width = origWidth;
       element.style.maxWidth = origMaxWidth;
-      
+      element.style.overflow = origOverflow;
+      parentOverflows.forEach(({ el, orig }) => {
+        el.style.overflow = orig;
+      });
       hiddenEls.forEach(({ el, orig }) => {
         el.style.display = orig;
       });
@@ -207,28 +277,22 @@ export default function HasilPage() {
       });
 
       // ══════════════════════════════════════════════════════════════════
-      // STEP 5: Generate Standard A4 Multi-Page PDF (Universal Mobile & Desktop)
+      // STEP 6: Generate Pageless PDF (satu halaman panjang tanpa sekat)
       // ══════════════════════════════════════════════════════════════════
-      const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      const imgWidth = 210; // Lebar standard A4 dalam mm
-      const pageHeight = 297; // Tinggi standard A4 dalam mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = finalCanvas.toDataURL('image/jpeg', 0.92);
+      const pdfW = 210; // mm (lebar A4)
+      const margin = 5;
+      const usableW = pdfW - margin * 2;
+      const totalH = (finalCanvas.height * usableW) / finalCanvas.width;
+      const pdfH = totalH + margin * 2;
 
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      let heightLeft = imgHeight;
-      let position = 0;
+      const pdf = new jsPDF({
+        orientation: 'p',
+        unit: 'mm',
+        format: [pdfW, pdfH],
+      });
 
-      // Halaman Pertama
-      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      // Halaman Selanjutnya (jika konten melebihi 1 halaman A4)
-      while (heightLeft > 0) {
-        position -= pageHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
+      pdf.addImage(imgData, 'JPEG', margin, margin, usableW, totalH);
 
       // Auto-download
       const now = new Date();
