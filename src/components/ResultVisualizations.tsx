@@ -85,6 +85,8 @@ export function PlatformBarChart({ data }: { data: { name: string; hours: number
     'Instagram': '#E1306C',
     'TikTok': '#000000',
     'YouTube': '#FF0000',
+    'Facebook': '#1877F2',
+    'Facebook Reels': '#1877F2',
     'Twitter': '#1DA1F2',
     'Twitter/X': '#1DA1F2',
   };

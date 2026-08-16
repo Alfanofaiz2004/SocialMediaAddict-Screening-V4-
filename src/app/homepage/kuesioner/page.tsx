@@ -14,7 +14,7 @@ interface PlatformValues {
   instagram: number;
   tiktok: number;
   youtube: number;
-  twitter: number;
+  facebook: number;
 }
 
 // ─── Step Metadata ───────────────────────────────────────────────────────────
@@ -45,7 +45,7 @@ const PLATFORM_ICONS: Record<string, { icon: string; bg: string; color: string }
   instagram: { icon: 'photo_camera', bg: '#fce4ec', color: '#e91e63' },
   tiktok: { icon: 'music_note', bg: '#eceff1', color: '#000000' },
   youtube: { icon: 'play_arrow', bg: '#ffebee', color: '#f44336' },
-  twitter: { icon: 'tag', bg: '#e1f5fe', color: '#03a9f4' },
+  facebook: { icon: 'public', bg: '#e7f3ff', color: '#1877F2' },
 };
 
 export default function KuesionerPage() {
@@ -55,7 +55,7 @@ export default function KuesionerPage() {
   // State
   const [step, setStep] = useState<Step>('intro');
   const [svasScores, setSvasScores] = useState<number[]>(Array(6).fill(-1));
-  const [platforms, setPlatforms] = useState<PlatformValues>({ instagram: 0, tiktok: 0, youtube: 0, twitter: 0 });
+  const [platforms, setPlatforms] = useState<PlatformValues>({ instagram: 0, tiktok: 0, youtube: 0, facebook: 0 });
   const [sleepHours, setSleepHours] = useState(7);
   const [productivityImpact, setProductivityImpact] = useState(5);
   const [isCalculating, setIsCalculating] = useState(false);
@@ -291,7 +291,7 @@ export default function KuesionerPage() {
                         </h2>
                         <p className="text-base md:text-xl font-medium text-on-surface-variant leading-relaxed">
                           Kuesioner ini dirancang untuk mengukur tingkat kecanduan terhadap platform video berdurasi pendek
-                          (TikTok, Instagram Reels, YouTube Shorts) menggunakan instrumen <strong>SVAS-6</strong>.
+                          (TikTok, Instagram Reels, YouTube Shorts, Facebook Reels) menggunakan instrumen <strong>SVAS-6</strong>.
                         </p>
                       </div>
                     </div>
@@ -496,7 +496,7 @@ export default function KuesionerPage() {
                   <div className="bg-surface-container border border-outline-variant rounded-xl p-4 flex items-center justify-between">
                     <span className="text-sm text-on-surface-variant">Total durasi harian</span>
                     <span className="text-lg font-bold text-primary">
-                      {(platforms.instagram + platforms.tiktok + platforms.youtube + platforms.twitter).toFixed(1)} jam/hari
+                      {(platforms.instagram + platforms.tiktok + platforms.youtube + platforms.facebook).toFixed(1)} jam/hari
                     </span>
                   </div>
                 </div>

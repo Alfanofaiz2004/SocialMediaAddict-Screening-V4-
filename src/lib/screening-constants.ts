@@ -277,11 +277,11 @@ export const PLATFORM_CONFIG = [
     emoji: '',
   },
   {
-    key: 'twitter' as const,
-    name: 'Twitter / X',
-    color: '#1D9BF0',
-    bgColor: 'rgba(29, 155, 240, 0.08)',
-    borderColor: 'rgba(29, 155, 240, 0.2)',
+    key: 'facebook' as const,
+    name: 'Facebook',
+    color: '#1877F2',
+    bgColor: 'rgba(24, 119, 242, 0.08)',
+    borderColor: 'rgba(24, 119, 242, 0.2)',
     emoji: '',
   },
 ] as const;

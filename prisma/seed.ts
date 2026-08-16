@@ -38,7 +38,7 @@ async function main() {
       instagramHours: 2.5,
       tiktokHours: 3.0,
       youtubeHours: 1.0,
-      twitterHours: 0.0,
+      facebookHours: 0.0,
     },
   });
 

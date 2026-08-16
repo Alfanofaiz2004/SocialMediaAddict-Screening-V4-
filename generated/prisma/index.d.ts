@@ -2084,7 +2084,7 @@ export namespace Prisma {
     instagramHours: number | null
     tiktokHours: number | null
     youtubeHours: number | null
-    twitterHours: number | null
+    facebookHours: number | null
   }
 
   export type ScreeningRecordSumAggregateOutputType = {
@@ -2102,7 +2102,7 @@ export namespace Prisma {
     instagramHours: number | null
     tiktokHours: number | null
     youtubeHours: number | null
-    twitterHours: number | null
+    facebookHours: number | null
   }
 
   export type ScreeningRecordMinAggregateOutputType = {
@@ -2123,7 +2123,7 @@ export namespace Prisma {
     instagramHours: number | null
     tiktokHours: number | null
     youtubeHours: number | null
-    twitterHours: number | null
+    facebookHours: number | null
   }
 
   export type ScreeningRecordMaxAggregateOutputType = {
@@ -2144,7 +2144,7 @@ export namespace Prisma {
     instagramHours: number | null
     tiktokHours: number | null
     youtubeHours: number | null
-    twitterHours: number | null
+    facebookHours: number | null
   }
 
   export type ScreeningRecordCountAggregateOutputType = {
@@ -2165,7 +2165,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
     _all: number
   }
 
@@ -2185,7 +2185,7 @@ export namespace Prisma {
     instagramHours?: true
     tiktokHours?: true
     youtubeHours?: true
-    twitterHours?: true
+    facebookHours?: true
   }
 
   export type ScreeningRecordSumAggregateInputType = {
@@ -2203,7 +2203,7 @@ export namespace Prisma {
     instagramHours?: true
     tiktokHours?: true
     youtubeHours?: true
-    twitterHours?: true
+    facebookHours?: true
   }
 
   export type ScreeningRecordMinAggregateInputType = {
@@ -2224,7 +2224,7 @@ export namespace Prisma {
     instagramHours?: true
     tiktokHours?: true
     youtubeHours?: true
-    twitterHours?: true
+    facebookHours?: true
   }
 
   export type ScreeningRecordMaxAggregateInputType = {
@@ -2245,7 +2245,7 @@ export namespace Prisma {
     instagramHours?: true
     tiktokHours?: true
     youtubeHours?: true
-    twitterHours?: true
+    facebookHours?: true
   }
 
   export type ScreeningRecordCountAggregateInputType = {
@@ -2266,7 +2266,7 @@ export namespace Prisma {
     instagramHours?: true
     tiktokHours?: true
     youtubeHours?: true
-    twitterHours?: true
+    facebookHours?: true
     _all?: true
   }
 
@@ -2374,7 +2374,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
     _count: ScreeningRecordCountAggregateOutputType | null
     _avg: ScreeningRecordAvgAggregateOutputType | null
     _sum: ScreeningRecordSumAggregateOutputType | null
@@ -2414,7 +2414,7 @@ export namespace Prisma {
     instagramHours?: boolean
     tiktokHours?: boolean
     youtubeHours?: boolean
-    twitterHours?: boolean
+    facebookHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screeningRecord"]>
 
@@ -2436,7 +2436,7 @@ export namespace Prisma {
     instagramHours?: boolean
     tiktokHours?: boolean
     youtubeHours?: boolean
-    twitterHours?: boolean
+    facebookHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screeningRecord"]>
 
@@ -2458,7 +2458,7 @@ export namespace Prisma {
     instagramHours?: boolean
     tiktokHours?: boolean
     youtubeHours?: boolean
-    twitterHours?: boolean
+    facebookHours?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["screeningRecord"]>
 
@@ -2480,10 +2480,10 @@ export namespace Prisma {
     instagramHours?: boolean
     tiktokHours?: boolean
     youtubeHours?: boolean
-    twitterHours?: boolean
+    facebookHours?: boolean
   }
 
-  export type ScreeningRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID_hash" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "twitterHours", ExtArgs["result"]["screeningRecord"]>
+  export type ScreeningRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"UserID_hash" | "userId" | "date" | "zone" | "svasTotal" | "q1_salience" | "q2_mood" | "q3_tolerance" | "q4_withdrawal" | "q5_conflict" | "q6_relapse" | "socialMediaHours" | "sleepHours" | "productivityImpact" | "instagramHours" | "tiktokHours" | "youtubeHours" | "facebookHours", ExtArgs["result"]["screeningRecord"]>
   export type ScreeningRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2517,7 +2517,7 @@ export namespace Prisma {
       instagramHours: number
       tiktokHours: number
       youtubeHours: number
-      twitterHours: number
+      facebookHours: number
     }, ExtArgs["result"]["screeningRecord"]>
     composites: {}
   }
@@ -2959,7 +2959,7 @@ export namespace Prisma {
     readonly instagramHours: FieldRef<"ScreeningRecord", 'Float'>
     readonly tiktokHours: FieldRef<"ScreeningRecord", 'Float'>
     readonly youtubeHours: FieldRef<"ScreeningRecord", 'Float'>
-    readonly twitterHours: FieldRef<"ScreeningRecord", 'Float'>
+    readonly facebookHours: FieldRef<"ScreeningRecord", 'Float'>
   }
     
 
@@ -3419,7 +3419,7 @@ export namespace Prisma {
     instagramHours: 'instagramHours',
     tiktokHours: 'tiktokHours',
     youtubeHours: 'youtubeHours',
-    twitterHours: 'twitterHours'
+    facebookHours: 'facebookHours'
   };
 
   export type ScreeningRecordScalarFieldEnum = (typeof ScreeningRecordScalarFieldEnum)[keyof typeof ScreeningRecordScalarFieldEnum]
@@ -3568,7 +3568,7 @@ export namespace Prisma {
     instagramHours?: FloatFilter<"ScreeningRecord"> | number
     tiktokHours?: FloatFilter<"ScreeningRecord"> | number
     youtubeHours?: FloatFilter<"ScreeningRecord"> | number
-    twitterHours?: FloatFilter<"ScreeningRecord"> | number
+    facebookHours?: FloatFilter<"ScreeningRecord"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3590,7 +3590,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
     user?: UserOrderByWithRelationInput
   }
 
@@ -3615,7 +3615,7 @@ export namespace Prisma {
     instagramHours?: FloatFilter<"ScreeningRecord"> | number
     tiktokHours?: FloatFilter<"ScreeningRecord"> | number
     youtubeHours?: FloatFilter<"ScreeningRecord"> | number
-    twitterHours?: FloatFilter<"ScreeningRecord"> | number
+    facebookHours?: FloatFilter<"ScreeningRecord"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "UserID_hash">
 
@@ -3637,7 +3637,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
     _count?: ScreeningRecordCountOrderByAggregateInput
     _avg?: ScreeningRecordAvgOrderByAggregateInput
     _max?: ScreeningRecordMaxOrderByAggregateInput
@@ -3666,7 +3666,7 @@ export namespace Prisma {
     instagramHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
     tiktokHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
     youtubeHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
-    twitterHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
+    facebookHours?: FloatWithAggregatesFilter<"ScreeningRecord"> | number
   }
 
   export type UserCreateInput = {
@@ -3722,7 +3722,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
     user: UserCreateNestedOneWithoutScreeningRecordsInput
   }
 
@@ -3744,7 +3744,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
   }
 
   export type ScreeningRecordUpdateInput = {
@@ -3764,7 +3764,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutScreeningRecordsNestedInput
   }
 
@@ -3786,7 +3786,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ScreeningRecordCreateManyInput = {
@@ -3807,7 +3807,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
   }
 
   export type ScreeningRecordUpdateManyMutationInput = {
@@ -3827,7 +3827,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ScreeningRecordUncheckedUpdateManyInput = {
@@ -3848,7 +3848,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3989,7 +3989,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
   }
 
   export type ScreeningRecordAvgOrderByAggregateInput = {
@@ -4007,7 +4007,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
   }
 
   export type ScreeningRecordMaxOrderByAggregateInput = {
@@ -4028,7 +4028,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
   }
 
   export type ScreeningRecordMinOrderByAggregateInput = {
@@ -4049,7 +4049,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
   }
 
   export type ScreeningRecordSumOrderByAggregateInput = {
@@ -4067,7 +4067,7 @@ export namespace Prisma {
     instagramHours?: SortOrder
     tiktokHours?: SortOrder
     youtubeHours?: SortOrder
-    twitterHours?: SortOrder
+    facebookHours?: SortOrder
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -4307,7 +4307,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
   }
 
   export type ScreeningRecordUncheckedCreateWithoutUserInput = {
@@ -4327,7 +4327,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
   }
 
   export type ScreeningRecordCreateOrConnectWithoutUserInput = {
@@ -4377,7 +4377,7 @@ export namespace Prisma {
     instagramHours?: FloatFilter<"ScreeningRecord"> | number
     tiktokHours?: FloatFilter<"ScreeningRecord"> | number
     youtubeHours?: FloatFilter<"ScreeningRecord"> | number
-    twitterHours?: FloatFilter<"ScreeningRecord"> | number
+    facebookHours?: FloatFilter<"ScreeningRecord"> | number
   }
 
   export type UserCreateWithoutScreeningRecordsInput = {
@@ -4431,7 +4431,7 @@ export namespace Prisma {
     instagramHours: number
     tiktokHours: number
     youtubeHours: number
-    twitterHours: number
+    facebookHours: number
   }
 
   export type ScreeningRecordUpdateWithoutUserInput = {
@@ -4451,7 +4451,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ScreeningRecordUncheckedUpdateWithoutUserInput = {
@@ -4471,7 +4471,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
   export type ScreeningRecordUncheckedUpdateManyWithoutUserInput = {
@@ -4491,7 +4491,7 @@ export namespace Prisma {
     instagramHours?: FloatFieldUpdateOperationsInput | number
     tiktokHours?: FloatFieldUpdateOperationsInput | number
     youtubeHours?: FloatFieldUpdateOperationsInput | number
-    twitterHours?: FloatFieldUpdateOperationsInput | number
+    facebookHours?: FloatFieldUpdateOperationsInput | number
   }
 
 

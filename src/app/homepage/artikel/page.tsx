@@ -36,7 +36,7 @@ export default function ArtikelPage() {
           {/* ─── ISI ARTIKEL (Manual Hierarchy, No Prose) ─── */}
           <div className="text-lg md:text-xl font-medium text-on-surface leading-relaxed text-justify w-full">
             <p className="mb-6">
-              Pernah nggak sih, kamu niatnya cuma mau ngecek TikTok, Instagram Reels, atau YouTube Shorts selama 5 menit aja... eh pas lihat jam, tahu-tahu udah subuh? Tenang, kamu nggak sendirian. Di era digital sekarang, algoritma super canggih bekerja siang-malam buat bikin kamu nggak bisa berhenti nge-<em className="italic">scroll</em>.
+              Pernah nggak sih, kamu niatnya cuma mau ngecek TikTok, Instagram Reels, YouTube Shorts, atau Facebook Reels selama 5 menit aja... eh pas lihat jam, tahu-tahu udah subuh? Tenang, kamu nggak sendirian. Di era digital sekarang, algoritma super canggih bekerja siang-malam buat bikin kamu nggak bisa berhenti nge-<em className="italic">scroll</em>.
             </p>
             <p className="mb-10">
               Fenomena ini sering disebut sebagai <strong className="font-bold">"Dopamine Economy"</strong>. Saat kamu nemu konten menarik, otakmu melepaskan dopamin (hormon bahagia). Masalahnya, kalau otak keseringan ditembak dopamin instan, kegiatan dunia nyata yang ritmenya lambat bakal terasa super ngebosenin. Dari keresahan inilah website <em className="italic">screening</em> ini lahir. Kami pengen bantu kamu mengukur secara objektif: sejauh mana perilaku <em className="italic">scrolling</em> ini udah masuk ke tahap adiktif?

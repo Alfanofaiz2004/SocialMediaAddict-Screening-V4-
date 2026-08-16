@@ -33,7 +33,7 @@ export async function GET(request: Request) {
           instagram: item.instagramHours,
           tiktok: item.tiktokHours,
           youtube: item.youtubeHours,
-          twitter: item.twitterHours,
+          facebook: item.facebookHours ?? item.twitterHours ?? 0,
         },
         sleepHours: item.sleepHours,
         productivityImpact: item.productivityImpact,

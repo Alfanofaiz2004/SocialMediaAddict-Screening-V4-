@@ -6,7 +6,7 @@ export interface PlatformUsage {
   instagram: number; // hours/day
   tiktok: number;    // hours/day
   youtube: number;   // hours/day
-  twitter: number;   // hours/day
+  facebook: number;  // hours/day
 }
 
 export interface UserInput {
@@ -92,5 +92,5 @@ export interface ScreeningRecord {
   instagramHours: number;
   tiktokHours: number;
   youtubeHours: number;
-  twitterHours: number;
+  facebookHours: number;
 }

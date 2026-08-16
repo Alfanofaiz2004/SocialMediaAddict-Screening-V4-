@@ -143,7 +143,7 @@ exports.Prisma.ScreeningRecordScalarFieldEnum = {
   instagramHours: 'instagramHours',
   tiktokHours: 'tiktokHours',
   youtubeHours: 'youtubeHours',
-  twitterHours: 'twitterHours'
+  facebookHours: 'facebookHours'
 };
 
 exports.Prisma.SortOrder = {

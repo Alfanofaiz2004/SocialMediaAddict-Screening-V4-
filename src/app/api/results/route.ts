@@ -40,8 +40,8 @@ export async function POST(request: Request) {
     const instagramHours = clampNumber(platforms.instagram, 0, 24, 0);
     const tiktokHours = clampNumber(platforms.tiktok, 0, 24, 0);
     const youtubeHours = clampNumber(platforms.youtube, 0, 24, 0);
-    const twitterHours = clampNumber(platforms.twitter, 0, 24, 0);
-    const totalDuration = instagramHours + tiktokHours + youtubeHours + twitterHours;
+    const facebookHours = clampNumber(platforms.facebook ?? platforms.twitter, 0, 24, 0);
+    const totalDuration = instagramHours + tiktokHours + youtubeHours + facebookHours;
 
     // Upsert User based on Username
     const user = await prisma.user.upsert({
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
         instagramHours: instagramHours,
         tiktokHours: tiktokHours,
         youtubeHours: youtubeHours,
-        twitterHours: twitterHours,
+        facebookHours: facebookHours,
       },
     });
 

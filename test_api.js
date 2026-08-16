@@ -1,6 +1,6 @@
 const input = {
   svasScores: [1, 2, 3, 4, 5, 5],
-  platforms: { instagram: 2, tiktok: 2, youtube: 1, twitter: 0 },
+  platforms: { instagram: 2, tiktok: 2, youtube: 1, facebook: 0 },
   sleepHours: 6,
   productivityImpact: 8,
 };
